@@ -1,0 +1,181 @@
+﻿@using MiniMate.Weather.Contracts
+@inject IWeatherService weatherService
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Wetter</PageTitle>
+
+<div class="weather-container">
+    <h1>🌤️ Aktuelles Wetter</h1>
+
+    <div class="search-section">
+        <div class="search-input-container">
+            <input @bind="SearchQuery"
+                   @onkeypress="HandleKeyPress"
+                   @oninput="OnSearchInput"
+                   class="search-input"
+                   placeholder="Ort suchen (z.B. Zürich, Bern, Basel...)"
+                   autocomplete="off" />
+
+            @if (SearchResults.Length > 0 && ShowDropdown)
+            {
+                <div class="search-dropdown">
+                    @foreach (var location in SearchResults)
+                    {
+                        <div class="search-result-item" @onclick="() => SelectLocation(location)">
+                            <div class="location-name">@location.Name</div>
+                            <div class="location-details">
+                                @if (!string.IsNullOrEmpty(location.Admin1))
+                                {
+                                    <span>@location.Admin1, </span>
+                                }
+                                @location.Country
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <button class="location-btn" @onclick="GetCurrentLocation" disabled="@IsLoadingLocation">
+            @if (IsLoadingLocation)
+            {
+                <span>📍 Wird geladen...</span>
+            }
+            else
+            {
+                <span>📍 Mein Standort</span>
+            }
+        </button>
+    </div>
+
+    @if (SelectedLocation != null)
+    {
+        <div class="selected-location">
+            <h2>📍 @SelectedLocation.DisplayName</h2>
+        </div>
+    }
+
+    @if (IsLoading)
+    {
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Wetterdaten werden geladen...</p>
+        </div>
+    }
+    else if (WeatherData != null)
+    {
+        <div class="weather-display">
+            <div class="main-weather">
+                <div class="weather-icon">@WeatherData.WeatherIcon</div>
+                <div class="temperature-section">
+                    <div class="current-temp">@WeatherData.Temperature</div>
+                    <div class="feels-like">Gefühlt @WeatherData.ApparentTemperature</div>
+                    <div class="description">@WeatherData.WeatherDescription</div>
+                </div>
+            </div>
+
+            <div class="weather-grid">
+                <div class="weather-card">
+                    <div class="card-icon">💧</div>
+                    <div class="card-content">
+                        <div class="card-label">Luftfeuchtigkeit</div>
+                        <div class="card-value">@WeatherData.Humidity</div>
+                    </div>
+                </div>
+
+                <div class="weather-card">
+                    <div class="card-icon">🌧️</div>
+                    <div class="card-content">
+                        <div class="card-label">Niederschlag</div>
+                        <div class="card-value">@WeatherData.Precipitation</div>
+                    </div>
+                </div>
+
+                @if (WeatherData.Current.Rain > 0)
+                {
+                    <div class="weather-card">
+                        <div class="card-icon">☔</div>
+                        <div class="card-content">
+                            <div class="card-label">Regen</div>
+                            <div class="card-value">@WeatherData.Rain</div>
+                        </div>
+                    </div>
+                }
+
+                @if (WeatherData.Current.Snowfall > 0)
+                {
+                    <div class="weather-card">
+                        <div class="card-icon">❄️</div>
+                        <div class="card-content">
+                            <div class="card-label">Schneefall</div>
+                            <div class="card-value">@WeatherData.Snowfall</div>
+                        </div>
+                    </div>
+                }
+
+                <div class="weather-card">
+                    <div class="card-icon">💨</div>
+                    <div class="card-content">
+                        <div class="card-label">Wind</div>
+                        <div class="card-value">@WeatherData.WindSpeed @WeatherData.WindDirection</div>
+                    </div>
+                </div>
+
+                @if (WeatherData.Current.WindGusts > WeatherData.Current.WindSpeed * 1.2)
+                {
+                    <div class="weather-card">
+                        <div class="card-icon">🌪️</div>
+                        <div class="card-content">
+                            <div class="card-label">Windböen</div>
+                            <div class="card-value">@WeatherData.WindGusts</div>
+                        </div>
+                    </div>
+                }
+
+                <div class="weather-card">
+                    <div class="card-icon">☁️</div>
+                    <div class="card-content">
+                        <div class="card-label">Bewölkung</div>
+                        <div class="card-value">@WeatherData.CloudCover</div>
+                    </div>
+                </div>
+
+                <div class="weather-card">
+                    <div class="card-icon">🔆</div>
+                    <div class="card-content">
+                        <div class="card-label">UV-Index</div>
+                        <div class="card-value">@WeatherData.UvIndex</div>
+                    </div>
+                </div>
+
+                <div class="weather-card">
+                    <div class="card-icon">📊</div>
+                    <div class="card-content">
+                        <div class="card-label">Luftdruck</div>
+                        <div class="card-value">@WeatherData.Pressure</div>
+                    </div>
+                </div>
+
+                <div class="weather-card">
+                    <div class="card-icon">👁️</div>
+                    <div class="card-content">
+                        <div class="card-label">Sichtweite</div>
+                        <div class="card-value">@WeatherData.Visibility</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="last-updated">
+                Letzte Aktualisierung: @DateTime.ParseExact(WeatherData.Current.Time, "yyyy-MM-ddTHH:mm", null).ToString("dd.MM.yyyy HH:mm")
+            </div>
+        </div>
+    }
+    else if (ErrorMessage != null)
+    {
+        <div class="error-message">
+            <div class="error-icon">⚠️</div>
+            <div class="error-text">@ErrorMessage</div>
+            <button class="retry-btn" @onclick="RetryWeatherLoad">Erneut versuchen</button>
+        </div>
+    }
+</div>
