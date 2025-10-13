@@ -1,4 +1,6 @@
-﻿namespace MiniMate.Weather.Models
+﻿using MiniMate.Weather.Resources;
+
+namespace MiniMate.Weather.Models
 {
     public record WeatherData(CurrentWeather Current, CurrentUnits? Units)
     {
@@ -27,57 +29,57 @@
 
             return degrees switch
             {
-                >= 0 and < 12 => "N",
-                >= 12 and < 34 => "NNO",
-                >= 34 and < 56 => "NO",
-                >= 56 and < 78 => "ONO",
-                >= 78 and < 102 => "O",
-                >= 102 and < 124 => "OSO",
-                >= 124 and < 146 => "SO",
-                >= 146 and < 168 => "SSO",
-                >= 168 and < 192 => "S",
-                >= 192 and < 214 => "SSW",
-                >= 214 and < 236 => "SW",
-                >= 236 and < 258 => "WSW",
-                >= 258 and < 282 => "W",
-                >= 282 and < 304 => "WNW",
-                >= 304 and < 326 => "NW",
-                >= 326 and < 348 => "NNW",
-                >= 348 => "N" // Explizit für 348-359
+                >= 0 and < 12 => WeatherResources.Wind_N,
+                >= 12 and < 34 => WeatherResources.Wind_NNE,
+                >= 34 and < 56 => WeatherResources.Wind_NE,
+                >= 56 and < 78 => WeatherResources.Wind_ENE,
+                >= 78 and < 102 => WeatherResources.Wind_E,
+                >= 102 and < 124 => WeatherResources.Wind_ESE,
+                >= 124 and < 146 => WeatherResources.Wind_SE,
+                >= 146 and < 168 => WeatherResources.Wind_SSE,
+                >= 168 and < 192 => WeatherResources.Wind_S,
+                >= 192 and < 214 => WeatherResources.Wind_SSW,
+                >= 214 and < 236 => WeatherResources.Wind_SW,
+                >= 236 and < 258 => WeatherResources.Wind_WSW,
+                >= 258 and < 282 => WeatherResources.Wind_W,
+                >= 282 and < 304 => WeatherResources.Wind_WNW,
+                >= 304 and < 326 => WeatherResources.Wind_NW,
+                >= 326 and < 348 => WeatherResources.Wind_NNW,
+                >= 348 => WeatherResources.Wind_N // Explizit für 348-359
             };
         }
 
         private static string GetWeatherDescription(int code) => code switch
         {
-            0 => "Klar",
-            1 => "Überwiegend klar",
-            2 => "Teilweise bewölkt",
-            3 => "Bewölkt",
-            45 => "Nebel",
-            48 => "Reifnebel",
-            51 => "Leichter Nieselregen",
-            53 => "Mässiger Nieselregen",
-            55 => "Starker Nieselregen",
-            56 => "Leichter gefrierender Nieselregen",
-            57 => "Starker gefrierender Nieselregen",
-            61 => "Leichter Regen",
-            63 => "Mässiger Regen",
-            65 => "Starker Regen",
-            66 => "Leichter gefrierender Regen",
-            67 => "Starker gefrierender Regen",
-            71 => "Leichter Schneefall",
-            73 => "Mässiger Schneefall",
-            75 => "Starker Schneefall",
-            77 => "Schneekörner",
-            80 => "Leichte Regenschauer",
-            81 => "Mässige Regenschauer",
-            82 => "Starke Regenschauer",
-            85 => "Leichte Schneeschauer",
-            86 => "Starke Schneeschauer",
-            95 => "Gewitter",
-            96 => "Gewitter mit leichtem Hagel",
-            99 => "Gewitter mit starkem Hagel",
-            _ => "Unbekannt"
+            0 => WeatherResources.Weather_Clear,
+            1 => WeatherResources.Weather_MainlyClear,
+            2 => WeatherResources.Weather_PartlyCloudy,
+            3 => WeatherResources.Weather_Cloudy,
+            45 => WeatherResources.Weather_Fog,
+            48 => WeatherResources.Weather_RimeFog,
+            51 => WeatherResources.Weather_LightDrizzle,
+            53 => WeatherResources.Weather_ModerateDrizzle,
+            55 => WeatherResources.Weather_HeavyDrizzle,
+            56 => WeatherResources.Weather_LightFreezingDrizzle,
+            57 => WeatherResources.Weather_HeavyFreezingDrizzle,
+            61 => WeatherResources.Weather_LightRain,
+            63 => WeatherResources.Weather_ModerateRain,
+            65 => WeatherResources.Weather_HeavyRain,
+            66 => WeatherResources.Weather_LightFreezingRain,
+            67 => WeatherResources.Weather_HeavyFreezingRain,
+            71 => WeatherResources.Weather_LightSnowfall,
+            73 => WeatherResources.Weather_ModerateSnowfall,
+            75 => WeatherResources.Weather_HeavySnowfall,
+            77 => WeatherResources.Weather_SnowGrains,
+            80 => WeatherResources.Weather_LightRainShowers,
+            81 => WeatherResources.Weather_ModerateRainShowers,
+            82 => WeatherResources.Weather_HeavyRainShowers,
+            85 => WeatherResources.Weather_LightSnowShowers,
+            86 => WeatherResources.Weather_HeavySnowShowers,
+            95 => WeatherResources.Weather_Thunderstorm,
+            96 => WeatherResources.Weather_ThunderstormLightHail,
+            99 => WeatherResources.Weather_ThunderstormHeavyHail,
+            _ => WeatherResources.Weather_Unknown
         };
 
         private static string GetWeatherIcon(int code, bool isDay) => code switch

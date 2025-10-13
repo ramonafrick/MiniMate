@@ -1,18 +1,21 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 using MiniMate.Weather.Contracts;
 using MiniMate.Weather.Helper;
 using MiniMate.Weather.Models;
+using MiniMate.Weather.Resources;
+using System.Globalization;
 
 namespace MiniMate.Component
 {
     public partial class WeatherComponent : ComponentBase, IDisposable
     {
+        #region Properties
         [Inject] protected IWeatherService WeatherService { get; set; } = null!;
-        //[Inject] protected IJSRuntime JSRuntime { get; set; } = null!;
-
-        // Properties for UI binding
+        [Inject] protected IStringLocalizer<WeatherResources> Localizer { get; set; } = null!;
+        [Inject] protected NavigationManager Navigation { get; set; } = null!;
         protected string SearchQuery { get; set; } = "";
         protected LocationData[] SearchResults { get; set; } = [];
         protected LocationData? SelectedLocation { get; set; }
@@ -21,9 +24,11 @@ namespace MiniMate.Component
         protected bool IsLoadingLocation { get; set; } = false;
         protected bool ShowDropdown { get; set; } = false;
         protected string? ErrorMessage { get; set; }
-
+        protected string CurrentLanguage => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToUpper();
         private System.Timers.Timer? _searchTimer;
+        #endregion
 
+        #region Methods
         protected void OnSearchInput(ChangeEventArgs e)
         {
             SearchQuery = e.Value?.ToString() ?? "";
@@ -98,7 +103,7 @@ namespace MiniMate.Component
                 var position = await JSRuntime.InvokeAsync<GeolocationPosition>("getCurrentPosition");
                 SelectedLocation = new LocationData(
                     Id: 0,
-                    Name: "Mein Standort",
+                    Name: Localizer["MyLocationText"],
                     Latitude: position.Coords.Latitude,
                     Longitude: position.Coords.Longitude,
                     Elevation: null,
@@ -115,12 +120,12 @@ namespace MiniMate.Component
                     Postcodes: null
                 );
 
-                SearchQuery = "Mein Standort";
+                SearchQuery = Localizer["MyLocationText"];
                 await LoadWeatherData(position.Coords.Latitude, position.Coords.Longitude);
             }
             catch (Exception ex)
             {
-                ErrorMessage = "Standort konnte nicht ermittelt werden. Bitte erlauben Sie den Standortzugriff oder suchen Sie manuell nach einem Ort.";
+                ErrorMessage = Localizer["ErrorMessageWeatherLocation"];
                 Console.WriteLine($"Geolocation error: {ex.Message}");
             }
             finally
@@ -162,9 +167,21 @@ namespace MiniMate.Component
             }
         }
 
+        protected async Task ToggleLanguage()
+        {
+            var newCulture = CurrentLanguage == "DE" ? "en" : "de";
+
+            // Save culture to localStorage
+            await JSRuntime.InvokeVoidAsync("blazorCulture.set", newCulture);
+
+            // Reload page to apply new culture
+            Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+        }
+
         public void Dispose()
         {
             _searchTimer?.Dispose();
         }
+        #endregion
     }
 }

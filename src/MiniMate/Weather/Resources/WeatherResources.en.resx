@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Weather_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Weather_MainlyClear" xml:space="preserve">
+    <value>Mainly Clear</value>
+  </data>
+  <data name="Weather_PartlyCloudy" xml:space="preserve">
+    <value>Partly Cloudy</value>
+  </data>
+  <data name="Weather_Cloudy" xml:space="preserve">
+    <value>Cloudy</value>
+  </data>
+  <data name="Weather_Fog" xml:space="preserve">
+    <value>Fog</value>
+  </data>
+  <data name="Weather_RimeFog" xml:space="preserve">
+    <value>Rime Fog</value>
+  </data>
+  <data name="Weather_LightDrizzle" xml:space="preserve">
+    <value>Light Drizzle</value>
+  </data>
+  <data name="Weather_ModerateDrizzle" xml:space="preserve">
+    <value>Moderate Drizzle</value>
+  </data>
+  <data name="Weather_HeavyDrizzle" xml:space="preserve">
+    <value>Heavy Drizzle</value>
+  </data>
+  <data name="Weather_LightFreezingDrizzle" xml:space="preserve">
+    <value>Light Freezing Drizzle</value>
+  </data>
+  <data name="Weather_HeavyFreezingDrizzle" xml:space="preserve">
+    <value>Heavy Freezing Drizzle</value>
+  </data>
+  <data name="Weather_LightRain" xml:space="preserve">
+    <value>Light Rain</value>
+  </data>
+  <data name="Weather_ModerateRain" xml:space="preserve">
+    <value>Moderate Rain</value>
+  </data>
+  <data name="Weather_HeavyRain" xml:space="preserve">
+    <value>Heavy Rain</value>
+  </data>
+  <data name="Weather_LightFreezingRain" xml:space="preserve">
+    <value>Light Freezing Rain</value>
+  </data>
+  <data name="Weather_HeavyFreezingRain" xml:space="preserve">
+    <value>Heavy Freezing Rain</value>
+  </data>
+  <data name="Weather_LightSnowfall" xml:space="preserve">
+    <value>Light Snowfall</value>
+  </data>
+  <data name="Weather_ModerateSnowfall" xml:space="preserve">
+    <value>Moderate Snowfall</value>
+  </data>
+  <data name="Weather_HeavySnowfall" xml:space="preserve">
+    <value>Heavy Snowfall</value>
+  </data>
+  <data name="Weather_SnowGrains" xml:space="preserve">
+    <value>Snow Grains</value>
+  </data>
+  <data name="Weather_LightRainShowers" xml:space="preserve">
+    <value>Light Rain Showers</value>
+  </data>
+  <data name="Weather_ModerateRainShowers" xml:space="preserve">
+    <value>Moderate Rain Showers</value>
+  </data>
+  <data name="Weather_HeavyRainShowers" xml:space="preserve">
+    <value>Heavy Rain Showers</value>
+  </data>
+  <data name="Weather_LightSnowShowers" xml:space="preserve">
+    <value>Light Snow Showers</value>
+  </data>
+  <data name="Weather_HeavySnowShowers" xml:space="preserve">
+    <value>Heavy Snow Showers</value>
+  </data>
+  <data name="Weather_Thunderstorm" xml:space="preserve">
+    <value>Thunderstorm</value>
+  </data>
+  <data name="Weather_ThunderstormLightHail" xml:space="preserve">
+    <value>Thunderstorm with Light Hail</value>
+  </data>
+  <data name="Weather_ThunderstormHeavyHail" xml:space="preserve">
+    <value>Thunderstorm with Heavy Hail</value>
+  </data>
+  <data name="Weather_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Wind_N" xml:space="preserve">
+    <value>N</value>
+  </data>
+  <data name="Wind_NNE" xml:space="preserve">
+    <value>NNE</value>
+  </data>
+  <data name="Wind_NE" xml:space="preserve">
+    <value>NE</value>
+  </data>
+  <data name="Wind_ENE" xml:space="preserve">
+    <value>ENE</value>
+  </data>
+  <data name="Wind_E" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="Wind_ESE" xml:space="preserve">
+    <value>ESE</value>
+  </data>
+  <data name="Wind_SE" xml:space="preserve">
+    <value>SE</value>
+  </data>
+  <data name="Wind_SSE" xml:space="preserve">
+    <value>SSE</value>
+  </data>
+  <data name="Wind_S" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Wind_SSW" xml:space="preserve">
+    <value>SSW</value>
+  </data>
+  <data name="Wind_SW" xml:space="preserve">
+    <value>SW</value>
+  </data>
+  <data name="Wind_WSW" xml:space="preserve">
+    <value>WSW</value>
+  </data>
+  <data name="Wind_W" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="Wind_WNW" xml:space="preserve">
+    <value>WNW</value>
+  </data>
+  <data name="Wind_NW" xml:space="preserve">
+    <value>NW</value>
+  </data>
+  <data name="Wind_NNW" xml:space="preserve">
+    <value>NNW</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Weather</value>
+  </data>
+  <data name="CurrentWeather" xml:space="preserve">
+    <value>🌤️ Current Weather</value>
+  </data>
+  <data name="SearchPlaceholder" xml:space="preserve">
+    <value>Search location (e.g. Zurich, Bern, Basel...)</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="MyLocation" xml:space="preserve">
+    <value>📍 My Location</value>
+  </data>
+  <data name="LoadingWeatherData" xml:space="preserve">
+    <value>Loading weather data...</value>
+  </data>
+  <data name="FeelsLike" xml:space="preserve">
+    <value>Feels like {0}</value>
+  </data>
+  <data name="Humidity" xml:space="preserve">
+    <value>Humidity</value>
+  </data>
+  <data name="Precipitation" xml:space="preserve">
+    <value>Precipitation</value>
+  </data>
+  <data name="Rain" xml:space="preserve">
+    <value>Rain</value>
+  </data>
+  <data name="Snowfall" xml:space="preserve">
+    <value>Snowfall</value>
+  </data>
+  <data name="Wind" xml:space="preserve">
+    <value>Wind</value>
+  </data>
+  <data name="WindGusts" xml:space="preserve">
+    <value>Wind Gusts</value>
+  </data>
+  <data name="CloudCover" xml:space="preserve">
+    <value>Cloud Cover</value>
+  </data>
+  <data name="UVIndex" xml:space="preserve">
+    <value>UV Index</value>
+  </data>
+  <data name="Pressure" xml:space="preserve">
+    <value>Pressure</value>
+  </data>
+  <data name="Visibility" xml:space="preserve">
+    <value>Visibility</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last updated: {0}</value>
+  </data>
+  <data name="RetryButton" xml:space="preserve">
+    <value>Try again</value>
+  </data>
+  <data name="MyLocationText" xml:space="preserve">
+    <value>My Location</value>
+  </data>
+  <data name="ErrorMessageWeatherLocation" xml:space="preserve">
+    <value>Location could not be determined. Please allow location access or search for a location manually.</value>
+  </data>
+</root>

@@ -1,11 +1,18 @@
 ﻿@using MiniMate.Weather.Contracts
+@using Microsoft.Extensions.Localization
+@using MiniMate.Weather.Resources
 @inject IWeatherService weatherService
 @inject IJSRuntime JSRuntime
 
-<PageTitle>Wetter</PageTitle>
+<PageTitle>@Localizer["PageTitle"]</PageTitle>
 
 <div class="weather-container">
-    <h1>🌤️ Aktuelles Wetter</h1>
+    <div class="header-section">
+        <h1>@Localizer["CurrentWeather"]</h1>
+        <button class="btn btn-primary" @onclick="ToggleLanguage">
+            🌐 @CurrentLanguage
+        </button>
+    </div>
 
     <div class="search-section">
         <div class="search-input-container">
@@ -13,7 +20,7 @@
                    @onkeypress="HandleKeyPress"
                    @oninput="OnSearchInput"
                    class="search-input"
-                   placeholder="Ort suchen (z.B. Zürich, Bern, Basel...)"
+                   placeholder="@Localizer["SearchPlaceholder"]"
                    autocomplete="off" />
 
             @if (SearchResults.Length > 0 && ShowDropdown)
@@ -36,14 +43,14 @@
             }
         </div>
 
-        <button class="location-btn" @onclick="GetCurrentLocation" disabled="@IsLoadingLocation">
+        <button class="btn btn-primary" @onclick="GetCurrentLocation" disabled="@IsLoadingLocation">
             @if (IsLoadingLocation)
             {
-                <span>📍 Wird geladen...</span>
+                <span>📍 @Localizer["Loading"]</span>
             }
             else
             {
-                <span>📍 Mein Standort</span>
+                <span>@Localizer["MyLocation"]</span>
             }
         </button>
     </div>
@@ -59,7 +66,7 @@
     {
         <div class="loading">
             <div class="spinner"></div>
-            <p>Wetterdaten werden geladen...</p>
+            <p>@Localizer["LoadingWeatherData"]</p>
         </div>
     }
     else if (WeatherData != null)
@@ -69,7 +76,7 @@
                 <div class="weather-icon">@WeatherData.WeatherIcon</div>
                 <div class="temperature-section">
                     <div class="current-temp">@WeatherData.Temperature</div>
-                    <div class="feels-like">Gefühlt @WeatherData.ApparentTemperature</div>
+                    <div class="feels-like">@Localizer["FeelsLike", WeatherData.ApparentTemperature]</div>
                     <div class="description">@WeatherData.WeatherDescription</div>
                 </div>
             </div>
@@ -78,7 +85,7 @@
                 <div class="weather-card">
                     <div class="card-icon">💧</div>
                     <div class="card-content">
-                        <div class="card-label">Luftfeuchtigkeit</div>
+                        <div class="card-label">@Localizer["Humidity"]</div>
                         <div class="card-value">@WeatherData.Humidity</div>
                     </div>
                 </div>
@@ -86,7 +93,7 @@
                 <div class="weather-card">
                     <div class="card-icon">🌧️</div>
                     <div class="card-content">
-                        <div class="card-label">Niederschlag</div>
+                        <div class="card-label">@Localizer["Precipitation"]</div>
                         <div class="card-value">@WeatherData.Precipitation</div>
                     </div>
                 </div>
@@ -96,7 +103,7 @@
                     <div class="weather-card">
                         <div class="card-icon">☔</div>
                         <div class="card-content">
-                            <div class="card-label">Regen</div>
+                            <div class="card-label">@Localizer["Rain"]</div>
                             <div class="card-value">@WeatherData.Rain</div>
                         </div>
                     </div>
@@ -107,7 +114,7 @@
                     <div class="weather-card">
                         <div class="card-icon">❄️</div>
                         <div class="card-content">
-                            <div class="card-label">Schneefall</div>
+                            <div class="card-label">@Localizer["Snowfall"]</div>
                             <div class="card-value">@WeatherData.Snowfall</div>
                         </div>
                     </div>
@@ -116,7 +123,7 @@
                 <div class="weather-card">
                     <div class="card-icon">💨</div>
                     <div class="card-content">
-                        <div class="card-label">Wind</div>
+                        <div class="card-label">@Localizer["Wind"]</div>
                         <div class="card-value">@WeatherData.WindSpeed @WeatherData.WindDirection</div>
                     </div>
                 </div>
@@ -126,7 +133,7 @@
                     <div class="weather-card">
                         <div class="card-icon">🌪️</div>
                         <div class="card-content">
-                            <div class="card-label">Windböen</div>
+                            <div class="card-label">@Localizer["WindGusts"]</div>
                             <div class="card-value">@WeatherData.WindGusts</div>
                         </div>
                     </div>
@@ -135,7 +142,7 @@
                 <div class="weather-card">
                     <div class="card-icon">☁️</div>
                     <div class="card-content">
-                        <div class="card-label">Bewölkung</div>
+                        <div class="card-label">@Localizer["CloudCover"]</div>
                         <div class="card-value">@WeatherData.CloudCover</div>
                     </div>
                 </div>
@@ -143,7 +150,7 @@
                 <div class="weather-card">
                     <div class="card-icon">🔆</div>
                     <div class="card-content">
-                        <div class="card-label">UV-Index</div>
+                        <div class="card-label">@Localizer["UVIndex"]</div>
                         <div class="card-value">@WeatherData.UvIndex</div>
                     </div>
                 </div>
@@ -151,7 +158,7 @@
                 <div class="weather-card">
                     <div class="card-icon">📊</div>
                     <div class="card-content">
-                        <div class="card-label">Luftdruck</div>
+                        <div class="card-label">@Localizer["Pressure"]</div>
                         <div class="card-value">@WeatherData.Pressure</div>
                     </div>
                 </div>
@@ -159,14 +166,14 @@
                 <div class="weather-card">
                     <div class="card-icon">👁️</div>
                     <div class="card-content">
-                        <div class="card-label">Sichtweite</div>
+                        <div class="card-label">@Localizer["Visibility"]</div>
                         <div class="card-value">@WeatherData.Visibility</div>
                     </div>
                 </div>
             </div>
 
             <div class="last-updated">
-                Letzte Aktualisierung: @DateTime.ParseExact(WeatherData.Current.Time, "yyyy-MM-ddTHH:mm", null).ToString("dd.MM.yyyy HH:mm")
+                @Localizer["LastUpdated", DateTime.ParseExact(WeatherData.Current.Time, "yyyy-MM-ddTHH:mm", null).ToString("dd.MM.yyyy HH:mm")]
             </div>
         </div>
     }
@@ -175,7 +182,7 @@
         <div class="error-message">
             <div class="error-icon">⚠️</div>
             <div class="error-text">@ErrorMessage</div>
-            <button class="retry-btn" @onclick="RetryWeatherLoad">Erneut versuchen</button>
+            <button class="btn btn-warning" @onclick="RetryWeatherLoad">@Localizer["RetryButton"]</button>
         </div>
     }
 </div>

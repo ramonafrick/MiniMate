@@ -1,5 +1,6 @@
 ﻿using MiniMate.Weather.Contracts;
 using MiniMate.Weather.Models;
+using System.Globalization;
 using System.Net.Http;
 using System.Text.Json;
 
@@ -39,7 +40,7 @@ namespace MiniMate.Weather.Services
             ]);
 
             var url = $"{BaseUrl}/forecast?" +
-                      $"latitude={latitude:F4}&longitude={longitude:F4}&" +
+                      $"latitude={latitude.ToString("F4", CultureInfo.InvariantCulture)}&longitude={longitude.ToString("F4", CultureInfo.InvariantCulture)}&" +
                       $"current={currentParams}&" +
                       $"timezone=auto&" +
                       $"forecast_days=1";

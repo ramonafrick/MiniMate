@@ -12,6 +12,80 @@ h1 {
     font-size: 2.5rem;
 }
 
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+    .header-section h1 {
+        margin: 0;
+        flex: 1;
+    }
+
+/* Unified Button Styles */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+    .btn:hover:not(:disabled) {
+        transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+    .btn-primary:hover:not(:disabled) {
+        background: #2980b9;
+    }
+
+    .btn-primary:disabled {
+        background: #bdc3c7;
+    }
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+    .btn-secondary:hover:not(:disabled) {
+        background: #5a6268;
+    }
+
+    .btn-secondary:disabled {
+        background: #adb5bd;
+    }
+
+.btn-warning {
+    background: #e67e22;
+    color: white;
+}
+
+    .btn-warning:hover:not(:disabled) {
+        background: #d35400;
+    }
+
+    .btn-warning:disabled {
+        background: #f0b27a;
+    }
+
 .search-section {
     display: flex;
     gap: 10px;
@@ -79,27 +153,6 @@ h1 {
     color: #6c757d;
     margin-top: 2px;
 }
-
-.location-btn {
-    padding: 12px 20px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    white-space: nowrap;
-}
-
-    .location-btn:hover:not(:disabled) {
-        background: #2980b9;
-    }
-
-    .location-btn:disabled {
-        background: #bdc3c7;
-        cursor: not-allowed;
-    }
 
 .selected-location {
     text-align: center;
@@ -248,21 +301,6 @@ h1 {
     margin-bottom: 15px;
     font-size: 1.1rem;
 }
-
-.retry-btn {
-    background: #e53e3e;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-    .retry-btn:hover {
-        background: #c53030;
-    }
 
 /* Mobile Responsive Design */
 @media (max-width: 600px) {
