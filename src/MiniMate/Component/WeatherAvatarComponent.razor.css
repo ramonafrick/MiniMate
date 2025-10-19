@@ -1,0 +1,142 @@
+.weather-avatar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar-image-wrapper {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: white;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.avatar-description {
+    text-align: center;
+}
+
+.avatar-description h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.clothing-details {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.25rem;
+    backdrop-filter: blur(10px);
+}
+
+.clothing-details h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.clothing-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.clothing-list li {
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.clothing-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.advice-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.875rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    border-left: 4px solid rgba(255, 255, 255, 0.5);
+}
+
+.advice-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.advice-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.weather-avatar-placeholder {
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.weather-avatar-placeholder p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .weather-avatar-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .avatar-section {
+        flex: 0 0 300px;
+    }
+
+    .clothing-details {
+        flex: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .avatar-image-wrapper {
+        max-width: 250px;
+    }
+
+    .avatar-description h3 {
+        font-size: 1.25rem;
+    }
+}

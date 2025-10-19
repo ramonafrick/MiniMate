@@ -4,8 +4,6 @@
 @inject IWeatherService weatherService
 @inject IJSRuntime JSRuntime
 
-<PageTitle>@Localizer["PageTitle"]</PageTitle>
-
 <div class="weather-container">
     <div class="header-section">
         <h1>@Localizer["CurrentWeather"]</h1>
@@ -176,6 +174,8 @@
                 @Localizer["LastUpdated", DateTime.ParseExact(WeatherData.Current.Time, "yyyy-MM-ddTHH:mm", null).ToString("dd.MM.yyyy HH:mm")]
             </div>
         </div>
+
+        <WeatherAvatarComponent WeatherData="@WeatherData" />
     }
     else if (ErrorMessage != null)
     {

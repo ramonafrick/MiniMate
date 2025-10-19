@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="WinterJacket" xml:space="preserve">
+    <value>Winterjacke</value>
+  </data>
+  <data name="Hat" xml:space="preserve">
+    <value>Mütze</value>
+  </data>
+  <data name="Scarf" xml:space="preserve">
+    <value>Schal</value>
+  </data>
+  <data name="Gloves" xml:space="preserve">
+    <value>Handschuhe</value>
+  </data>
+  <data name="WinterBoots" xml:space="preserve">
+    <value>Winterstiefel</value>
+  </data>
+  <data name="ThermalUnderwear" xml:space="preserve">
+    <value>Thermounterwäsche</value>
+  </data>
+  <data name="RainJacket" xml:space="preserve">
+    <value>Regenjacke</value>
+  </data>
+  <data name="Umbrella" xml:space="preserve">
+    <value>Regenschirm</value>
+  </data>
+  <data name="WaterproofShoes" xml:space="preserve">
+    <value>Wasserfeste Schuhe</value>
+  </data>
+  <data name="Jacket" xml:space="preserve">
+    <value>Jacke</value>
+  </data>
+  <data name="LightJacket" xml:space="preserve">
+    <value>Leichte Jacke</value>
+  </data>
+  <data name="Sweater" xml:space="preserve">
+    <value>Pullover</value>
+  </data>
+  <data name="LongSleevShirt" xml:space="preserve">
+    <value>Langarmshirt</value>
+  </data>
+  <data name="LongPants" xml:space="preserve">
+    <value>Lange Hose</value>
+  </data>
+  <data name="Windbreaker" xml:space="preserve">
+    <value>Windjacke</value>
+  </data>
+  <data name="TShirt" xml:space="preserve">
+    <value>T-Shirt</value>
+  </data>
+  <data name="Shorts" xml:space="preserve">
+    <value>Kurze Hose</value>
+  </data>
+  <data name="SunHat" xml:space="preserve">
+    <value>Sonnenhut</value>
+  </data>
+  <data name="Sunglasses" xml:space="preserve">
+    <value>Sonnenbrille</value>
+  </data>
+  <data name="WarmShoes" xml:space="preserve">
+    <value>Warme Schuhe</value>
+  </data>
+  <data name="NormalClothing" xml:space="preserve">
+    <value>Normale Kleidung</value>
+  </data>
+  <!-- Weather Descriptions -->
+  <data name="ExtremeColdWithSnow" xml:space="preserve">
+    <value>Extreme Kälte mit Schnee</value>
+  </data>
+  <data name="ExtremeCold" xml:space="preserve">
+    <value>Extreme Kälte</value>
+  </data>
+  <data name="ColdWithHeavySnow" xml:space="preserve">
+    <value>Kalt mit starkem Schneefall</value>
+  </data>
+  <data name="ColdWithSnow" xml:space="preserve">
+    <value>Kalt mit Schnee</value>
+  </data>
+  <data name="Cold" xml:space="preserve">
+    <value>Kalt (unter 0°C)</value>
+  </data>
+  <data name="CoolWithHeavyRain" xml:space="preserve">
+    <value>Kühl mit starkem Regen</value>
+  </data>
+  <data name="CoolWithRain" xml:space="preserve">
+    <value>Kühl mit Regen</value>
+  </data>
+  <data name="CoolAndWindy" xml:space="preserve">
+    <value>Kühl und windig</value>
+  </data>
+  <data name="Cool" xml:space="preserve">
+    <value>Kühl</value>
+  </data>
+  <data name="MildWithRain" xml:space="preserve">
+    <value>Mild mit Regen</value>
+  </data>
+  <data name="Mild" xml:space="preserve">
+    <value>Mild</value>
+  </data>
+  <data name="WarmWithRain" xml:space="preserve">
+    <value>Warm mit Regen</value>
+  </data>
+  <data name="Warm" xml:space="preserve">
+    <value>Warm</value>
+  </data>
+  <data name="HotWithThunderstorm" xml:space="preserve">
+    <value>Heiß mit Gewitter</value>
+  </data>
+  <data name="HotWithRain" xml:space="preserve">
+    <value>Heiß mit Regen</value>
+  </data>
+  <data name="VeryHot" xml:space="preserve">
+    <value>Sehr heiß</value>
+  </data>
+  <data name="Hot" xml:space="preserve">
+    <value>Heiß</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normale Bedingungen</value>
+  </data>
+  <!-- Weather Advice -->
+  <data name="ExtremeColdStayInside" xml:space="preserve">
+    <value>Sehr kalt! Zieh dich warm an und vermeide längere Aufenthalte draußen.</value>
+  </data>
+  <data name="ExtremeColdLayerUp" xml:space="preserve">
+    <value>Extrem kalt! Zieh dich in mehreren Schichten an.</value>
+  </data>
+  <data name="SnowWaterproofImportant" xml:space="preserve">
+    <value>Schnee! Wasserfeste Kleidung ist wichtig.</value>
+  </data>
+  <data name="SnowDontForgetGloves" xml:space="preserve">
+    <value>Es schneit! Vergiss die Handschuhe nicht.</value>
+  </data>
+  <data name="ColdWarmJacketNeeded" xml:space="preserve">
+    <value>Kalt! Eine warme Jacke ist notwendig.</value>
+  </data>
+  <data name="HeavyRainWaterproofImportant" xml:space="preserve">
+    <value>Starker Regen! Wasserfeste Kleidung ist wichtig.</value>
+  </data>
+  <data name="RainTakeUmbrella" xml:space="preserve">
+    <value>Regen! Nimm einen Regenschirm mit.</value>
+  </data>
+  <data name="WindyWindbreakerProtects" xml:space="preserve">
+    <value>Windig! Eine Windjacke schützt dich.</value>
+  </data>
+  <data name="CoolButPleasantJacketEnough" xml:space="preserve">
+    <value>Kühl, aber angenehm. Eine Jacke reicht.</value>
+  </data>
+  <data name="RainButMildLightJacketEnough" xml:space="preserve">
+    <value>Regen, aber mild. Eine leichte Regenjacke reicht.</value>
+  </data>
+  <data name="PleasantTemperatureLightJacketPerfect" xml:space="preserve">
+    <value>Angenehme Temperatur. Eine leichte Jacke ist perfekt.</value>
+  </data>
+  <data name="WarmButWetUmbrellaEnough" xml:space="preserve">
+    <value>Warm, aber nass. Ein Regenschirm genügt.</value>
+  </data>
+  <data name="NiceWeatherLightClothingIdeal" xml:space="preserve">
+    <value>Schönes Wetter! Leichte Kleidung ist ideal.</value>
+  </data>
+  <data name="ThunderstormStayInside" xml:space="preserve">
+    <value>Gewitter! Bleib wenn möglich drinnen.</value>
+  </data>
+  <data name="WarmRainLightQuickDry" xml:space="preserve">
+    <value>Warmer Regen. Leichte, schnelltrocknende Kleidung.</value>
+  </data>
+  <data name="VeryHotStayInShadeAndDrink" xml:space="preserve">
+    <value>Sehr heiß! Bleib im Schatten und trink viel Wasser. Sonnenschutz nicht vergessen!</value>
+  </data>
+  <data name="WarmAndSunnySunProtection" xml:space="preserve">
+    <value>Warm und sonnig! Denk an Sonnenschutz.</value>
+  </data>
+  <data name="WeatherIsPleasant" xml:space="preserve">
+    <value>Wetter ist angenehm.</value>
+  </data>
+  <!-- WeatherAvatarComponent UI -->
+  <data name="RecommendedClothing" xml:space="preserve">
+    <value>Empfohlene Kleidung:</value>
+  </data>
+  <data name="PleaseSelectLocation" xml:space="preserve">
+    <value>Bitte wähle einen Ort aus, um die Kleidungsempfehlung zu sehen.</value>
+  </data>
+</root>

@@ -1,0 +1,46 @@
+@using MiniMate.Clothing.Contracts
+@using MiniMate.Weather.Models
+
+@if (WeatherData != null)
+{
+    <div class="weather-avatar-container">
+        <div class="avatar-section">
+            <div class="avatar-image-wrapper">
+                <img src="@Recommendation.ImagePath"
+                     alt="@Recommendation.Description"
+                     class="avatar-image"
+                     @onerror="HandleImageError" />
+            </div>
+            <div class="avatar-description">
+                <h3>@Recommendation.Description</h3>
+            </div>
+        </div>
+
+        <div class="clothing-details">
+            <h4>@Localizer["RecommendedClothing"]</h4>
+            <ul class="clothing-list">
+                @foreach (var item in Recommendation.ClothingItems)
+                {
+                    <li>
+                        <span class="clothing-icon">@GetClothingIcon(item)</span>
+                        <span>@item</span>
+                    </li>
+                }
+            </ul>
+
+            @if (!string.IsNullOrEmpty(Recommendation.Advice))
+            {
+                <div class="advice-box">
+                    <span class="advice-icon">💡</span>
+                    <span class="advice-text">@Recommendation.Advice</span>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="weather-avatar-placeholder">
+        <p>@Localizer["PleaseSelectLocation"]</p>
+    </div>
+}
