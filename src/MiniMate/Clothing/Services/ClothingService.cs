@@ -34,7 +34,7 @@ namespace MiniMate.Clothing.Services
                 // Very cold (below -10°C) with snow
                 ( < -10, _, > 0, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/extreme-winter.jpg",
+                    WeatherDescription = WeatherDescription.ExtremeColdWithSnow,
                     Description = WeatherDescription.ExtremeColdWithSnow.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.WinterJacket, ClothingItem.Hat, ClothingItem.Scarf, ClothingItem.Gloves, ClothingItem.WinterBoots, ClothingItem.ThermalUnderwear }.Translate(_localizer),
                     Advice = WeatherAdvice.ExtremeColdStayInside.Translate(_localizer)
@@ -43,7 +43,7 @@ namespace MiniMate.Clothing.Services
                 // Very cold (below -10°C)
                 ( < -10, _, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/extreme-cold.jpg",
+                    WeatherDescription = WeatherDescription.ExtremeCold,
                     Description = WeatherDescription.ExtremeCold.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.WinterJacket, ClothingItem.Hat, ClothingItem.Scarf, ClothingItem.Gloves, ClothingItem.WarmShoes }.Translate(_localizer),
                     Advice = WeatherAdvice.ExtremeColdLayerUp.Translate(_localizer)
@@ -52,7 +52,7 @@ namespace MiniMate.Clothing.Services
                 // Cold with heavy snow (below 0°C)
                 ( < 0, _, > 2, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/snow-day.jpg",
+                    WeatherDescription = WeatherDescription.ColdWithHeavySnow,
                     Description = WeatherDescription.ColdWithHeavySnow.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.WinterJacket, ClothingItem.Hat, ClothingItem.Gloves, ClothingItem.WinterBoots, ClothingItem.Scarf }.Translate(_localizer),
                     Advice = WeatherAdvice.SnowWaterproofImportant.Translate(_localizer)
@@ -61,7 +61,7 @@ namespace MiniMate.Clothing.Services
                 // Cold with snow (below 0°C)
                 ( < 0, _, > 0, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/winter-snow.jpg",
+                    WeatherDescription = WeatherDescription.ColdWithSnow,
                     Description = WeatherDescription.ColdWithSnow.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.WinterJacket, ClothingItem.Hat, ClothingItem.Gloves, ClothingItem.WarmShoes }.Translate(_localizer),
                     Advice = WeatherAdvice.SnowDontForgetGloves.Translate(_localizer)
@@ -70,7 +70,7 @@ namespace MiniMate.Clothing.Services
                 // Cold (below 0°C)
                 ( < 0, _, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/winter.jpg",
+                    WeatherDescription = WeatherDescription.Cold,
                     Description = WeatherDescription.Cold.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.WinterJacket, ClothingItem.Hat, ClothingItem.Scarf, ClothingItem.WarmShoes }.Translate(_localizer),
                     Advice = WeatherAdvice.ColdWarmJacketNeeded.Translate(_localizer)
@@ -79,7 +79,7 @@ namespace MiniMate.Clothing.Services
                 // Cool with heavy rain (0-10°C)
                 (>= 0 and < 10, > 5, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/rainy-cold.jpg",
+                    WeatherDescription = WeatherDescription.CoolWithHeavyRain,
                     Description = WeatherDescription.CoolWithHeavyRain.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.RainJacket, ClothingItem.Umbrella, ClothingItem.WaterproofShoes, ClothingItem.Sweater }.Translate(_localizer),
                     Advice = WeatherAdvice.HeavyRainWaterproofImportant.Translate(_localizer)
@@ -88,7 +88,7 @@ namespace MiniMate.Clothing.Services
                 // Cool with rain (0-10°C)
                 (>= 0 and < 10, > 0, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/rainy-cool.jpg",
+                    WeatherDescription = WeatherDescription.CoolWithRain,
                     Description = WeatherDescription.CoolWithRain.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.Jacket, ClothingItem.Umbrella, ClothingItem.Sweater }.Translate(_localizer),
                     Advice = WeatherAdvice.RainTakeUmbrella.Translate(_localizer)
@@ -97,7 +97,7 @@ namespace MiniMate.Clothing.Services
                 // Cool and windy (0-10°C)
                 (>= 0 and < 10, _, _, > 30, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/windy-cool.jpg",
+                    WeatherDescription = WeatherDescription.CoolAndWindy,
                     Description = WeatherDescription.CoolAndWindy.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.Windbreaker, ClothingItem.Sweater, ClothingItem.Scarf }.Translate(_localizer),
                     Advice = WeatherAdvice.WindyWindbreakerProtects.Translate(_localizer)
@@ -106,7 +106,7 @@ namespace MiniMate.Clothing.Services
                 // Cool (0-10°C)
                 (>= 0 and < 10, _, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/cool.jpg",
+                    WeatherDescription = WeatherDescription.Cool,
                     Description = WeatherDescription.Cool.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.Jacket, ClothingItem.Sweater, ClothingItem.LongPants }.Translate(_localizer),
                     Advice = WeatherAdvice.CoolButPleasantJacketEnough.Translate(_localizer)
@@ -115,7 +115,7 @@ namespace MiniMate.Clothing.Services
                 // Mild with rain (10-15°C)
                 (>= 10 and < 15, > 0, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/mild-rainy.jpg",
+                    WeatherDescription = WeatherDescription.MildWithRain,
                     Description = WeatherDescription.MildWithRain.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.LightJacket, ClothingItem.Umbrella }.Translate(_localizer),
                     Advice = WeatherAdvice.RainButMildLightJacketEnough.Translate(_localizer)
@@ -124,7 +124,7 @@ namespace MiniMate.Clothing.Services
                 // Mild (10-15°C)
                 (>= 10 and < 15, _, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/mild.jpg",
+                    WeatherDescription = WeatherDescription.Mild,
                     Description = WeatherDescription.Mild.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.LightJacket, ClothingItem.LongSleevShirt }.Translate(_localizer),
                     Advice = WeatherAdvice.PleasantTemperatureLightJacketPerfect.Translate(_localizer)
@@ -133,7 +133,7 @@ namespace MiniMate.Clothing.Services
                 // Warm with rain (15-20°C)
                 (>= 15 and < 20, > 0, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/warm-rainy.jpg",
+                    WeatherDescription = WeatherDescription.WarmWithRain,
                     Description = WeatherDescription.WarmWithRain.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.RainJacket, ClothingItem.Umbrella, ClothingItem.TShirt }.Translate(_localizer),
                     Advice = WeatherAdvice.WarmButWetUmbrellaEnough.Translate(_localizer)
@@ -142,7 +142,7 @@ namespace MiniMate.Clothing.Services
                 // Warm (15-20°C)
                 (>= 15 and < 20, _, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/warm.jpg",
+                    WeatherDescription = WeatherDescription.Warm,
                     Description = WeatherDescription.Warm.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.LongSleevShirt, ClothingItem.TShirt }.Translate(_localizer),
                     Advice = WeatherAdvice.NiceWeatherLightClothingIdeal.Translate(_localizer)
@@ -151,7 +151,7 @@ namespace MiniMate.Clothing.Services
                 // Hot with thunderstorm (above 25°C)
                 (>= 25, _, _, _, >= 95 and <= 99) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/thunderstorm.jpg",
+                    WeatherDescription = WeatherDescription.HotWithThunderstorm,
                     Description = WeatherDescription.HotWithThunderstorm.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.WaterproofShoes }.Translate(_localizer),
                     Advice = WeatherAdvice.ThunderstormStayInside.Translate(_localizer)
@@ -160,7 +160,7 @@ namespace MiniMate.Clothing.Services
                 // Hot with rain (above 25°C)
                 (>= 25, > 0, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/hot-rainy.jpg",
+                    WeatherDescription = WeatherDescription.HotWithRain,
                     Description = WeatherDescription.HotWithRain.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.Umbrella }.Translate(_localizer),
                     Advice = WeatherAdvice.WarmRainLightQuickDry.Translate(_localizer)
@@ -169,7 +169,7 @@ namespace MiniMate.Clothing.Services
                 // Very hot (above 30°C)
                 (>= 30, _, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/very-hot.jpg",
+                    WeatherDescription = WeatherDescription.VeryHot,
                     Description = WeatherDescription.VeryHot.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.SunHat, ClothingItem.Sunglasses }.Translate(_localizer),
                     Advice = WeatherAdvice.VeryHotStayInShadeAndDrink.Translate(_localizer)
@@ -178,7 +178,7 @@ namespace MiniMate.Clothing.Services
                 // Hot (20-30°C)
                 (>= 20 and < 30, _, _, _, _) => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/hot.jpg",
+                    WeatherDescription = WeatherDescription.Hot,
                     Description = WeatherDescription.Hot.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.SunHat }.Translate(_localizer),
                     Advice = WeatherAdvice.WarmAndSunnySunProtection.Translate(_localizer)
@@ -187,7 +187,7 @@ namespace MiniMate.Clothing.Services
                 // Default fallback
                 _ => new ClothingRecommendation
                 {
-                    ImagePath = "images/avatars/default.jpg",
+                    WeatherDescription = WeatherDescription.Normal,
                     Description = WeatherDescription.Normal.Translate(_localizer),
                     ClothingItems = new[] { ClothingItem.NormalClothing }.Translate(_localizer),
                     Advice = WeatherAdvice.WeatherIsPleasant.Translate(_localizer)

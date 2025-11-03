@@ -2,8 +2,12 @@
 
 namespace MiniMate.Weather.Models
 {
-    public record WeatherData(CurrentWeather Current, CurrentUnits? Units)
+    public record WeatherData(double Latitude, double Longitude, CurrentWeather Current, CurrentUnits? Units)
     {
+        /// <summary>
+        /// Returns true if the location is in the Northern Hemisphere
+        /// </summary>
+        public bool IsNorthernHemisphere => Latitude >= 0;
         public string Temperature => $"{Current.Temperature:F1}{Units?.Temperature ?? "°C"}";
         public string ApparentTemperature => $"{Current.ApparentTemperature:F1}{Units?.ApparentTemperature ?? "°C"}";
         public string Humidity => $"{Current.RelativeHumidity}{Units?.RelativeHumidity ?? "%"}";
@@ -17,6 +21,25 @@ namespace MiniMate.Weather.Models
         public string UvIndex => $"{Current.UvIndex:F1}";
         public string Visibility => $"{Current.Visibility / 1000:F1} km";
         public bool IsDay => Current.IsDay == 1;
+
+        /// <summary>
+        /// Gets the local time for the weather data location.
+        /// The API returns time in the location's timezone due to timezone=auto parameter.
+        /// </summary>
+        public DateTime LocalTime
+        {
+            get
+            {
+                try
+                {
+                    return DateTime.ParseExact(Current.Time, "yyyy-MM-ddTHH:mm", null);
+                }
+                catch
+                {
+                    return DateTime.Now;
+                }
+            }
+        }
 
         public string WindDirection => GetWindDirection(Current.WindDirection);
         public string WeatherDescription => GetWeatherDescription(Current.WeatherCode);

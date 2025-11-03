@@ -1,0 +1,200 @@
+.datetime-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+/* Header Section */
+.datetime-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.current-datetime {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.date-display,
+.time-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.date-icon,
+.time-icon {
+    font-size: 1.5rem;
+}
+
+.date-text {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.time-text {
+    font-weight: 700;
+    font-size: 1.8rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+}
+
+/* Season Display */
+.season-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.season-icon {
+    font-size: 2.5rem;
+}
+
+.season-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Calendar Section */
+.calendar-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.75rem;
+    backdrop-filter: blur(10px);
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.calendar-header {
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.calendar-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.calendar-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+/* Weekday Headers */
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.2rem;
+    margin-bottom: 0.35rem;
+}
+
+.weekday-label {
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.15rem;
+    opacity: 0.8;
+}
+
+/* Calendar Days */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.2rem;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.calendar-day.empty {
+    background: transparent;
+}
+
+.calendar-day.today {
+    background: rgba(255, 255, 255, 0.9);
+    color: #667eea;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .datetime-container {
+        padding: 1rem;
+    }
+
+    .datetime-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .time-text {
+        font-size: 1.5rem;
+    }
+
+    .date-text {
+        font-size: 1rem;
+    }
+
+    .season-display {
+        align-self: stretch;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .season-icon {
+        font-size: 2rem;
+    }
+
+    .calendar-section {
+        max-width: 240px;
+        padding: 0.6rem;
+    }
+
+    .calendar-header h3 {
+        font-size: 0.9rem;
+    }
+
+    .weekday-label {
+        font-size: 0.6rem;
+    }
+
+    .calendar-day {
+        font-size: 0.7rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .datetime-container {
+        padding: 2rem;
+    }
+}

@@ -315,4 +315,16 @@
   <data name="ErrorMessageWeatherLocation" xml:space="preserve">
     <value>Standort konnte nicht ermittelt werden. Bitte erlauben Sie den Standortzugriff oder suchen Sie manuell nach einem Ort.</value>
   </data>
+  <data name="Season_Winter" xml:space="preserve">
+    <value>Winter</value>
+  </data>
+  <data name="Season_Spring" xml:space="preserve">
+    <value>Frühling</value>
+  </data>
+  <data name="Season_Summer" xml:space="preserve">
+    <value>Sommer</value>
+  </data>
+  <data name="Season_Autumn" xml:space="preserve">
+    <value>Herbst</value>
+  </data>
 </root>

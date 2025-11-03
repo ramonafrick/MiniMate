@@ -60,6 +60,11 @@
         </div>
     }
 
+    @if (WeatherData != null)
+    {
+        <DateTimeComponent WeatherData="@WeatherData" />
+    }
+
     @if (IsLoading)
     {
         <div class="loading">
@@ -171,7 +176,7 @@
             </div>
 
             <div class="last-updated">
-                @Localizer["LastUpdated", DateTime.ParseExact(WeatherData.Current.Time, "yyyy-MM-ddTHH:mm", null).ToString("dd.MM.yyyy HH:mm")]
+                @Localizer["LastUpdated", WeatherData.LocalTime.ToString("dd.MM.yyyy HH:mm")]
             </div>
         </div>
 

@@ -315,4 +315,16 @@
   <data name="ErrorMessageWeatherLocation" xml:space="preserve">
     <value>Location could not be determined. Please allow location access or search for a location manually.</value>
   </data>
+  <data name="Season_Winter" xml:space="preserve">
+    <value>Winter</value>
+  </data>
+  <data name="Season_Spring" xml:space="preserve">
+    <value>Spring</value>
+  </data>
+  <data name="Season_Summer" xml:space="preserve">
+    <value>Summer</value>
+  </data>
+  <data name="Season_Autumn" xml:space="preserve">
+    <value>Autumn</value>
+  </data>
 </root>

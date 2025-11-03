@@ -3,12 +3,14 @@ using Microsoft.Extensions.Localization;
 using MiniMate.Clothing.Contracts;
 using MiniMate.Clothing.Models;
 using MiniMate.Clothing.Resources;
+using MiniMate.Clothing.Helper;
 using MiniMate.Weather.Models;
 
 namespace MiniMate.Component
 {
     public partial class WeatherAvatarComponent : ComponentBase
     {
+        #region Properties
         [Inject] protected IClothingService ClothingService { get; set; } = null!;
         [Inject] protected IStringLocalizer<ClothingResources> Localizer { get; set; } = null!;
 
@@ -23,10 +25,17 @@ namespace MiniMate.Component
         /// </summary>
         protected ClothingRecommendation Recommendation { get; set; } = new()
         {
-            ImagePath = "images/avatars/default.jpg",
+            WeatherDescription = WeatherDescription.Normal,
             Description = "Standard",
             ClothingItems = Array.Empty<string>()
         };
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Gets the avatar image path based on weather description
+        /// </summary>
+        protected string AvatarImagePath => AvatarMapper.GetAvatarPath(Recommendation.WeatherDescription);
 
         /// <summary>
         /// Called when parameters are set
@@ -47,7 +56,7 @@ namespace MiniMate.Component
         protected void HandleImageError()
         {
             // This will be called if the image fails to load
-            Console.WriteLine($"Failed to load image: {Recommendation.ImagePath}");
+            Console.WriteLine($"Failed to load image: {AvatarImagePath}");
         }
 
         /// <summary>
@@ -96,5 +105,6 @@ namespace MiniMate.Component
             var localizedValue = Localizer[resourceKey].Value?.ToLower() ?? "";
             return !string.IsNullOrEmpty(localizedValue) && item.Contains(localizedValue);
         }
+        #endregion
     }
 }
