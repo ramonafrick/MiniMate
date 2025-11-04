@@ -182,7 +182,14 @@
 
         <WeatherAvatarComponent WeatherData="@WeatherData" />
     }
-    else if (ErrorMessage != null)
+
+    @if (SelectedLocation != null)
+    {
+        <DailyForcastComponent Latitude="@SelectedLocation.Latitude" Longitude="@SelectedLocation.Longitude" />
+        <WeeklyForcastComponent Latitude="@SelectedLocation.Latitude" Longitude="@SelectedLocation.Longitude" />
+    }
+
+    @if (ErrorMessage != null)
     {
         <div class="error-message">
             <div class="error-icon">⚠️</div>

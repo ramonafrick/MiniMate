@@ -37,4 +37,11 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Forecast\Contracts\" />
+    <Folder Include="Forecast\Models\" />
+    <Folder Include="Forecast\Services\" />
+    <Folder Include="Forecast\Resources\" />
+  </ItemGroup>
+
 </Project>

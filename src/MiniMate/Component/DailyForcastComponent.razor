@@ -1,0 +1,80 @@
+@if (IsLoading)
+{
+    <div class="forecast-loading">
+        <div class="spinner"></div>
+        <p>@Localizer["Forecast_LoadingData"]</p>
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <div class="forecast-error">
+        <div class="error-icon">⚠️</div>
+        <p>@ErrorMessage</p>
+    </div>
+}
+else if (HourlyForecast.Length > 0)
+{
+    <div class="daily-forecast-container">
+        <h2 class="forecast-title">@Localizer["Forecast_24HourTitle"]</h2>
+
+        <div class="forecast-scroll-container">
+            <div class="forecast-grid">
+                @foreach (var hour in HourlyForecast)
+                {
+                    <div class="forecast-hour-card">
+                        <!-- Time -->
+                        <div class="hour-time">@hour.TimeFormatted</div>
+
+                        <!-- Weather Icon -->
+                        <div class="hour-icon">@hour.WeatherIcon</div>
+
+                        <!-- Temperature -->
+                        <div class="hour-temp">@hour.TemperatureFormatted</div>
+
+                        <!-- Precipitation Probability -->
+                        @if (hour.PrecipitationProbability > 0)
+                        {
+                            <div class="hour-precip-prob">
+                                <span class="precip-icon">💧</span>
+                                <span>@hour.PrecipitationProbability%</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="hour-precip-prob-placeholder"></div>
+                        }
+
+                        <!-- Rain Bar Chart - only shown if rain > 0 -->
+                        <div class="rain-chart">
+                            @if (hour.Rain > 0 || hour.Precipitation > 0)
+                            {
+                                <div class="rain-bar-container">
+                                    <div class="rain-bar" style="height: @GetBarHeight(hour.Rain > 0 ? hour.Rain : hour.Precipitation, GetMaxRain())">
+                                    </div>
+                                </div>
+                                <div class="rain-amount">@((hour.Rain > 0 ? hour.Rain : hour.Precipitation).ToString("F1")) mm</div>
+                            }
+                            else
+                            {
+                                <div class="rain-bar-placeholder"></div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="forecast-summary">
+            <div class="summary-item">
+                <span class="summary-icon">🌡️</span>
+                <span class="summary-label">@Localizer["Forecast_MinMax"]</span>
+                <span class="summary-value">@GetMinTemperature().ToString("F1")°C / @GetMaxTemperature().ToString("F1")°C</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">🌧️</span>
+                <span class="summary-label">@Localizer["Forecast_MaxRain"]</span>
+                <span class="summary-value">@GetMaxRain().ToString("F1") mm</span>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,57 @@
+@if (IsLoading)
+{
+    <div class="weekly-forecast-loading">
+        <div class="spinner"></div>
+        <p>@Localizer["WeeklyForecast_LoadingData"]</p>
+    </div>
+}
+else if (ErrorMessage != null)
+{
+    <div class="weekly-forecast-error">
+        <div class="error-icon">⚠️</div>
+        <p>@ErrorMessage</p>
+    </div>
+}
+else if (DailyForecast.Length > 0)
+{
+    <div class="weekly-forecast-container">
+        <h2 class="weekly-forecast-title">@Localizer["WeeklyForecast_7DayTitle"]</h2>
+
+        <div class="weekly-forecast-scroll-container">
+            <div class="weekly-forecast-grid">
+                @foreach (var day in DailyForecast)
+                {
+                    <div class="forecast-day-card">
+                    <!-- Day Name -->
+                    <div class="day-name">@day.DayName</div>
+
+                    <!-- Date -->
+                    <div class="day-date">@day.DateFormatted</div>
+
+                    <!-- Weather Icon -->
+                    <div class="day-icon">@day.WeatherIcon</div>
+
+                    <!-- Temperature Range -->
+                    <div class="day-temp-container">
+                        <div class="day-temp-max">@day.TemperatureMaxFormatted</div>
+                        <div class="day-temp-min">@day.TemperatureMinFormatted</div>
+                    </div>
+
+                    <!-- Precipitation Probability -->
+                    @if (day.PrecipitationProbability > 0)
+                    {
+                        <div class="day-precip">
+                            <span class="precip-icon">💧</span>
+                            <span>@day.PrecipitationProbabilityFormatted</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="day-precip-placeholder"></div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+    </div>
+}

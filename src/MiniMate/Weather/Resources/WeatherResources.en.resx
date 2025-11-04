@@ -327,4 +327,34 @@
   <data name="Season_Autumn" xml:space="preserve">
     <value>Autumn</value>
   </data>
+  <data name="Forecast_24HourTitle" xml:space="preserve">
+    <value>📅 24-Hour Forecast</value>
+  </data>
+  <data name="Forecast_LoadingData" xml:space="preserve">
+    <value>Loading forecast data...</value>
+  </data>
+  <data name="Forecast_NoDataAvailable" xml:space="preserve">
+    <value>No forecast data available.</value>
+  </data>
+  <data name="Forecast_ErrorLoading" xml:space="preserve">
+    <value>Error loading forecast: {0}</value>
+  </data>
+  <data name="Forecast_MinMax" xml:space="preserve">
+    <value>Min/Max:</value>
+  </data>
+  <data name="Forecast_MaxRain" xml:space="preserve">
+    <value>Max. Rain:</value>
+  </data>
+  <data name="WeeklyForecast_7DayTitle" xml:space="preserve">
+    <value>📅 7-Day Forecast</value>
+  </data>
+  <data name="WeeklyForecast_LoadingData" xml:space="preserve">
+    <value>Loading weekly forecast...</value>
+  </data>
+  <data name="WeeklyForecast_NoDataAvailable" xml:space="preserve">
+    <value>No weekly forecast available.</value>
+  </data>
+  <data name="WeeklyForecast_ErrorLoading" xml:space="preserve">
+    <value>Error loading weekly forecast: {0}</value>
+  </data>
 </root>
