@@ -345,6 +345,9 @@
   <data name="Forecast_MaxRain" xml:space="preserve">
     <value>Max. Regen:</value>
   </data>
+  <data name="Forecast_RainIntensity" xml:space="preserve">
+    <value>Regenintensität</value>
+  </data>
   <data name="WeeklyForecast_7DayTitle" xml:space="preserve">
     <value>📅 7-Tage Vorhersage</value>
   </data>

@@ -52,6 +52,7 @@
 }
 
 .forecast-hour-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,6 +62,7 @@
     min-width: 90px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
 }
 
     .forecast-hour-card:hover {
@@ -101,51 +103,92 @@
     font-size: 1rem;
 }
 
-.rain-chart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.rain-bar-background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
-    margin-top: auto;
-    padding-top: 10px;
-    min-height: 100px;
-}
-
-.rain-bar-container {
-    width: 35px;
-    height: 80px;
-    background: transparent;
-    border-radius: 6px;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    margin-bottom: 5px;
-}
-
-.rain-bar {
-    width: 100%;
-    background: linear-gradient(to top, #1a5490 0%, #2471a3 40%, #3498db 80%, #5dade2 100%);
-    border-radius: 4px 4px 0 0;
-    transition: height 0.3s ease;
-    min-height: 3px;
-    box-shadow: 0 2px 8px rgba(26, 84, 144, 0.4);
+    border-radius: 0 0 12px 12px;
+    transition: height 0.3s ease, background 0.3s ease;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .rain-amount {
-    font-size: 0.7rem;
-    color: #2471a3;
+    font-size: 0.75rem;
     text-align: center;
     font-weight: 700;
-    margin-top: 2px;
-}
-
-.rain-bar-placeholder {
-    height: 85px;
-    width: 35px;
+    margin-top: auto;
+    padding-top: 8px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
 }
 
 .hour-precip-prob-placeholder {
     height: 20px;
+}
+
+/* Ensure all content is above the rain background */
+.hour-time,
+.hour-icon,
+.hour-temp,
+.hour-precip-prob {
+    position: relative;
+    z-index: 1;
+}
+
+/* Rain intensity legend */
+.rain-legend {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.legend-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.legend-bar {
+    width: 20px;
+    height: 30px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.legend-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    min-width: 70px;
+}
+
+.legend-icon {
+    font-size: 1.2rem;
 }
 
 .forecast-summary {
@@ -262,11 +305,6 @@
 
     .hour-temp {
         font-size: 1rem;
-    }
-
-    .rain-bar-container {
-        width: 35px;
-        height: 60px;
     }
 
     .summary-item {
