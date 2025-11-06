@@ -23,17 +23,53 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Calendar\Resources\CalendarResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CalendarResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Clothing\Resources\ClothingResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ClothingResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Home\Resources\HomeResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HomeResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Layout\Resources\NavigationResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NavigationResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Profile\Resources\ProfileResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProfileResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Calendar\Resources\CalendarResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CalendarResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Clothing\Resources\ClothingResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ClothingResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Home\Resources\HomeResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Layout\Resources\NavigationResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NavigationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Profile\Resources\ProfileResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfileResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

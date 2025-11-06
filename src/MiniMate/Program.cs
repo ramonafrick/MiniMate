@@ -6,6 +6,8 @@ using MiniMate.Weather.Contracts;
 using MiniMate.Weather.Services;
 using MiniMate.Clothing.Contracts;
 using MiniMate.Clothing.Services;
+using MiniMate.Profile.Contracts;
+using MiniMate.Profile.Services;
 using System.Globalization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -22,6 +24,9 @@ builder.Services.AddScoped<IWeatherService, WeatherService>();
 
 // Register Clothing Service
 builder.Services.AddScoped<IClothingService, ClothingService>();
+
+// Register Profile Service
+builder.Services.AddScoped<IProfileService, ProfileService>();
 
 // Build the host first to get services
 var host = builder.Build();

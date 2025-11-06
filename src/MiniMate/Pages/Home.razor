@@ -1,7 +1,13 @@
 ﻿@page "/"
+@using MiniMate.Profile.Contracts
+@using MiniMate.Home.Resources
+@using Microsoft.Extensions.Localization
+@inject IProfileService ProfileService
+@inject IStringLocalizer<HomeResources> Localizer
 
-<PageTitle>Home</PageTitle>
+<PageTitle>@Localizer["PageTitle"]</PageTitle>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
+<div class="home-greeting">
+    <h1 class="page-title">@Localizer["Greeting", UserName]</h1>
+    <p>@Localizer["ExploreToday"]</p>
+</div>

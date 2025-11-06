@@ -1,137 +1,73 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Localization;
-using Microsoft.JSInterop;
 using MiniMate.Weather.Contracts;
-using MiniMate.Weather.Helper;
 using MiniMate.Weather.Models;
 using MiniMate.Weather.Resources;
-using System.Globalization;
+using MiniMate.Profile.Contracts;
 
 namespace MiniMate.Component
 {
-    public partial class WeatherComponent : ComponentBase, IDisposable
+    public partial class WeatherComponent : ComponentBase
     {
         #region Properties
         [Inject] protected IWeatherService WeatherService { get; set; } = null!;
         [Inject] protected IStringLocalizer<WeatherResources> Localizer { get; set; } = null!;
-        [Inject] protected NavigationManager Navigation { get; set; } = null!;
-        protected string SearchQuery { get; set; } = "";
-        protected LocationData[] SearchResults { get; set; } = [];
+        [Inject] protected IProfileService ProfileService { get; set; } = null!;
+
         protected LocationData? SelectedLocation { get; set; }
         protected WeatherData? WeatherData { get; set; }
         protected bool IsLoading { get; set; } = false;
-        protected bool IsLoadingLocation { get; set; } = false;
-        protected bool ShowDropdown { get; set; } = false;
         protected string? ErrorMessage { get; set; }
-        protected string CurrentLanguage => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToUpper();
-        private System.Timers.Timer? _searchTimer;
         #endregion
 
         #region Methods
-        protected void OnSearchInput(ChangeEventArgs e)
+        protected override async Task OnInitializedAsync()
         {
-            SearchQuery = e.Value?.ToString() ?? "";
-
-            // Reset timer for debouncing
-            _searchTimer?.Stop();
-            _searchTimer?.Dispose();
-
-            if (string.IsNullOrWhiteSpace(SearchQuery) || SearchQuery.Length < 2)
-            {
-                SearchResults = [];
-                ShowDropdown = false;
-                return;
-            }
-
-            // Debounce search - wait 300ms before searching
-            _searchTimer = new System.Timers.Timer(300);
-            _searchTimer.Elapsed += async (_, _) => await SearchLocations();
-            _searchTimer.AutoReset = false;
-            _searchTimer.Start();
+            await base.OnInitializedAsync();
+            await LoadDefaultLocation();
         }
 
-        private async Task SearchLocations()
+        private async Task LoadDefaultLocation()
         {
-            await InvokeAsync(async () =>
-            {
-                try
-                {
-                    SearchResults = await WeatherService.SearchLocationAsync(SearchQuery);
-                    ShowDropdown = SearchResults.Length > 0;
-                    StateHasChanged();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error searching locations: {ex.Message}");
-                    SearchResults = [];
-                    ShowDropdown = false;
-                    StateHasChanged();
-                }
-            });
-        }
-
-        protected void HandleKeyPress(KeyboardEventArgs e)
-        {
-            switch (e.Key)
-            {
-                case "Enter" when SearchResults.Length > 0:
-                    _ = SelectLocation(SearchResults[0]);
-                    break;
-                case "Escape":
-                    ShowDropdown = false;
-                    break;
-            }
-        }
-
-        protected async Task SelectLocation(LocationData location)
-        {
-            SelectedLocation = location;
-            SearchQuery = location.DisplayName;
-            ShowDropdown = false;
-            SearchResults = [];
-            await LoadWeatherData(location.Latitude, location.Longitude);
-        }
-
-        protected async Task GetCurrentLocation()
-        {
-            IsLoadingLocation = true;
-            ErrorMessage = null;
-
             try
             {
-                var position = await JSRuntime.InvokeAsync<GeolocationPosition>("getCurrentPosition");
-                SelectedLocation = new LocationData(
-                    Id: 0,
-                    Name: Localizer["MyLocationText"],
-                    Latitude: position.Coords.Latitude,
-                    Longitude: position.Coords.Longitude,
-                    Elevation: null,
-                    FeatureCode: null,
-                    CountryCode: null,
-                    Admin1: null,
-                    Admin2: null,
-                    Admin3: null,
-                    Admin4: null,
-                    Timezone: null,
-                    Population: null,
-                    CountryId: null,
-                    Country: null,
-                    Postcodes: null
-                );
+                var profile = await ProfileService.GetProfileAsync();
 
-                SearchQuery = Localizer["MyLocationText"];
-                await LoadWeatherData(position.Coords.Latitude, position.Coords.Longitude);
+                if (profile.Latitude.HasValue && profile.Longitude.HasValue)
+                {
+                    // Create a LocationData from profile
+                    SelectedLocation = new LocationData(
+                        Id: 0,
+                        Name: profile.LocationName ?? "Default Location",
+                        Latitude: profile.Latitude.Value,
+                        Longitude: profile.Longitude.Value,
+                        Elevation: null,
+                        FeatureCode: null,
+                        CountryCode: null,
+                        Admin1: null,
+                        Admin2: null,
+                        Admin3: null,
+                        Admin4: null,
+                        Timezone: null,
+                        Population: null,
+                        CountryId: null,
+                        Country: null,
+                        Postcodes: null
+                    );
+
+                    await LoadWeatherData(profile.Latitude.Value, profile.Longitude.Value);
+                }
             }
             catch (Exception ex)
             {
-                ErrorMessage = Localizer["ErrorMessageWeatherLocation"];
-                Console.WriteLine($"Geolocation error: {ex.Message}");
+                Console.WriteLine($"Error loading default location: {ex.Message}");
             }
-            finally
-            {
-                IsLoadingLocation = false;
-            }
+        }
+
+        protected async Task HandleLocationSelected(LocationData location)
+        {
+            SelectedLocation = location;
+            await LoadWeatherData(location.Latitude, location.Longitude);
         }
 
         private async Task LoadWeatherData(double latitude, double longitude)
@@ -167,21 +103,6 @@ namespace MiniMate.Component
             }
         }
 
-        protected async Task ToggleLanguage()
-        {
-            var newCulture = CurrentLanguage == "DE" ? "en" : "de";
-
-            // Save culture to localStorage
-            await JSRuntime.InvokeVoidAsync("blazorCulture.set", newCulture);
-
-            // Reload page to apply new culture
-            Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
-        }
-
-        public void Dispose()
-        {
-            _searchTimer?.Dispose();
-        }
         #endregion
     }
 }

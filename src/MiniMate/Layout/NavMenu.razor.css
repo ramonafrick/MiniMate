@@ -9,6 +9,14 @@
 
 .navbar-brand {
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-brand-icon {
+    width: 24px;
+    height: 24px;
 }
 
 .bi {

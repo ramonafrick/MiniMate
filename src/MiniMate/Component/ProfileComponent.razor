@@ -1,0 +1,44 @@
+@using MiniMate.Profile.Resources
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<ProfileResources> Localizer
+
+<div class="profile-container">
+    <h2 class="page-title">@Localizer["ProfileSettings"]</h2>
+
+    <div class="profile-form">
+        <div class="form-group">
+            <label for="userName">@Localizer["Name"]</label>
+            <input id="userName"
+                   type="text"
+                   class="form-input"
+                   @bind="UserName"
+                   placeholder="@Localizer["EnterName"]" />
+        </div>
+
+        <div class="form-group">
+            <label for="language">@Localizer["Language"]</label>
+            <select id="language" class="form-select" @bind="SelectedLanguage">
+                <option value="de">Deutsch</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>@Localizer["DefaultLocation"]</label>
+            <LocationSearchComponent OnLocationSelected="HandleLocationSelected" InitialLocationName="@InitialLocationName" />
+        </div>
+
+        <div class="form-actions">
+            <button class="btn btn-primary" @onclick="SaveProfile">
+                @Localizer["SaveProfile"]
+            </button>
+        </div>
+    </div>
+
+    @if (ShowSuccessMessage)
+    {
+        <div class="success-message">
+            @Localizer["ProfileSaved"]
+        </div>
+    }
+</div>

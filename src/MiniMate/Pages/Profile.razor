@@ -1,0 +1,8 @@
+@page "/profile"
+@using MiniMate.Profile.Resources
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<ProfileResources> Localizer
+
+<PageTitle>@Localizer["PageTitle"]</PageTitle>
+
+<MiniMate.Component.ProfileComponent />
