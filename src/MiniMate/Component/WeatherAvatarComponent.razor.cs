@@ -60,7 +60,7 @@ namespace MiniMate.Component
         }
 
         /// <summary>
-        /// Gets the appropriate emoji icon for a clothing item
+        /// Gets the appropriate icon for a clothing item (emoji or SVG)
         /// Uses normalized comparison to work with all translations
         /// </summary>
         protected string GetClothingIcon(string clothingItem)
@@ -74,13 +74,13 @@ namespace MiniMate.Component
             if (IsMatch(item, "Jacket") || IsMatch(item, "LightJacket")) return "🧥";
 
             if (IsMatch(item, "TShirt") || item.Contains("t-shirt")) return "👕";
-            if (IsMatch(item, "LongSleevShirt") || item.Contains("sleeve")) return "👕";
-            if (IsMatch(item, "Sweater")) return "👔";
+            if (IsMatch(item, "LongSleevShirt") || item.Contains("sleeve")) return "svg-longsleeve"; // Custom SVG long sleeve
+            if (IsMatch(item, "Sweater")) return "svg-hoodie"; // Custom SVG hoodie
 
             if (IsMatch(item, "LongPants") || item.Contains("lange")) return "👖";
             if (IsMatch(item, "Shorts") || item.Contains("kurze")) return "🩳";
 
-            if (IsMatch(item, "Hat") || item.Contains("mütze")) return "🧢";
+            if (IsMatch(item, "Hat") || item.Contains("mütze")) return "svg-beanie"; // Custom SVG
             if (IsMatch(item, "SunHat") || item.Contains("sun")) return "👒";
 
             if (IsMatch(item, "Scarf")) return "🧣";
@@ -91,11 +91,31 @@ namespace MiniMate.Component
             if (IsMatch(item, "WinterBoots")) return "🥾";
             if (IsMatch(item, "WaterproofShoes")) return "🥾";
             if (IsMatch(item, "WarmShoes")) return "👞";
+            if (IsMatch(item, "Sneakers") || item.Contains("sneaker") || item.Contains("turnschuh")) return "👟";
+            if (IsMatch(item, "Sandals") || item.Contains("sandal")) return "🩴";
 
             if (IsMatch(item, "ThermalUnderwear") || item.Contains("thermal")) return "🩲";
 
             return "👕"; // Default icon
         }
+
+        /// <summary>
+        /// Checks if this item uses an SVG icon instead of emoji
+        /// </summary>
+        protected bool IsCustomSvgIcon(string clothingItem)
+        {
+            return GetClothingIcon(clothingItem).StartsWith("svg-");
+        }
+
+        /// <summary>
+        /// Gets the SVG icon name (without svg- prefix)
+        /// </summary>
+        protected string GetSvgIconName(string clothingItem)
+        {
+            var icon = GetClothingIcon(clothingItem);
+            return icon.StartsWith("svg-") ? icon.Substring(4) : "";
+        }
+
 
         /// <summary>
         /// Helper method to check if the item matches a localized resource key

@@ -174,8 +174,14 @@
   <data name="Sunglasses" xml:space="preserve">
     <value>Sunglasses</value>
   </data>
+  <data name="Sandals" xml:space="preserve">
+    <value>Sandals</value>
+  </data>
   <data name="WarmShoes" xml:space="preserve">
     <value>Warm Shoes</value>
+  </data>
+  <data name="Sneakers" xml:space="preserve">
+    <value>Sneakers</value>
   </data>
   <data name="NormalClothing" xml:space="preserve">
     <value>Normal Clothing</value>

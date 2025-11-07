@@ -47,9 +47,11 @@ namespace MiniMate.Clothing.Helper
                 ClothingItem.Shorts => localizer["Shorts"],
                 ClothingItem.SunHat => localizer["SunHat"],
                 ClothingItem.Sunglasses => localizer["Sunglasses"],
+                ClothingItem.Sandals => localizer["Sandals"],
 
                 // General
                 ClothingItem.WarmShoes => localizer["WarmShoes"],
+                ClothingItem.Sneakers => localizer["Sneakers"],
                 ClothingItem.NormalClothing => localizer["NormalClothing"],
 
                 _ => item.ToString()

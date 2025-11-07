@@ -27,6 +27,13 @@ namespace MiniMate.Clothing.Services
             var snow = weatherData.Current.Snowfall;
             var windSpeed = weatherData.Current.WindSpeed;
             var weatherCode = weatherData.Current.WeatherCode;
+            var apparentTemp = weatherData.Current.ApparentTemperature;
+
+            // Check if it's foggy (WMO codes 45-48)
+            var isFoggy = weatherCode >= 45 && weatherCode <= 48;
+
+            // Calculate wind chill effect: significant if feels like 3°C colder or more
+            var hasSignificantWindChill = (temp - apparentTemp) >= 3;
 
             // Determine clothing based on temperature and weather conditions
             return (temp, rain, snow, windSpeed, weatherCode) switch
@@ -90,7 +97,7 @@ namespace MiniMate.Clothing.Services
                 {
                     WeatherDescription = WeatherDescription.CoolWithRain,
                     Description = WeatherDescription.CoolWithRain.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.Jacket, ClothingItem.Umbrella, ClothingItem.Sweater }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.Jacket, ClothingItem.Umbrella, ClothingItem.Sweater, ClothingItem.WaterproofShoes }.Translate(_localizer),
                     Advice = WeatherAdvice.RainTakeUmbrella.Translate(_localizer)
                 },
 
@@ -99,16 +106,25 @@ namespace MiniMate.Clothing.Services
                 {
                     WeatherDescription = WeatherDescription.CoolAndWindy,
                     Description = WeatherDescription.CoolAndWindy.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.Windbreaker, ClothingItem.Sweater, ClothingItem.Scarf }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.Windbreaker, ClothingItem.Sweater, ClothingItem.Scarf, ClothingItem.Hat, ClothingItem.Sneakers }.Translate(_localizer),
                     Advice = WeatherAdvice.WindyWindbreakerProtects.Translate(_localizer)
                 },
 
-                // Cool (0-10°C)
+                // Cool (0-10°C) - Check for fog or significant wind chill
+                (>= 0 and < 10, _, _, _, _) when isFoggy || hasSignificantWindChill => new ClothingRecommendation
+                {
+                    WeatherDescription = WeatherDescription.Cool,
+                    Description = WeatherDescription.Cool.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.Jacket, ClothingItem.Sweater, ClothingItem.LongPants, ClothingItem.Hat, ClothingItem.Scarf, ClothingItem.Sneakers }.Translate(_localizer),
+                    Advice = WeatherAdvice.CoolButPleasantJacketEnough.Translate(_localizer)
+                },
+
+                // Cool (0-10°C) - Normal conditions
                 (>= 0 and < 10, _, _, _, _) => new ClothingRecommendation
                 {
                     WeatherDescription = WeatherDescription.Cool,
                     Description = WeatherDescription.Cool.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.Jacket, ClothingItem.Sweater, ClothingItem.LongPants }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.Jacket, ClothingItem.Sweater, ClothingItem.LongPants, ClothingItem.Sneakers }.Translate(_localizer),
                     Advice = WeatherAdvice.CoolButPleasantJacketEnough.Translate(_localizer)
                 },
 
@@ -117,7 +133,7 @@ namespace MiniMate.Clothing.Services
                 {
                     WeatherDescription = WeatherDescription.MildWithRain,
                     Description = WeatherDescription.MildWithRain.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.LightJacket, ClothingItem.Umbrella }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.LightJacket, ClothingItem.Umbrella, ClothingItem.WaterproofShoes }.Translate(_localizer),
                     Advice = WeatherAdvice.RainButMildLightJacketEnough.Translate(_localizer)
                 },
 
@@ -126,7 +142,7 @@ namespace MiniMate.Clothing.Services
                 {
                     WeatherDescription = WeatherDescription.Mild,
                     Description = WeatherDescription.Mild.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.LightJacket, ClothingItem.LongSleevShirt }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.LightJacket, ClothingItem.LongSleevShirt, ClothingItem.Sneakers }.Translate(_localizer),
                     Advice = WeatherAdvice.PleasantTemperatureLightJacketPerfect.Translate(_localizer)
                 },
 
@@ -135,7 +151,7 @@ namespace MiniMate.Clothing.Services
                 {
                     WeatherDescription = WeatherDescription.WarmWithRain,
                     Description = WeatherDescription.WarmWithRain.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.RainJacket, ClothingItem.Umbrella, ClothingItem.TShirt }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.RainJacket, ClothingItem.Umbrella, ClothingItem.TShirt, ClothingItem.WaterproofShoes }.Translate(_localizer),
                     Advice = WeatherAdvice.WarmButWetUmbrellaEnough.Translate(_localizer)
                 },
 
@@ -144,7 +160,7 @@ namespace MiniMate.Clothing.Services
                 {
                     WeatherDescription = WeatherDescription.Warm,
                     Description = WeatherDescription.Warm.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.LongSleevShirt, ClothingItem.TShirt }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.LongSleevShirt, ClothingItem.TShirt, ClothingItem.Sneakers }.Translate(_localizer),
                     Advice = WeatherAdvice.NiceWeatherLightClothingIdeal.Translate(_localizer)
                 },
 
@@ -162,7 +178,7 @@ namespace MiniMate.Clothing.Services
                 {
                     WeatherDescription = WeatherDescription.HotWithRain,
                     Description = WeatherDescription.HotWithRain.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.Umbrella }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.Umbrella, ClothingItem.Sandals }.Translate(_localizer),
                     Advice = WeatherAdvice.WarmRainLightQuickDry.Translate(_localizer)
                 },
 
@@ -171,7 +187,7 @@ namespace MiniMate.Clothing.Services
                 {
                     WeatherDescription = WeatherDescription.VeryHot,
                     Description = WeatherDescription.VeryHot.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.SunHat, ClothingItem.Sunglasses }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.SunHat, ClothingItem.Sunglasses, ClothingItem.Sandals }.Translate(_localizer),
                     Advice = WeatherAdvice.VeryHotStayInShadeAndDrink.Translate(_localizer)
                 },
 
@@ -180,7 +196,7 @@ namespace MiniMate.Clothing.Services
                 {
                     WeatherDescription = WeatherDescription.Hot,
                     Description = WeatherDescription.Hot.Translate(_localizer),
-                    ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.SunHat }.Translate(_localizer),
+                    ClothingItems = new[] { ClothingItem.TShirt, ClothingItem.Shorts, ClothingItem.SunHat, ClothingItem.Sandals }.Translate(_localizer),
                     Advice = WeatherAdvice.WarmAndSunnySunProtection.Translate(_localizer)
                 },
 

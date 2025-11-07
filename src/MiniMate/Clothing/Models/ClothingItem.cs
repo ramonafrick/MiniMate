@@ -33,9 +33,11 @@ namespace MiniMate.Clothing.Models
         Shorts,
         SunHat,
         Sunglasses,
+        Sandals,
 
-        // General
+        // General shoes
         WarmShoes,
+        Sneakers,
         NormalClothing
     }
 }

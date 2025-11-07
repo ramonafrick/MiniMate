@@ -18,15 +18,123 @@
 
         <div class="clothing-details">
             <h4>@Localizer["RecommendedClothing"]</h4>
-            <ul class="clothing-list">
+            <div class="clothing-grid">
                 @foreach (var item in Recommendation.ClothingItems)
                 {
-                    <li>
-                        <span class="clothing-icon">@GetClothingIcon(item)</span>
-                        <span>@item</span>
-                    </li>
+                    <div class="clothing-card">
+                        @if (IsCustomSvgIcon(item))
+                        {
+                            @if (GetSvgIconName(item) == "beanie")
+                            {
+                                <svg class="clothing-icon-large svg-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Beanie body -->
+                                    <path d="M32 10 C 18 10, 10 18, 10 28 L 10 38 C 10 42, 12 44, 16 44 L 48 44 C 52 44, 54 42, 54 38 L 54 28 C 54 18, 46 10, 32 10 Z"
+                                          fill="#64B5F6" stroke="#1976D2" stroke-width="2"/>
+                                    <!-- Folded brim -->
+                                    <rect x="10" y="36" width="44" height="8" rx="2" fill="#42A5F5" stroke="#1976D2" stroke-width="1.5"/>
+                                    <!-- Knit pattern lines -->
+                                    <line x1="16" y1="15" x2="16" y2="40" stroke="#1976D2" stroke-width="1" opacity="0.3"/>
+                                    <line x1="22" y1="14" x2="22" y2="40" stroke="#1976D2" stroke-width="1" opacity="0.3"/>
+                                    <line x1="28" y1="13" x2="28" y2="40" stroke="#1976D2" stroke-width="1" opacity="0.3"/>
+                                    <line x1="34" y1="13" x2="34" y2="40" stroke="#1976D2" stroke-width="1" opacity="0.3"/>
+                                    <line x1="40" y1="14" x2="40" y2="40" stroke="#1976D2" stroke-width="1" opacity="0.3"/>
+                                    <line x1="48" y1="15" x2="48" y2="40" stroke="#1976D2" stroke-width="1" opacity="0.3"/>
+                                    <!-- Pom-pom on top -->
+                                    <circle cx="32" cy="10" r="6" fill="#90CAF9" stroke="#1976D2" stroke-width="1.5"/>
+                                    <!-- Pom-pom texture -->
+                                    <circle cx="30" cy="9" r="1.5" fill="#BBDEFB" opacity="0.8"/>
+                                    <circle cx="34" cy="9" r="1.5" fill="#BBDEFB" opacity="0.8"/>
+                                    <circle cx="32" cy="12" r="1.5" fill="#BBDEFB" opacity="0.8"/>
+                                </svg>
+                            }
+                            else if (GetSvgIconName(item) == "hoodie")
+                            {
+                                <svg class="clothing-icon-large svg-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Left sleeve (stretched out) -->
+                                    <path d="M4 32 L 8 28 L 16 26 L 20 28 L 22 32 L 20 36 L 16 38 L 8 36 L 4 32 Z"
+                                          fill="#FF8A65" stroke="#D84315" stroke-width="1.5" stroke-linejoin="round"/>
+                                    <!-- Left sleeve cuff -->
+                                    <ellipse cx="6" cy="32" rx="3" ry="4" fill="#F4511E" stroke="#D84315" stroke-width="1"/>
+
+                                    <!-- Right sleeve (stretched out) -->
+                                    <path d="M60 32 L 56 28 L 48 26 L 44 28 L 42 32 L 44 36 L 48 38 L 56 36 L 60 32 Z"
+                                          fill="#FF8A65" stroke="#D84315" stroke-width="1.5" stroke-linejoin="round"/>
+                                    <!-- Right sleeve cuff -->
+                                    <ellipse cx="58" cy="32" rx="3" ry="4" fill="#F4511E" stroke="#D84315" stroke-width="1"/>
+
+                                    <!-- Hoodie body (main torso) -->
+                                    <path d="M22 28 L 20 32 L 18 56 L 46 56 L 44 32 L 42 28 L 32 24 Z"
+                                          fill="#FF7043" stroke="#D84315" stroke-width="2" stroke-linejoin="round"/>
+
+                                    <!-- Hood (top part) - completely orange -->
+                                    <ellipse cx="32" cy="16" rx="12" ry="9" fill="#FF7043" stroke="#D84315" stroke-width="2"/>
+                                    <path d="M20 16 Q 20 24, 24 26 L 40 26 Q 44 24, 44 16"
+                                          fill="#FF7043" stroke="#D84315" stroke-width="2" stroke-linejoin="round"/>
+
+                                    <!-- Hood opening/face area -->
+                                    <ellipse cx="32" cy="20" rx="7" ry="5" fill="#FFF3E0" stroke="#D84315" stroke-width="1.5"/>
+
+                                    <!-- Front pocket (kangaroo pocket) -->
+                                    <ellipse cx="32" cy="42" rx="9" ry="5" fill="#F4511E" stroke="#D84315" stroke-width="1.5"/>
+                                    <path d="M23 42 Q 32 44, 41 42" stroke="#D84315" stroke-width="1.5" fill="none"/>
+
+                                    <!-- Ribbed bottom hem -->
+                                    <rect x="18" y="54" width="28" height="2" fill="#F4511E"/>
+
+                                    <!-- Hood drawstrings (dark orange) -->
+                                    <circle cx="28" cy="25" r="1.5" fill="#F4511E" stroke="#D84315" stroke-width="0.8"/>
+                                    <circle cx="36" cy="25" r="1.5" fill="#F4511E" stroke="#D84315" stroke-width="0.8"/>
+                                    <line x1="28" y1="25" x2="26" y2="34" stroke="#F4511E" stroke-width="1.5"/>
+                                    <line x1="36" y1="25" x2="38" y2="34" stroke="#F4511E" stroke-width="1.5"/>
+                                </svg>
+                            }
+                            else if (GetSvgIconName(item) == "longsleeve")
+                            {
+                                <svg class="clothing-icon-large svg-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Left sleeve (45° down, uniform thickness) -->
+                                    <path d="M20 21 L 16 24 L 8 36 L 6 42 L 8 44 L 12 44 L 14 42 L 22 30 L 24 26 Z"
+                                          fill="#81C784" stroke="#388E3C" stroke-width="1.5" stroke-linejoin="round"/>
+                                    <!-- Left sleeve cuff -->
+                                    <ellipse cx="9" cy="43" rx="4" ry="3" fill="#66BB6A" stroke="#388E3C" stroke-width="1"/>
+
+                                    <!-- Right sleeve (45° down, uniform thickness) -->
+                                    <path d="M44 21 L 48 24 L 56 36 L 58 42 L 56 44 L 52 44 L 50 42 L 42 30 L 40 26 Z"
+                                          fill="#81C784" stroke="#388E3C" stroke-width="1.5" stroke-linejoin="round"/>
+                                    <!-- Right sleeve cuff -->
+                                    <ellipse cx="55" cy="43" rx="4" ry="3" fill="#66BB6A" stroke="#388E3C" stroke-width="1"/>
+
+                                    <!-- Shirt body (main torso) -->
+                                    <path d="M24 26 L 22 30 L 20 56 L 44 56 L 42 30 L 40 26 L 32 20 Z"
+                                          fill="#66BB6A" stroke="#388E3C" stroke-width="2" stroke-linejoin="round"/>
+
+                                    <!-- Left shoulder triangle (fill gap between shoulder line and body) -->
+                                    <path d="M20 21 L 24 26 L 26 21 Z" fill="#66BB6A" stroke="none"/>
+
+                                    <!-- Right shoulder triangle (fill gap between shoulder line and body) -->
+                                    <path d="M44 21 L 40 26 L 38 21 Z" fill="#66BB6A" stroke="none"/>
+
+                                    <!-- Shoulder line left (horizontal, at same level as neck top) -->
+                                    <line x1="26" y1="21" x2="20" y2="21" stroke="#388E3C" stroke-width="2" stroke-linecap="round"/>
+
+                                    <!-- Shoulder line right (horizontal, at same level as neck top) -->
+                                    <line x1="38" y1="21" x2="44" y2="21" stroke="#388E3C" stroke-width="2" stroke-linecap="round"/>
+
+                                    <!-- Neck/collar (top at y=21, same as shoulders) -->
+                                    <ellipse cx="32" cy="25" rx="6" ry="4" fill="#2E7D32" stroke="#388E3C" stroke-width="1.5"/>
+
+                                    <!-- Ribbed bottom hem -->
+                                    <rect x="20" y="54" width="24" height="2" fill="#4CAF50"/>
+                                </svg>
+                            }
+                        }
+                        else
+                        {
+                            <div class="clothing-icon-large emoji-icon">@GetClothingIcon(item)</div>
+                        }
+                        <div class="clothing-name">@item</div>
+                    </div>
                 }
-            </ul>
+            </div>
 
             @if (!string.IsNullOrEmpty(Recommendation.Advice))
             {
