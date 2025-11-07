@@ -2,7 +2,7 @@
 
 namespace MiniMate.Weather.Models
 {
-    public record WeatherData(double Latitude, double Longitude, CurrentWeather Current, CurrentUnits? Units)
+    public record WeatherData(double Latitude, double Longitude, string? Timezone, CurrentWeather Current, CurrentUnits? Units)
     {
         /// <summary>
         /// Returns true if the location is in the Northern Hemisphere
@@ -23,8 +23,8 @@ namespace MiniMate.Weather.Models
         public bool IsDay => Current.IsDay == 1;
 
         /// <summary>
-        /// Gets the local time for the weather data location.
-        /// The API returns time in the location's timezone due to timezone=auto parameter.
+        /// Gets the current local time for the weather data location.
+        /// Converts the current UTC time to the location's timezone.
         /// </summary>
         public DateTime LocalTime
         {
@@ -32,6 +32,38 @@ namespace MiniMate.Weather.Models
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(Timezone))
+                        return DateTime.Now;
+
+                    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(Timezone);
+                    return TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZoneInfo);
+                }
+                catch
+                {
+                    // Fallback to system local time if timezone conversion fails
+                    return DateTime.Now;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the timestamp when the weather data was last updated by the API.
+        /// This is the time from Current.Time, converted to the location's timezone.
+        /// </summary>
+        public DateTime LastUpdateTime
+        {
+            get
+            {
+                try
+                {
+                    // Parse the API update time (format: "yyyy-MM-ddTHH:mm")
+                    var updateTimeUtc = DateTime.ParseExact(Current.Time, "yyyy-MM-ddTHH:mm", null, System.Globalization.DateTimeStyles.AssumeUniversal);
+
+                    if (string.IsNullOrEmpty(Timezone))
+                        return updateTimeUtc;
+
+                    // The API already returns time in the location's timezone when using timezone=auto
+                    // So we just parse it as local to that timezone
                     return DateTime.ParseExact(Current.Time, "yyyy-MM-ddTHH:mm", null);
                 }
                 catch

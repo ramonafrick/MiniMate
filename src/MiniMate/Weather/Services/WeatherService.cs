@@ -54,7 +54,7 @@ namespace MiniMate.Weather.Services
                 var weatherResponse = JsonSerializer.Deserialize<WeatherResponse>(json);
 
                 return weatherResponse?.Current != null ?
-                    new WeatherData(weatherResponse.Latitude, weatherResponse.Longitude, weatherResponse.Current, weatherResponse.CurrentUnits) : null;
+                    new WeatherData(weatherResponse.Latitude, weatherResponse.Longitude, weatherResponse.Timezone, weatherResponse.Current, weatherResponse.CurrentUnits) : null;
             }
             catch (Exception ex)
             {

@@ -5,6 +5,7 @@ namespace MiniMate.Weather.Models
     public record WeatherResponse(
     [property: JsonPropertyName("latitude")] double Latitude,
     [property: JsonPropertyName("longitude")] double Longitude,
+    [property: JsonPropertyName("timezone")] string? Timezone,
     [property: JsonPropertyName("current")] CurrentWeather? Current,
     [property: JsonPropertyName("current_units")] CurrentUnits? CurrentUnits
 );

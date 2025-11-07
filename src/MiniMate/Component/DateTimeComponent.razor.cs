@@ -51,10 +51,8 @@ namespace MiniMate.Component
         {
             base.OnInitialized();
 
-            if (WeatherData != null)
-            {
-                CurrentTime = WeatherData.LocalTime;
-            }
+            // Initialize current time
+            UpdateCurrentTime();
 
             // Update time every second
             _timer = new System.Timers.Timer(1000);
@@ -67,9 +65,20 @@ namespace MiniMate.Component
         {
             base.OnParametersSet();
 
+            // Update current time when weather data changes
+            UpdateCurrentTime();
+        }
+
+        private void UpdateCurrentTime()
+        {
             if (WeatherData != null)
             {
+                // WeatherData.LocalTime now returns the current time in the location's timezone
                 CurrentTime = WeatherData.LocalTime;
+            }
+            else
+            {
+                CurrentTime = DateTime.Now;
             }
         }
 
@@ -77,8 +86,8 @@ namespace MiniMate.Component
         {
             InvokeAsync(() =>
             {
-                // Increment time by 1 second to simulate real-time clock
-                CurrentTime = CurrentTime.AddSeconds(1);
+                // Get fresh time from WeatherData (which calculates current time in location's timezone)
+                UpdateCurrentTime();
                 StateHasChanged();
             });
         }
