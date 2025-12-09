@@ -419,3 +419,5 @@ FodyWeavers.xsd
 
 # Claude
 *.local.md
+/src/MiniMate/Clothing/AVATAR_IMAGES_REQUIRED.md
+/src/MiniMate/Clothing/LEONARDO_AI_PROMPTS.md
