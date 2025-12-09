@@ -121,9 +121,16 @@ namespace MiniMate.Component
             try
             {
                 var position = await JSRuntime.InvokeAsync<GeolocationPosition>("getCurrentPosition");
+
+                // Get actual location name from coordinates using reverse geocoding
+                var locationName = await WeatherService.GetLocationNameFromCoordinatesAsync(
+                    position.Coords.Latitude,
+                    position.Coords.Longitude
+                );
+
                 SelectedLocation = new LocationData(
                     Id: 0,
-                    Name: Localizer["MyLocationText"],
+                    Name: locationName,
                     Latitude: position.Coords.Latitude,
                     Longitude: position.Coords.Longitude,
                     Elevation: null,
@@ -140,7 +147,7 @@ namespace MiniMate.Component
                     Postcodes: null
                 );
 
-                SearchQuery = Localizer["MyLocationText"];
+                SearchQuery = locationName;
 
                 // Notify parent component
                 await OnLocationSelected.InvokeAsync(SelectedLocation);

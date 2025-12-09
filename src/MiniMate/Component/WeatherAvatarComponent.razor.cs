@@ -90,7 +90,7 @@ namespace MiniMate.Component
 
             if (IsMatch(item, "WinterBoots")) return "🥾";
             if (IsMatch(item, "WaterproofShoes")) return "🥾";
-            if (IsMatch(item, "WarmShoes")) return "👞";
+            if (IsMatch(item, "WarmShoes")) return "🥾";
             if (IsMatch(item, "Sneakers") || item.Contains("sneaker") || item.Contains("turnschuh")) return "👟";
             if (IsMatch(item, "Sandals") || item.Contains("sandal")) return "🩴";
 

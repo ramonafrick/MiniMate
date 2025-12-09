@@ -54,7 +54,7 @@ namespace MiniMate.Weather.Services
                 var weatherResponse = JsonSerializer.Deserialize<WeatherResponse>(json);
 
                 return weatherResponse?.Current != null ?
-                    new WeatherData(weatherResponse.Latitude, weatherResponse.Longitude, weatherResponse.Timezone, weatherResponse.Current, weatherResponse.CurrentUnits) : null;
+                    new WeatherData(weatherResponse.Latitude, weatherResponse.Longitude, weatherResponse.Timezone, weatherResponse.TimezoneAbbreviation, weatherResponse.UtcOffsetSeconds, weatherResponse.Current, weatherResponse.CurrentUnits) : null;
             }
             catch (Exception ex)
             {
@@ -252,6 +252,62 @@ namespace MiniMate.Weather.Services
             {
                 Console.WriteLine($"Error fetching daily forecast: {ex.Message}");
                 return [];
+            }
+        }
+
+        public async Task<string> GetLocationNameFromCoordinatesAsync(double latitude, double longitude)
+        {
+            // Use Nominatim (OpenStreetMap) for reverse geocoding
+            // API Documentation: https://nominatim.org/release-docs/latest/api/Reverse/
+            var url = $"https://nominatim.openstreetmap.org/reverse?" +
+                      $"lat={latitude.ToString("F6", CultureInfo.InvariantCulture)}&" +
+                      $"lon={longitude.ToString("F6", CultureInfo.InvariantCulture)}&" +
+                      $"format=json&" +
+                      $"addressdetails=1&" +
+                      $"accept-language=de";
+
+            try
+            {
+                // Nominatim requires a User-Agent header
+                var request = new HttpRequestMessage(HttpMethod.Get, url);
+                request.Headers.Add("User-Agent", "MiniMate/1.0");
+
+                var response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+
+                var json = await response.Content.ReadAsStringAsync();
+                var nominatimResponse = JsonSerializer.Deserialize<NominatimResponse>(json);
+
+                if (nominatimResponse?.Address != null)
+                {
+                    var address = nominatimResponse.Address;
+
+                    // Build location name from available address components
+                    // Priority: village/town/city/municipality, county/state, country
+                    var locationParts = new List<string>();
+
+                    var localName = address.Village ?? address.Town ?? address.City ?? address.Municipality;
+                    if (!string.IsNullOrEmpty(localName))
+                        locationParts.Add(localName);
+
+                    var region = address.County ?? address.State;
+                    if (!string.IsNullOrEmpty(region) && region != localName)
+                        locationParts.Add(region);
+
+                    if (!string.IsNullOrEmpty(address.Country))
+                        locationParts.Add(address.Country);
+
+                    return locationParts.Count > 0
+                        ? string.Join(", ", locationParts)
+                        : nominatimResponse.DisplayName ?? "Unbekannter Standort";
+                }
+
+                return "Unbekannter Standort";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching location name: {ex.Message}");
+                return "Mein Standort";
             }
         }
     }

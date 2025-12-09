@@ -8,5 +8,6 @@ namespace MiniMate.Weather.Contracts
         Task<LocationData[]> SearchLocationAsync(string query);
         Task<HourlyForecastData[]> GetHourlyForecastAsync(double latitude, double longitude);
         Task<DailyForecastData[]> GetDailyForecastAsync(double latitude, double longitude);
+        Task<string> GetLocationNameFromCoordinatesAsync(double latitude, double longitude);
     }
 }

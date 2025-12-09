@@ -27,6 +27,14 @@
                 </div>
             </div>
 
+            @if (SelectedLocation != null)
+            {
+                <div class="location-display">
+                    <span class="location-icon">📍</span>
+                    <span class="location-name">@SelectedLocation.DisplayName</span>
+                </div>
+            }
+
             <div class="weather-grid">
                 <div class="weather-card">
                     <div class="card-icon">💧</div>

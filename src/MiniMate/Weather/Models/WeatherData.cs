@@ -2,7 +2,7 @@
 
 namespace MiniMate.Weather.Models
 {
-    public record WeatherData(double Latitude, double Longitude, string? Timezone, CurrentWeather Current, CurrentUnits? Units)
+    public record WeatherData(double Latitude, double Longitude, string? Timezone, string? TimezoneAbbreviation, int UtcOffsetSeconds, CurrentWeather Current, CurrentUnits? Units)
     {
         /// <summary>
         /// Returns true if the location is in the Northern Hemisphere
@@ -24,25 +24,17 @@ namespace MiniMate.Weather.Models
 
         /// <summary>
         /// Gets the current local time for the weather data location.
-        /// Converts the current UTC time to the location's timezone.
+        /// Uses the UTC offset provided by the API for accurate timezone calculation.
+        /// This approach works reliably across all platforms and handles half-hour offsets (e.g., Adelaide UTC+9:30).
         /// </summary>
         public DateTime LocalTime
         {
             get
             {
-                try
-                {
-                    if (string.IsNullOrEmpty(Timezone))
-                        return DateTime.Now;
-
-                    var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(Timezone);
-                    return TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZoneInfo);
-                }
-                catch
-                {
-                    // Fallback to system local time if timezone conversion fails
-                    return DateTime.Now;
-                }
+                // Calculate local time using UTC offset (more reliable than timezone ID conversion)
+                // UtcOffsetSeconds comes directly from the API (e.g., 37800 = 10.5 hours for Adelaide)
+                var offset = TimeSpan.FromSeconds(UtcOffsetSeconds);
+                return DateTime.UtcNow.Add(offset);
             }
         }
 
