@@ -1,12 +1,12 @@
 {
   "name": "MiniMate",
   "short_name": "MiniMate",
-  "description": "Dein digitaler Begleiter für smarte Entscheidungen",
+  "description": "Your digital companion for smart decisions",
   "id": "./",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#1b6ec2",
+  "theme_color": "#4A90E2",
   "prefer_related_applications": false,
   "icons": [
     {

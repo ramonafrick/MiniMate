@@ -1,4 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1b6ec2">
-  <path d="M0 0h24v24H0z" fill="none"/>
-  <path d="M20 9V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S9 3.34 9 5H6c-1.1 0-2 .9-2 2v2c-1.66 0-3 1.34-3 3s1.34 3 3 3v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4c1.66 0 3-1.34 3-3s-1.34-3-3-3zM9 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm3-7.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM15 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm3 4h-2v-2h-2v2h-2v-2H8v2H6v-2h12v2z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Gradient Definitions -->
+  <defs>
+    <!-- Background Gradient (Light, subtle) -->
+    <radialGradient id="bgGradient">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f4ff;stop-opacity:1" />
+    </radialGradient>
+
+    <!-- Main M Gradient (Blue to Purple) -->
+    <linearGradient id="mGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7ED321;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9013FE;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Eye Gradient (White to Light Blue) -->
+    <radialGradient id="eyeGradient">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8f4f8;stop-opacity:1" />
+    </radialGradient>
+
+    <!-- Smile Gradient -->
+    <linearGradient id="smileGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F5A623;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B9D;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle with gradient -->
+  <circle cx="50" cy="50" r="48" fill="url(#bgGradient)" opacity="0.95"/>
+  <circle cx="50" cy="50" r="48" fill="none" stroke="url(#mGradient)" stroke-width="3"/>
+
+  <!-- The "M" Character -->
+  <path d="M 20 75 L 20 35 L 35 55 L 50 25 L 65 55 L 80 35 L 80 75 L 70 75 L 70 50 L 50 45 L 30 50 L 30 75 Z"
+        fill="url(#mGradient)"
+        stroke="#ffffff"
+        stroke-width="2"
+        stroke-linejoin="round"/>
+
+  <!-- Left Eye (positioned in left peak of M) -->
+  <ellipse cx="35" cy="43" rx="6" ry="7" fill="url(#eyeGradient)"/>
+  <circle cx="35" cy="44" r="3" fill="#2c3e50"/>
+  <circle cx="36" cy="43" r="1.5" fill="#ffffff"/>
+
+  <!-- Right Eye (positioned in right peak of M) -->
+  <ellipse cx="65" cy="43" rx="6" ry="7" fill="url(#eyeGradient)"/>
+  <circle cx="65" cy="44" r="3" fill="#2c3e50"/>
+  <circle cx="66" cy="43" r="1.5" fill="#ffffff"/>
+
+  <!-- Smile (curved path below the M) -->
+  <path d="M 38 65 Q 50 72 62 65"
+        fill="none"
+        stroke="url(#smileGradient)"
+        stroke-width="3"
+        stroke-linecap="round"/>
+
+  <!-- Cheek Blushes (optional cute detail) -->
+  <ellipse cx="28" cy="60" rx="4" ry="3" fill="#FF6B9D" opacity="0.3"/>
+  <ellipse cx="72" cy="60" rx="4" ry="3" fill="#FF6B9D" opacity="0.3"/>
 </svg>

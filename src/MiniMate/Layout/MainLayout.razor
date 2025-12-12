@@ -2,13 +2,28 @@
 @using Microsoft.Extensions.Localization
 @inject IStringLocalizer<NavigationResources> Localizer
 @inherits LayoutComponentBase
+
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
+    <!-- Mobile Hamburger Button -->
+    <button class="hamburger-btn" @onclick="ToggleMobileMenu" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Overlay for mobile menu -->
+    <div class="sidebar-overlay @(isMobileMenuOpen ? "active" : "")" @onclick="CloseMobileMenu"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar @(isMobileMenuOpen ? "mobile-open" : "")">
+        <NavMenu OnNavLinkClick="CloseMobileMenu" />
     </div>
 
     <main>
         <div class="top-row px-4">
+            <a href="" class="mobile-logo">
+                <img src="favicon.svg" alt="MiniMate" class="mobile-logo-icon" />
+            </a>
             <a href="profile">@Localizer["Profile"]</a>
         </div>
 
@@ -16,4 +31,20 @@
             @Body
         </article>
     </main>
+
+    <MiniMate.Component.ThemeToggle />
 </div>
+
+@code {
+    private bool isMobileMenuOpen = false;
+
+    private void ToggleMobileMenu()
+    {
+        isMobileMenuOpen = !isMobileMenuOpen;
+    }
+
+    private void CloseMobileMenu()
+    {
+        isMobileMenuOpen = false;
+    }
+}

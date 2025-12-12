@@ -27,15 +27,17 @@
                 </div>
             </div>
 
-            @if (SelectedLocation != null)
-            {
-                <div class="location-display">
-                    <span class="location-icon">📍</span>
-                    <span class="location-name">@SelectedLocation.DisplayName</span>
-                </div>
-            }
-
             <div class="weather-grid">
+                @if (SelectedLocation != null)
+                {
+                    <div class="weather-card location-card">
+                        <span class="card-icon">📍</span>
+                        <div class="card-content">
+                            <div class="card-label">@Localizer["Location"]</div>
+                            <div class="card-value">@SelectedLocation.DisplayName</div>
+                        </div>
+                    </div>
+                }
                 <div class="weather-card">
                     <div class="card-icon">💧</div>
                     <div class="card-content">

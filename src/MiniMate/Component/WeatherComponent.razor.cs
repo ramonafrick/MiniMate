@@ -81,12 +81,12 @@ namespace MiniMate.Component
                 WeatherData = await WeatherService.GetCurrentWeatherAsync(latitude, longitude);
                 if (WeatherData == null)
                 {
-                    ErrorMessage = "Wetterdaten konnten nicht geladen werden. Bitte versuchen Sie es später erneut.";
+                    ErrorMessage = Localizer["ErrorLoadingWeatherData"];
                 }
             }
             catch (Exception ex)
             {
-                ErrorMessage = $"Fehler beim Laden der Wetterdaten: {ex.Message}";
+                ErrorMessage = Localizer["ErrorLoadingWeatherDataWithMessage", ex.Message];
                 Console.WriteLine($"Weather loading error: {ex.Message}");
             }
             finally

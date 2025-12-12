@@ -1,5 +1,7 @@
 ﻿using MiniMate.Weather.Contracts;
 using MiniMate.Weather.Models;
+using MiniMate.Weather.Resources;
+using Microsoft.Extensions.Localization;
 using System.Globalization;
 using System.Net.Http;
 using System.Text.Json;
@@ -9,10 +11,12 @@ namespace MiniMate.Weather.Services
     public class WeatherService : IWeatherService
     {
         private readonly HttpClient _httpClient;
+        private readonly IStringLocalizer<WeatherResources> _localizer;
 
-        public WeatherService(HttpClient httpClient)
+        public WeatherService(HttpClient httpClient, IStringLocalizer<WeatherResources> localizer)
         {
             _httpClient = httpClient;
+            _localizer = localizer;
         }
 
         private const string BaseUrl = "https://api.open-meteo.com/v1";
@@ -299,15 +303,15 @@ namespace MiniMate.Weather.Services
 
                     return locationParts.Count > 0
                         ? string.Join(", ", locationParts)
-                        : nominatimResponse.DisplayName ?? "Unbekannter Standort";
+                        : nominatimResponse.DisplayName ?? _localizer["UnknownLocation"];
                 }
 
-                return "Unbekannter Standort";
+                return _localizer["UnknownLocation"];
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error fetching location name: {ex.Message}");
-                return "Mein Standort";
+                return _localizer["MyLocationText"];
             }
         }
     }

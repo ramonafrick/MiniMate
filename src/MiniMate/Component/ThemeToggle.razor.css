@@ -1,0 +1,63 @@
+/* Component-specific styles - Global styles in minimate-globals.css */
+/* Theme Toggle Component */
+
+.theme-toggle {
+    position: fixed;
+    bottom: var(--spacing-xl);
+    right: var(--spacing-xl);
+    z-index: 1000;
+}
+
+.theme-toggle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-border-light);
+    background: var(--color-bg-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-base);
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: var(--shadow-xl);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.theme-icon {
+    font-size: var(--font-size-2xl);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .theme-toggle {
+        bottom: var(--spacing-lg);
+        right: var(--spacing-lg);
+    }
+
+    .theme-toggle-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .theme-icon {
+        font-size: var(--font-size-xl);
+    }
+}

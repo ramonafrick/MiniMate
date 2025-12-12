@@ -1,10 +1,14 @@
+/* Component-specific styles - Global styles in minimate-globals.css */
+/* Calendar Module Component - Purple Theme */
+
 .datetime-container {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 12px;
+    background: var(--gradient-calendar);
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
-    color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: var(--color-text-primary);
+    box-shadow: 0 4px 20px rgba(144, 19, 254, 0.15);
     margin-bottom: 1.5rem;
+    border: 2px solid rgba(144, 19, 254, 0.2);
 }
 
 /* Header Section */
@@ -37,12 +41,12 @@
 }
 
 .date-text {
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     font-size: 1.2rem;
 }
 
 .time-text {
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     font-size: 1.8rem;
     font-family: 'Courier New', monospace;
     letter-spacing: 0.05em;
@@ -56,7 +60,7 @@
     gap: 0.25rem;
     background: rgba(255, 255, 255, 0.15);
     padding: 0.75rem 1.25rem;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     backdrop-filter: blur(10px);
 }
 
@@ -66,7 +70,7 @@
 
 .season-text {
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -74,7 +78,7 @@
 /* Calendar Section */
 .calendar-section {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 0.75rem;
     backdrop-filter: blur(10px);
     max-width: 280px;
@@ -89,7 +93,7 @@
 .calendar-header h3 {
     margin: 0;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     text-transform: capitalize;
 }
 
@@ -110,7 +114,7 @@
 .weekday-label {
     text-align: center;
     font-size: 0.65rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
     padding: 0.15rem;
     opacity: 0.8;
@@ -129,9 +133,9 @@
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
+    border-radius: var(--radius-xs);
     font-size: 0.75rem;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 .calendar-day.empty {
@@ -141,9 +145,31 @@
 .calendar-day.today {
     background: rgba(255, 255, 255, 0.9);
     color: #667eea;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transform: scale(1.1);
+}
+
+/* Dark Mode Fixes */
+[data-theme="dark"] .datetime-container {
+    background: linear-gradient(135deg, rgba(144, 19, 254, 0.25) 0%, rgba(168, 237, 234, 0.2) 100%);
+    border-color: rgba(144, 19, 254, 0.4);
+    color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .calendar-day {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .calendar-day.today {
+    background: var(--color-calendar);
+    color: var(--color-text-white);
+}
+
+[data-theme="dark"] .season-display,
+[data-theme="dark"] .calendar-section {
+    background: rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive Design */

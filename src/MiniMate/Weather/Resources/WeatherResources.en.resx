@@ -306,6 +306,9 @@
   <data name="LastUpdated" xml:space="preserve">
     <value>Last updated: {0}</value>
   </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
   <data name="RetryButton" xml:space="preserve">
     <value>Try again</value>
   </data>
@@ -359,5 +362,14 @@
   </data>
   <data name="WeeklyForecast_ErrorLoading" xml:space="preserve">
     <value>Error loading weekly forecast: {0}</value>
+  </data>
+  <data name="UnknownLocation" xml:space="preserve">
+    <value>Unknown Location</value>
+  </data>
+  <data name="ErrorLoadingWeatherData" xml:space="preserve">
+    <value>Weather data could not be loaded. Please try again later.</value>
+  </data>
+  <data name="ErrorLoadingWeatherDataWithMessage" xml:space="preserve">
+    <value>Error loading weather data: {0}</value>
   </data>
 </root>

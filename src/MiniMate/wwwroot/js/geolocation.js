@@ -2,7 +2,7 @@
 window.getCurrentPosition = () => {
     return new Promise((resolve, reject) => {
         if (!navigator.geolocation) {
-            reject(new Error('Geolocation wird von diesem Browser nicht unterstützt.'));
+            reject(new Error('Geolocation is not supported by this browser.'));
             return;
         }
 
@@ -24,17 +24,17 @@ window.getCurrentPosition = () => {
                 });
             },
             error => {
-                let errorMessage = 'Unbekannter Fehler beim Ermitteln des Standorts.';
+                let errorMessage = 'Unknown error while determining location.';
 
                 switch (error.code) {
                     case error.PERMISSION_DENIED:
-                        errorMessage = 'Standortzugriff wurde verweigert. Bitte erlauben Sie den Zugriff in den Browser-Einstellungen.';
+                        errorMessage = 'Location access was denied. Please allow access in your browser settings.';
                         break;
                     case error.POSITION_UNAVAILABLE:
-                        errorMessage = 'Standort ist nicht verfügbar. Bitte überprüfen Sie Ihre Internetverbindung oder GPS-Einstellungen.';
+                        errorMessage = 'Location is not available. Please check your internet connection or GPS settings.';
                         break;
                     case error.TIMEOUT:
-                        errorMessage = 'Zeitüberschreitung beim Ermitteln des Standorts. Bitte versuchen Sie es erneut.';
+                        errorMessage = 'Timeout while determining location. Please try again.';
                         break;
                 }
 

@@ -1,10 +1,26 @@
+/* Component-specific styles - Global styles in minimate-globals.css */
+/* Navigation Menu - Adaptive Theme */
+
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-base);
+}
+
+.navbar-toggler:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .top-row {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.9) 0%, rgba(144, 19, 254, 0.9) 100%);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Dark mode adjustment for navbar background */
+[data-theme="dark"] .top-row {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.7) 0%, rgba(144, 19, 254, 0.7) 100%);
 }
 
 .navbar-brand {
@@ -12,11 +28,26 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: var(--color-text-white);
+    font-weight: var(--font-weight-semibold);
 }
 
 .navbar-brand-icon {
     width: 24px;
     height: 24px;
+    transition: transform var(--transition-base);
+}
+
+/* Playful hover animation for the logo */
+.navbar-brand:hover .navbar-brand-icon {
+    animation: logoWiggle 0.5s ease-in-out;
+}
+
+@keyframes logoWiggle {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-10deg) scale(1.1); }
+    50% { transform: rotate(10deg) scale(1.15); }
+    75% { transform: rotate(-5deg) scale(1.1); }
 }
 
 .bi {
@@ -55,22 +86,28 @@
     }
 
     .nav-item ::deep a {
-        color: #d7d7d7;
-        border-radius: 4px;
+        color: rgba(255, 255, 255, 0.85);
+        border-radius: var(--radius-md);
         height: 3rem;
         display: flex;
         align-items: center;
         line-height: 3rem;
+        gap: var(--spacing-sm);
+        transition: all var(--transition-base);
+        padding: 0 var(--spacing-md);
     }
 
 .nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.37);
-    color: white;
+    background: linear-gradient(90deg, rgba(74, 144, 226, 0.3) 0%, rgba(144, 19, 254, 0.3) 100%);
+    color: #ffffff;
+    font-weight: var(--font-weight-semibold);
+    box-shadow: inset 4px 0 0 rgba(91, 163, 245, 0.8);
 }
 
 .nav-item ::deep a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
+    background: linear-gradient(90deg, rgba(74, 144, 226, 0.2) 0%, rgba(144, 19, 254, 0.2) 100%);
+    color: #ffffff;
+    transform: translateX(4px);
 }
 
 @media (min-width: 641px) {
@@ -82,7 +119,7 @@
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
-    
+
     .nav-scrollable {
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
