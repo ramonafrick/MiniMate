@@ -45,6 +45,22 @@
     </button>
 </div>
 
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    @if (ErrorMessage.Contains("ℹ️"))
+    {
+        <div class="alert alert-info" style="margin-top: 1rem;">
+            @ErrorMessage
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-error" style="margin-top: 1rem;">
+            <strong>⚠️ @Localizer["Error"]:</strong> @ErrorMessage
+        </div>
+    }
+}
+
 @if (SelectedLocation != null)
 {
     <div class="selected-location">

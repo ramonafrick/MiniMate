@@ -372,4 +372,28 @@
   <data name="ErrorLoadingWeatherDataWithMessage" xml:space="preserve">
     <value>Fehler beim Laden der Wetterdaten: {0}</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="GeolocationError" xml:space="preserve">
+    <value>Ihr Standort konnte nicht ermittelt werden. Bitte überprüfen Sie Ihre Browser-Einstellungen und versuchen Sie es erneut.</value>
+  </data>
+  <data name="GeolocationTimeout" xml:space="preserve">
+    <value>Zeitüberschreitung beim Ermitteln Ihres Standorts. Bitte stellen Sie sicher, dass GPS aktiviert ist und versuchen Sie es erneut.</value>
+  </data>
+  <data name="GeolocationPermissionDenied" xml:space="preserve">
+    <value>Standortzugriff wurde verweigert. Bitte erlauben Sie den Zugriff in Ihren Browser-Einstellungen.</value>
+  </data>
+  <data name="GeolocationUnavailable" xml:space="preserve">
+    <value>Standort ist nicht verfügbar. Bitte überprüfen Sie Ihre Internetverbindung oder GPS-Einstellungen.</value>
+  </data>
+  <data name="GeolocationTimeoutDesktop" xml:space="preserve">
+    <value>Standortbestimmung nicht verfügbar. Desktop-PCs haben normalerweise kein GPS. Bitte nutzen Sie die Suchfunktion, um Ihren Ort einzugeben.</value>
+  </data>
+  <data name="LocationApproximate" xml:space="preserve">
+    <value>ℹ️ Ungefährer Standort basierend auf Ihrer IP-Adresse. Die Genauigkeit beträgt ca. 10-50 km.</value>
+  </data>
+  <data name="WeatherWarningNotice" xml:space="preserve">
+    <value>Diese App zeigt nur allgemeine Wetterinformationen. Wetterwarnungen werden nicht angezeigt. Bei wichtigen Wetterlagen frag bitte deine Eltern oder schaut zusammen in die offiziellen Wetterwarnungen.</value>
+  </data>
 </root>

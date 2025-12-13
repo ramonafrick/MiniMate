@@ -21,6 +21,14 @@
 
 /* Form elements removed - using global .form-group, .form-input, .form-select from minimate-globals.css */
 
+/* Override global focus styles with profile green color */
+.profile-container .form-input:focus,
+.profile-container .form-select:focus,
+.profile-container ::deep .search-input:focus {
+    border-color: var(--color-profile);
+    box-shadow: 0 0 0 3px rgba(126, 211, 33, 0.1);
+}
+
 .form-select:hover {
     border-color: var(--color-profile);
 }

@@ -46,11 +46,13 @@ main {
 }
 
 .top-row {
-    background: linear-gradient(135deg,
-        rgba(74, 144, 226, 0.12) 0%,
-        rgba(126, 211, 33, 0.08) 50%,
-        rgba(144, 19, 254, 0.12) 100%
-    );
+    background:
+        linear-gradient(135deg,
+            rgba(74, 144, 226, 0.12) 0%,
+            rgba(126, 211, 33, 0.08) 50%,
+            rgba(144, 19, 254, 0.12) 100%
+        ),
+        var(--color-bg-primary);
     border-bottom: 2px solid transparent;
     border-image: linear-gradient(90deg,
         rgba(74, 144, 226, 0.3) 0%,
@@ -66,11 +68,13 @@ main {
 
 /* Dark mode top-row background */
 [data-theme="dark"] .top-row {
-    background: linear-gradient(135deg,
-        rgba(91, 163, 245, 0.15) 0%,
-        rgba(143, 232, 54, 0.1) 50%,
-        rgba(160, 50, 255, 0.15) 100%
-    );
+    background:
+        linear-gradient(135deg,
+            rgba(91, 163, 245, 0.15) 0%,
+            rgba(143, 232, 54, 0.1) 50%,
+            rgba(160, 50, 255, 0.15) 100%
+        ),
+        var(--color-bg-primary);
     border-image: linear-gradient(90deg,
         rgba(91, 163, 245, 0.4) 0%,
         rgba(160, 50, 255, 0.4) 100%

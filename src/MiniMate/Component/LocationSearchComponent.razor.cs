@@ -32,11 +32,28 @@ namespace MiniMate.Component
         protected LocationData? SelectedLocation { get; set; }
         protected bool IsLoadingLocation { get; set; } = false;
         protected bool ShowDropdown { get; set; } = false;
+        protected string? ErrorMessage { get; set; }
+        protected bool ShowLocationButton { get; set; } = true;
 
         private System.Timers.Timer? _searchTimer;
         #endregion
 
         #region Methods
+        protected override async Task OnInitializedAsync()
+        {
+            base.OnInitializedAsync();
+
+            // Check if geolocation is available on this device
+            try
+            {
+                ShowLocationButton = await JSRuntime.InvokeAsync<bool>("isGeolocationAvailable");
+            }
+            catch
+            {
+                ShowLocationButton = false;
+            }
+        }
+
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
@@ -117,16 +134,40 @@ namespace MiniMate.Component
         protected async Task GetCurrentLocation()
         {
             IsLoadingLocation = true;
+            ErrorMessage = null;
 
             try
             {
-                var position = await JSRuntime.InvokeAsync<GeolocationPosition>("getCurrentPosition");
+                GeolocationPosition position;
+                bool isApproximate = false;
+
+                try
+                {
+                    // First try GPS/browser geolocation
+                    Console.WriteLine("Trying GPS/browser geolocation...");
+                    position = await JSRuntime.InvokeAsync<GeolocationPosition>("getCurrentPosition");
+                    Console.WriteLine($"GPS position received: Lat={position.Coords.Latitude}, Lon={position.Coords.Longitude}");
+                }
+                catch (JSException jsEx) when (jsEx.Message.ToLower().Contains("timeout"))
+                {
+                    // GPS timed out - try IP-based geolocation as fallback
+                    Console.WriteLine("GPS timeout - trying IP-based geolocation...");
+                    position = await JSRuntime.InvokeAsync<GeolocationPosition>("getLocationFromIP");
+                    isApproximate = true;
+                    Console.WriteLine($"IP-based position received: Lat={position.Coords.Latitude}, Lon={position.Coords.Longitude}");
+                }
 
                 // Get actual location name from coordinates using reverse geocoding
                 var locationName = await WeatherService.GetLocationNameFromCoordinatesAsync(
                     position.Coords.Latitude,
                     position.Coords.Longitude
                 );
+
+                // Add indicator if location is approximate
+                if (isApproximate)
+                {
+                    locationName = $"≈ {locationName}";
+                }
 
                 SelectedLocation = new LocationData(
                     Id: 0,
@@ -151,10 +192,37 @@ namespace MiniMate.Component
 
                 // Notify parent component
                 await OnLocationSelected.InvokeAsync(SelectedLocation);
+
+                // Show info message if location is approximate
+                if (isApproximate)
+                {
+                    ErrorMessage = Localizer["LocationApproximate"];
+                }
+            }
+            catch (JSException jsEx)
+            {
+                // JavaScript error - likely from geolocation API
+                Console.WriteLine($"Geolocation JS error: {jsEx.Message}");
+
+                // Determine the specific error type and use localized message
+                var message = jsEx.Message.ToLower();
+                if (message.Contains("denied"))
+                {
+                    ErrorMessage = Localizer["GeolocationPermissionDenied"];
+                }
+                else if (message.Contains("unavailable"))
+                {
+                    ErrorMessage = Localizer["GeolocationUnavailable"];
+                }
+                else
+                {
+                    ErrorMessage = Localizer["GeolocationError"];
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Geolocation error: {ex.Message}");
+                ErrorMessage = Localizer["GeolocationError"];
             }
             finally
             {

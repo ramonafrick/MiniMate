@@ -80,8 +80,8 @@ namespace MiniMate.Component
             if (IsMatch(item, "LongPants") || item.Contains("lange")) return "👖";
             if (IsMatch(item, "Shorts") || item.Contains("kurze")) return "🩳";
 
-            if (IsMatch(item, "Hat") || item.Contains("mütze")) return "svg-beanie"; // Custom SVG
             if (IsMatch(item, "SunHat") || item.Contains("sun")) return "👒";
+            if (IsMatch(item, "Hat") || item.Contains("mütze")) return "svg-beanie"; // Custom SVG
 
             if (IsMatch(item, "Scarf")) return "🧣";
             if (IsMatch(item, "Gloves")) return "🧤";

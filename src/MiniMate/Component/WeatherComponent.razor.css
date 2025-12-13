@@ -132,6 +132,22 @@
 
 .weather-icon {
     font-size: var(--font-size-4xl);
+    position: relative;
+    display: inline-block;
+}
+
+/* Subtle background for fog emoji in dark mode */
+[data-theme="dark"] .weather-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.3em;
+    height: 1.3em;
+    background: radial-gradient(circle, rgba(100, 149, 237, 0.45) 0%, rgba(100, 149, 237, 0.15) 50%, transparent 75%);
+    border-radius: 50%;
+    z-index: -1;
 }
 
 .temperature-section {
@@ -159,18 +175,39 @@
 
 .weather-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
     margin-bottom: var(--spacing-xl);
 }
 
 /* Weather card styles removed - using global .weather-card from minimate-globals.css */
 
-.last-updated {
+.weather-info-notice {
     text-align: center;
     color: var(--color-text-secondary);
     font-size: var(--font-size-sm);
     margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.08) 0%, rgba(144, 19, 254, 0.08) 100%);
+    border: 2px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.info-icon {
+    margin-right: var(--spacing-sm);
+}
+
+[data-theme="dark"] .weather-info-notice {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.15) 0%, rgba(144, 19, 254, 0.15) 100%);
+    border-color: var(--color-border-medium);
+}
+
+.last-updated {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-md);
     padding-top: 15px;
     border-top: 1px solid var(--color-border-light);
 }
@@ -221,6 +258,23 @@
     }
 
     .weather-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .weather-card {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .card-icon {
+        font-size: var(--font-size-xl);
+    }
+
+    .card-label {
+        font-size: var(--font-size-xs);
+    }
+
+    .card-value {
+        font-size: var(--font-size-sm);
     }
 }
