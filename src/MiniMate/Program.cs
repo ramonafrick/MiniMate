@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
 using MiniMate;
+using MiniMate.Modules.Location;
 using MiniMate.Weather.Contracts;
 using MiniMate.Weather.Services;
 using MiniMate.Clothing.Contracts;
@@ -18,6 +19,9 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 // Register Localization
 builder.Services.AddLocalization();
+
+// Register Location Module (must be registered before modules that depend on it)
+builder.Services.AddLocationModule();
 
 // Register Weather Service
 builder.Services.AddScoped<IWeatherService, WeatherService>();

@@ -1,6 +1,6 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
-namespace MiniMate.Weather.Models
+namespace MiniMate.Modules.Location.Domain
 {
     public record LocationData(
     [property: JsonPropertyName("id")] int Id,

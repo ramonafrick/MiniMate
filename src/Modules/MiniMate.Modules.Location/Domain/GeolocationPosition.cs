@@ -1,4 +1,4 @@
-﻿namespace MiniMate.Weather.Helper
+namespace MiniMate.Modules.Location.Domain
 {
     public class GeolocationPosition
     {

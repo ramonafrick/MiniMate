@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Forecast\**" />
+    <Content Remove="Forecast\**" />
+    <EmbeddedResource Remove="Forecast\**" />
+    <None Remove="Forecast\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\js\geolocation.js" />
   </ItemGroup>
 
@@ -74,10 +81,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Forecast\Contracts\" />
-    <Folder Include="Forecast\Models\" />
-    <Folder Include="Forecast\Services\" />
-    <Folder Include="Forecast\Resources\" />
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Location\MiniMate.Modules.Location.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace MiniMate.Weather.Models
+namespace MiniMate.Modules.Location.Application.Models
 {
     /// <summary>
     /// Response from Nominatim (OpenStreetMap) Reverse Geocoding API

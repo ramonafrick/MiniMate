@@ -2,18 +2,18 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
-using MiniMate.Weather.Contracts;
-using MiniMate.Weather.Helper;
-using MiniMate.Weather.Models;
-using MiniMate.Weather.Resources;
+using MiniMate.Modules.Location.Application.Contracts;
+using MiniMate.Modules.Location.Domain;
+using MiniMate.Modules.Location.Resources;
 
-namespace MiniMate.Component
+namespace MiniMate.Modules.Location.UI.Components
 {
     public partial class LocationSearchComponent : ComponentBase, IDisposable
     {
         #region Properties
-        [Inject] protected IWeatherService WeatherService { get; set; } = null!;
-        [Inject] protected IStringLocalizer<WeatherResources> Localizer { get; set; } = null!;
+        [Inject] protected ILocationService LocationService { get; set; } = null!;
+        [Inject] protected IStringLocalizer<LocationResources> Localizer { get; set; } = null!;
+        [Inject] protected IJSRuntime JSRuntime { get; set; } = null!;
 
         /// <summary>
         /// Callback that is invoked when a location is selected
@@ -27,9 +27,20 @@ namespace MiniMate.Component
         [Parameter]
         public string? InitialLocationName { get; set; }
 
+        /// <summary>
+        /// Two-way bindable selected location
+        /// </summary>
+        [Parameter]
+        public LocationData? SelectedLocation { get; set; }
+
+        /// <summary>
+        /// Event callback for SelectedLocation changes (two-way binding)
+        /// </summary>
+        [Parameter]
+        public EventCallback<LocationData?> SelectedLocationChanged { get; set; }
+
         protected string SearchQuery { get; set; } = "";
         protected LocationData[] SearchResults { get; set; } = [];
-        protected LocationData? SelectedLocation { get; set; }
         protected bool IsLoadingLocation { get; set; } = false;
         protected bool ShowDropdown { get; set; } = false;
         protected string? ErrorMessage { get; set; }
@@ -41,7 +52,7 @@ namespace MiniMate.Component
         #region Methods
         protected override async Task OnInitializedAsync()
         {
-            base.OnInitializedAsync();
+            await base.OnInitializedAsync();
 
             // Check if geolocation is available on this device
             try
@@ -58,17 +69,20 @@ namespace MiniMate.Component
         {
             base.OnParametersSet();
 
+            // Update SearchQuery if SelectedLocation is provided from parent
+            if (SelectedLocation != null && string.IsNullOrEmpty(SearchQuery))
+            {
+                SearchQuery = SelectedLocation.DisplayName;
+            }
             // Set the initial location name in the search box if provided
-            if (!string.IsNullOrEmpty(InitialLocationName) && string.IsNullOrEmpty(SearchQuery))
+            else if (!string.IsNullOrEmpty(InitialLocationName) && string.IsNullOrEmpty(SearchQuery))
             {
                 SearchQuery = InitialLocationName;
             }
         }
 
-        protected void OnSearchInput(ChangeEventArgs e)
+        protected void OnSearchInputChanged()
         {
-            SearchQuery = e.Value?.ToString() ?? "";
-
             // Reset timer for debouncing
             _searchTimer?.Stop();
             _searchTimer?.Dispose();
@@ -93,13 +107,12 @@ namespace MiniMate.Component
             {
                 try
                 {
-                    SearchResults = await WeatherService.SearchLocationAsync(SearchQuery);
+                    SearchResults = await LocationService.SearchLocationAsync(SearchQuery);
                     ShowDropdown = SearchResults.Length > 0;
                     StateHasChanged();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Console.WriteLine($"Error searching locations: {ex.Message}");
                     SearchResults = [];
                     ShowDropdown = false;
                     StateHasChanged();
@@ -127,8 +140,19 @@ namespace MiniMate.Component
             ShowDropdown = false;
             SearchResults = [];
 
-            // Notify parent component
-            await OnLocationSelected.InvokeAsync(location);
+            // Notify parent component via two-way binding
+            if (SelectedLocationChanged.HasDelegate)
+            {
+                await SelectedLocationChanged.InvokeAsync(location);
+            }
+
+            // Notify parent component via callback
+            if (OnLocationSelected.HasDelegate)
+            {
+                await OnLocationSelected.InvokeAsync(location);
+            }
+
+            StateHasChanged();
         }
 
         protected async Task GetCurrentLocation()
@@ -144,21 +168,17 @@ namespace MiniMate.Component
                 try
                 {
                     // First try GPS/browser geolocation
-                    Console.WriteLine("Trying GPS/browser geolocation...");
                     position = await JSRuntime.InvokeAsync<GeolocationPosition>("getCurrentPosition");
-                    Console.WriteLine($"GPS position received: Lat={position.Coords.Latitude}, Lon={position.Coords.Longitude}");
                 }
                 catch (JSException jsEx) when (jsEx.Message.ToLower().Contains("timeout"))
                 {
                     // GPS timed out - try IP-based geolocation as fallback
-                    Console.WriteLine("GPS timeout - trying IP-based geolocation...");
                     position = await JSRuntime.InvokeAsync<GeolocationPosition>("getLocationFromIP");
                     isApproximate = true;
-                    Console.WriteLine($"IP-based position received: Lat={position.Coords.Latitude}, Lon={position.Coords.Longitude}");
                 }
 
                 // Get actual location name from coordinates using reverse geocoding
-                var locationName = await WeatherService.GetLocationNameFromCoordinatesAsync(
+                var locationName = await LocationService.GetLocationNameFromCoordinatesAsync(
                     position.Coords.Latitude,
                     position.Coords.Longitude
                 );
@@ -190,8 +210,19 @@ namespace MiniMate.Component
 
                 SearchQuery = locationName;
 
-                // Notify parent component
-                await OnLocationSelected.InvokeAsync(SelectedLocation);
+                // Notify parent component via two-way binding
+                if (SelectedLocationChanged.HasDelegate)
+                {
+                    await SelectedLocationChanged.InvokeAsync(SelectedLocation);
+                }
+
+                // Notify parent component via callback
+                if (OnLocationSelected.HasDelegate)
+                {
+                    await OnLocationSelected.InvokeAsync(SelectedLocation);
+                }
+
+                StateHasChanged();
 
                 // Show info message if location is approximate
                 if (isApproximate)
@@ -202,8 +233,6 @@ namespace MiniMate.Component
             catch (JSException jsEx)
             {
                 // JavaScript error - likely from geolocation API
-                Console.WriteLine($"Geolocation JS error: {jsEx.Message}");
-
                 // Determine the specific error type and use localized message
                 var message = jsEx.Message.ToLower();
                 if (message.Contains("denied"))
@@ -219,14 +248,14 @@ namespace MiniMate.Component
                     ErrorMessage = Localizer["GeolocationError"];
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine($"Geolocation error: {ex.Message}");
                 ErrorMessage = Localizer["GeolocationError"];
             }
             finally
             {
                 IsLoadingLocation = false;
+                StateHasChanged();
             }
         }
 
