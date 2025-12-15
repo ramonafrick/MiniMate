@@ -74,10 +74,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Forecast\Contracts\" />
-    <Folder Include="Forecast\Models\" />
-    <Folder Include="Forecast\Services\" />
-    <Folder Include="Forecast\Resources\" />
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Weather\MiniMate.Modules.Weather.csproj" />
+    <ProjectReference Include="..\Shared\MiniMate.Shared.Kernel\MiniMate.Shared.Kernel.csproj" />
   </ItemGroup>
 
 </Project>

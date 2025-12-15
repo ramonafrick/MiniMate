@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using MiniMate.Clothing.Contracts;
 using MiniMate.Clothing.Models;
-using MiniMate.Weather.Models;
+using MiniMate.Shared.Kernel.Contracts;
 using MiniMate.Clothing.Resources;
 using MiniMate.Clothing.Helper;
 
@@ -20,7 +20,7 @@ namespace MiniMate.Clothing.Services
             _localizer = localizer;
         }
 
-        public ClothingRecommendation GetClothingRecommendation(WeatherData weatherData)
+        public ClothingRecommendation GetClothingRecommendation(IWeatherData weatherData)
         {
             var temp = weatherData.Current.Temperature;
             var rain = weatherData.Current.Rain;

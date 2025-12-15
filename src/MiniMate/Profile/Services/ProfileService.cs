@@ -1,6 +1,7 @@
 using Microsoft.JSInterop;
 using MiniMate.Profile.Contracts;
 using MiniMate.Profile.Models;
+using MiniMate.Shared.Kernel.Contracts;
 using System.Text.Json;
 
 namespace MiniMate.Profile.Services
@@ -8,7 +9,7 @@ namespace MiniMate.Profile.Services
     /// <summary>
     /// Service for managing user profile data using localStorage
     /// </summary>
-    public class ProfileService : IProfileService
+    public class ProfileService : Contracts.IProfileService
     {
         private readonly IJSRuntime _jsRuntime;
         private const string PROFILE_KEY = "minimate_user_profile";
@@ -61,6 +62,37 @@ namespace MiniMate.Profile.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"Error saving profile: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Explicit implementation of shared interface method
+        /// </summary>
+        async Task<IUserProfile> MiniMate.Shared.Kernel.Contracts.IProfileService.GetProfileAsync()
+        {
+            return await GetProfileAsync();
+        }
+
+        /// <summary>
+        /// Explicit implementation of shared interface method
+        /// </summary>
+        async Task MiniMate.Shared.Kernel.Contracts.IProfileService.SaveProfileAsync(IUserProfile profile)
+        {
+            if (profile is UserProfile userProfile)
+            {
+                await SaveProfileAsync(userProfile);
+            }
+            else
+            {
+                // Convert IUserProfile to UserProfile
+                var newProfile = new UserProfile
+                {
+                    Name = profile.UserName ?? string.Empty,
+                    Latitude = profile.Latitude,
+                    Longitude = profile.Longitude,
+                    LocationName = profile.LocationName
+                };
+                await SaveProfileAsync(newProfile);
             }
         }
     }

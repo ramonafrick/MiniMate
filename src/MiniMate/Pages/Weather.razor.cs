@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using MiniMate.Weather.Resources;
+using MiniMate.Modules.Weather.Resources;
 
 namespace MiniMate.Pages
 {

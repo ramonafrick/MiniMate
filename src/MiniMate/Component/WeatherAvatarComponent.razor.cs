@@ -1,10 +1,11 @@
+using MiniMate.Modules.Weather.Domain.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using MiniMate.Clothing.Contracts;
 using MiniMate.Clothing.Models;
 using MiniMate.Clothing.Resources;
 using MiniMate.Clothing.Helper;
-using MiniMate.Weather.Models;
+using MiniMate.Modules.Weather.Infrastructure.Models;
 
 namespace MiniMate.Component
 {

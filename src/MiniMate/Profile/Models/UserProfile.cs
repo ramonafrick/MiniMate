@@ -1,14 +1,21 @@
+using MiniMate.Shared.Kernel.Contracts;
+
 namespace MiniMate.Profile.Models
 {
     /// <summary>
     /// Represents user profile settings
     /// </summary>
-    public class UserProfile
+    public class UserProfile : IUserProfile
     {
         /// <summary>
         /// The user's display name
         /// </summary>
         public string Name { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Implements IUserProfile.UserName by mapping to Name property
+        /// </summary>
+        string? IUserProfile.UserName => Name;
 
         /// <summary>
         /// The user's preferred language (e.g., "de", "en")
