@@ -4,6 +4,7 @@ using MiniMate.Weather.Contracts;
 using MiniMate.Weather.Models;
 using MiniMate.Weather.Resources;
 using MiniMate.Profile.Contracts;
+using MiniMate.Modules.Location.Domain;
 
 namespace MiniMate.Component
 {

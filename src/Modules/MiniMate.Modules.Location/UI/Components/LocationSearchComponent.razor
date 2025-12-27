@@ -1,14 +1,10 @@
-@using MiniMate.Weather.Contracts
-@using Microsoft.Extensions.Localization
-@using MiniMate.Weather.Resources
-@inject IWeatherService weatherService
-@inject IJSRuntime JSRuntime
-
 <div class="search-section">
     <div class="search-input-container">
-        <input @bind="SearchQuery"
+        <input type="text"
+               @bind-value="SearchQuery"
+               @bind-value:event="oninput"
+               @bind-value:after="OnSearchInputChanged"
                @onkeypress="HandleKeyPress"
-               @oninput="OnSearchInput"
                class="search-input"
                placeholder="@Localizer["SearchPlaceholder"]"
                autocomplete="off" />
