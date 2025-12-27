@@ -1,4 +1,4 @@
-namespace MiniMate.Clothing.Models
+namespace MiniMate.Modules.Clothing.Domain
 {
     /// <summary>
     /// Enumeration of weather advice messages

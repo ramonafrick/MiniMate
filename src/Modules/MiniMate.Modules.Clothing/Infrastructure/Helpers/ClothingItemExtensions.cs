@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Localization;
-using MiniMate.Clothing.Models;
-using MiniMate.Clothing.Resources;
+using MiniMate.Modules.Clothing.Domain;
+using MiniMate.Modules.Clothing.Resources;
 
-namespace MiniMate.Clothing.Helper
+namespace MiniMate.Modules.Clothing.Infrastructure.Helpers
 {
     /// <summary>
     /// Extension methods for ClothingItem enum

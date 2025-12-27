@@ -4,8 +4,7 @@ using Microsoft.JSInterop;
 using MiniMate;
 using MiniMate.Modules.Location;
 using MiniMate.Modules.Weather;
-using MiniMate.Clothing.Contracts;
-using MiniMate.Clothing.Services;
+using MiniMate.Modules.Clothing;
 using MiniMate.Profile.Contracts;
 using MiniMate.Profile.Services;
 using System.Globalization;
@@ -25,8 +24,8 @@ builder.Services.AddLocationModule();
 // Register Weather Module
 builder.Services.AddWeatherModule();
 
-// Register Clothing Service
-builder.Services.AddScoped<IClothingService, ClothingService>();
+// Register Clothing Module
+builder.Services.AddClothingModule();
 
 // Register Profile Service
 builder.Services.AddScoped<IProfileService, ProfileService>();

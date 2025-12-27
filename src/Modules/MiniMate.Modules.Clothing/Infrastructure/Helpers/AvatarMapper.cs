@@ -1,6 +1,6 @@
-using MiniMate.Clothing.Models;
+using MiniMate.Modules.Clothing.Domain;
 
-namespace MiniMate.Clothing.Helper
+namespace MiniMate.Modules.Clothing.Infrastructure.Helpers
 {
     /// <summary>
     /// Maps weather descriptions to corresponding avatar image paths

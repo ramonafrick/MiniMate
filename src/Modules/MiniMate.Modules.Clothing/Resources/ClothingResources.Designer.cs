@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MiniMate.Clothing.Resources {
+namespace MiniMate.Modules.Clothing.Resources {
     using System;
     
     

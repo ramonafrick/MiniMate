@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMate.Modules.Location",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMate.Modules.Weather", "Modules\MiniMate.Modules.Weather\MiniMate.Modules.Weather.csproj", "{5BE3ECF3-7943-5038-9C14-E0404D8594E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMate.Modules.Clothing", "Modules\MiniMate.Modules.Clothing\MiniMate.Modules.Clothing.csproj", "{0D141CB7-FF2B-4E34-81E3-CAC726B61803}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,18 @@ Global
 		{5BE3ECF3-7943-5038-9C14-E0404D8594E6}.Release|x64.Build.0 = Release|Any CPU
 		{5BE3ECF3-7943-5038-9C14-E0404D8594E6}.Release|x86.ActiveCfg = Release|Any CPU
 		{5BE3ECF3-7943-5038-9C14-E0404D8594E6}.Release|x86.Build.0 = Release|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Debug|x64.Build.0 = Debug|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Debug|x86.Build.0 = Debug|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Release|x64.ActiveCfg = Release|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Release|x64.Build.0 = Release|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Release|x86.ActiveCfg = Release|Any CPU
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +78,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4AD2DBF2-6832-4F27-8B03-D9393C7483D5} = {CA253913-39DE-BFD0-C9A3-4B7EC6FBDF17}
 		{5BE3ECF3-7943-5038-9C14-E0404D8594E6} = {CA253913-39DE-BFD0-C9A3-4B7EC6FBDF17}
+		{0D141CB7-FF2B-4E34-81E3-CAC726B61803} = {CA253913-39DE-BFD0-C9A3-4B7EC6FBDF17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0199D32D-EE40-4984-A172-A56251E83B2A}

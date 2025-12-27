@@ -1,4 +1,4 @@
-namespace MiniMate.Clothing.Models
+namespace MiniMate.Modules.Clothing.Domain
 {
     /// <summary>
     /// Represents a clothing recommendation based on current weather conditions

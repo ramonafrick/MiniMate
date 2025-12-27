@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using MiniMate.Clothing.Contracts;
-using MiniMate.Clothing.Models;
-using MiniMate.Clothing.Resources;
-using MiniMate.Clothing.Helper;
+using MiniMate.Modules.Clothing.Application.Contracts;
+using MiniMate.Modules.Clothing.Domain;
+using MiniMate.Modules.Clothing.Resources;
+using MiniMate.Modules.Clothing.Infrastructure.Helpers;
 using MiniMate.Modules.Weather.Domain;
 
-namespace MiniMate.Component
+namespace MiniMate.Modules.Clothing.UI.Components
 {
     public partial class WeatherAvatarComponent : ComponentBase
     {

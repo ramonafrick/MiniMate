@@ -1,7 +1,7 @@
-using MiniMate.Clothing.Models;
+using MiniMate.Modules.Clothing.Domain;
 using MiniMate.Modules.Weather.Domain;
 
-namespace MiniMate.Clothing.Contracts
+namespace MiniMate.Modules.Clothing.Application.Contracts
 {
     /// <summary>
     /// Service for determining appropriate clothing recommendations based on weather conditions
