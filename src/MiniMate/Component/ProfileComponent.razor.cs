@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using MiniMate.Profile.Contracts;
 using MiniMate.Profile.Models;
-using MiniMate.Modules.Weather.Infrastructure.Models;
+using MiniMate.Weather.Models;
 using System.Globalization;
 
 namespace MiniMate.Component

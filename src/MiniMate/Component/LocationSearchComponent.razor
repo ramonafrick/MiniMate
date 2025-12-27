@@ -1,0 +1,69 @@
+@using MiniMate.Weather.Contracts
+@using Microsoft.Extensions.Localization
+@using MiniMate.Weather.Resources
+@inject IWeatherService weatherService
+@inject IJSRuntime JSRuntime
+
+<div class="search-section">
+    <div class="search-input-container">
+        <input @bind="SearchQuery"
+               @onkeypress="HandleKeyPress"
+               @oninput="OnSearchInput"
+               class="search-input"
+               placeholder="@Localizer["SearchPlaceholder"]"
+               autocomplete="off" />
+
+        @if (SearchResults.Length > 0 && ShowDropdown)
+        {
+            <div class="search-dropdown">
+                @foreach (var location in SearchResults)
+                {
+                    <div class="search-result-item" @onclick="() => SelectLocation(location)">
+                        <div class="location-name">@location.Name</div>
+                        <div class="location-details">
+                            @if (!string.IsNullOrEmpty(location.Admin1))
+                            {
+                                <span>@location.Admin1, </span>
+                            }
+                            @location.Country
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <button class="btn btn-primary" @onclick="GetCurrentLocation" disabled="@IsLoadingLocation">
+        @if (IsLoadingLocation)
+        {
+            <span>📍 @Localizer["Loading"]</span>
+        }
+        else
+        {
+            <span>@Localizer["MyLocation"]</span>
+        }
+    </button>
+</div>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    @if (ErrorMessage.Contains("ℹ️"))
+    {
+        <div class="alert alert-info" style="margin-top: 1rem;">
+            @ErrorMessage
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-error" style="margin-top: 1rem;">
+            <strong>⚠️ @Localizer["Error"]:</strong> @ErrorMessage
+        </div>
+    }
+}
+
+@if (SelectedLocation != null)
+{
+    <div class="selected-location">
+        <h2>📍 @SelectedLocation.DisplayName</h2>
+    </div>
+}

@@ -5,12 +5,12 @@ namespace MiniMate.Profile.Contracts
     /// <summary>
     /// Service for managing user profile data
     /// </summary>
-    public interface IProfileService : MiniMate.Shared.Kernel.Contracts.IProfileService
+    public interface IProfileService
     {
         /// <summary>
         /// Gets the current user profile
         /// </summary>
-        new Task<UserProfile> GetProfileAsync();
+        Task<UserProfile> GetProfileAsync();
 
         /// <summary>
         /// Saves the user profile to local storage

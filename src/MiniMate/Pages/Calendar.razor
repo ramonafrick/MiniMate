@@ -1,7 +1,6 @@
-@using MiniMate.Modules.Weather.UI.Components
 @page "/calendar"
-@using MiniMate.Modules.Weather.Application.Contracts
-@using MiniMate.Modules.Weather.Infrastructure.Models
+@using MiniMate.Weather.Contracts
+@using MiniMate.Weather.Models
 @using MiniMate.Calendar.Resources
 @using MiniMate.Profile.Contracts
 @using Microsoft.Extensions.Localization
@@ -16,7 +15,7 @@
 
     @if (WeatherData != null)
     {
-        <DateTimeComponent WeatherData="@WeatherData" />
+        <MiniMate.Component.DateTimeComponent WeatherData="@WeatherData" />
     }
     else if (IsLoading)
     {

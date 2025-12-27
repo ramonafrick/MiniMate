@@ -1,5 +1,5 @@
 using MiniMate.Clothing.Models;
-using MiniMate.Shared.Kernel.Contracts;
+using MiniMate.Weather.Models;
 
 namespace MiniMate.Clothing.Contracts
 {
@@ -13,6 +13,6 @@ namespace MiniMate.Clothing.Contracts
         /// </summary>
         /// <param name="weatherData">Current weather data</param>
         /// <returns>Clothing recommendation with image path and descriptions</returns>
-        ClothingRecommendation GetClothingRecommendation(IWeatherData weatherData);
+        ClothingRecommendation GetClothingRecommendation(WeatherData weatherData);
     }
 }

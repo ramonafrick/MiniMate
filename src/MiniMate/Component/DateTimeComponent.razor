@@ -1,0 +1,60 @@
+@using MiniMate.Weather.Models
+
+@if (WeatherData != null)
+{
+    <div class="datetime-container">
+        <!-- Current Date and Time Section -->
+        <div class="datetime-header">
+            <div class="current-datetime">
+                <div class="date-display">
+                    <span class="date-icon">📅</span>
+                    <span class="date-text">@CurrentTime.ToString("dddd, dd. MMMM yyyy", System.Globalization.CultureInfo.CurrentUICulture)</span>
+                </div>
+                <div class="time-display">
+                    <span class="time-icon">🕐</span>
+                    <span class="time-text">@CurrentTime.ToString("HH:mm:ss")</span>
+                </div>
+            </div>
+
+            <!-- Season Display -->
+            <div class="season-display">
+                <span class="season-icon">@SeasonIcon</span>
+                <span class="season-text">@CurrentSeason</span>
+            </div>
+        </div>
+
+        <!-- Monthly Calendar -->
+        <div class="calendar-section">
+            <div class="calendar-header">
+                <h3>@GetMonthName()</h3>
+            </div>
+
+            <div class="calendar-grid">
+                <!-- Day names header -->
+                <div class="calendar-weekdays">
+                    @foreach (var dayName in GetDayNames())
+                    {
+                        <div class="weekday-label">@dayName</div>
+                    }
+                </div>
+
+                <!-- Calendar days -->
+                <div class="calendar-days">
+                    @foreach (var day in GetCalendarDays())
+                    {
+                        @if (day.HasValue)
+                        {
+                            <div class="calendar-day @(IsToday(day) ? "today" : "")">
+                                @day
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="calendar-day empty"></div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

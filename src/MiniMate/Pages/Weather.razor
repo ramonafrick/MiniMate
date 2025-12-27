@@ -1,9 +1,8 @@
-@page "/wheater-today"
-@using MiniMate.Modules.Weather.UI.Components
+﻿@page "/wheater-today"
 @inject HttpClient Http
 @using Microsoft.Extensions.Localization
-@using MiniMate.Modules.Weather.Infrastructure.Models
+@using MiniMate.Weather.Resources
 
 <PageTitle>@Localizer["PageTitle"]</PageTitle>
 
-<WeatherComponent />
+<MiniMate.Component.WeatherComponent />

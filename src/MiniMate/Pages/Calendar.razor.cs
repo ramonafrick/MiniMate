@@ -1,4 +1,4 @@
-﻿using MiniMate.Modules.Weather.Infrastructure.Models; using MiniMate.Modules.Weather.Domain.Entities;
+﻿using MiniMate.Weather.Models;
 
 namespace MiniMate.Pages
 {
