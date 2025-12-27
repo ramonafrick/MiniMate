@@ -61,11 +61,551 @@ namespace MiniMate.Modules.Clothing.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kalt (unter 0°C).
+        /// </summary>
+        public static string Cold {
+            get {
+                return ResourceManager.GetString("Cold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kalt! Eine warme Jacke ist notwendig..
+        /// </summary>
+        public static string ColdWarmJacketNeeded {
+            get {
+                return ResourceManager.GetString("ColdWarmJacketNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kalt mit starkem Schneefall.
+        /// </summary>
+        public static string ColdWithHeavySnow {
+            get {
+                return ResourceManager.GetString("ColdWithHeavySnow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kalt mit Schnee.
+        /// </summary>
+        public static string ColdWithSnow {
+            get {
+                return ResourceManager.GetString("ColdWithSnow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kühl.
+        /// </summary>
+        public static string Cool {
+            get {
+                return ResourceManager.GetString("Cool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kühl und windig.
+        /// </summary>
+        public static string CoolAndWindy {
+            get {
+                return ResourceManager.GetString("CoolAndWindy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kühl, aber angenehm. Eine Jacke reicht..
+        /// </summary>
+        public static string CoolButPleasantJacketEnough {
+            get {
+                return ResourceManager.GetString("CoolButPleasantJacketEnough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kühl mit starkem Regen.
+        /// </summary>
+        public static string CoolWithHeavyRain {
+            get {
+                return ResourceManager.GetString("CoolWithHeavyRain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kühl mit Regen.
+        /// </summary>
+        public static string CoolWithRain {
+            get {
+                return ResourceManager.GetString("CoolWithRain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extreme Kälte.
+        /// </summary>
+        public static string ExtremeCold {
+            get {
+                return ResourceManager.GetString("ExtremeCold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extrem kalt! Zieh dich in mehreren Schichten an..
+        /// </summary>
+        public static string ExtremeColdLayerUp {
+            get {
+                return ResourceManager.GetString("ExtremeColdLayerUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sehr kalt! Zieh dich warm an und vermeide längere Aufenthalte draußen..
+        /// </summary>
+        public static string ExtremeColdStayInside {
+            get {
+                return ResourceManager.GetString("ExtremeColdStayInside", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extreme Kälte mit Schnee.
+        /// </summary>
+        public static string ExtremeColdWithSnow {
+            get {
+                return ResourceManager.GetString("ExtremeColdWithSnow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Handschuhe.
+        /// </summary>
+        public static string Gloves {
+            get {
+                return ResourceManager.GetString("Gloves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mütze.
+        /// </summary>
+        public static string Hat {
+            get {
+                return ResourceManager.GetString("Hat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starker Regen! Wasserfeste Kleidung ist wichtig..
+        /// </summary>
+        public static string HeavyRainWaterproofImportant {
+            get {
+                return ResourceManager.GetString("HeavyRainWaterproofImportant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heiß.
+        /// </summary>
+        public static string Hot {
+            get {
+                return ResourceManager.GetString("Hot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heiß mit Regen.
+        /// </summary>
+        public static string HotWithRain {
+            get {
+                return ResourceManager.GetString("HotWithRain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heiß mit Gewitter.
+        /// </summary>
+        public static string HotWithThunderstorm {
+            get {
+                return ResourceManager.GetString("HotWithThunderstorm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jacke.
+        /// </summary>
+        public static string Jacket {
+            get {
+                return ResourceManager.GetString("Jacket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leichte Jacke.
+        /// </summary>
+        public static string LightJacket {
+            get {
+                return ResourceManager.GetString("LightJacket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lange Hose.
+        /// </summary>
+        public static string LongPants {
+            get {
+                return ResourceManager.GetString("LongPants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Langarmshirt.
+        /// </summary>
+        public static string LongSleevShirt {
+            get {
+                return ResourceManager.GetString("LongSleevShirt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mild.
+        /// </summary>
+        public static string Mild {
+            get {
+                return ResourceManager.GetString("Mild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mild mit Regen.
+        /// </summary>
+        public static string MildWithRain {
+            get {
+                return ResourceManager.GetString("MildWithRain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schönes Wetter! Leichte Kleidung ist ideal..
+        /// </summary>
+        public static string NiceWeatherLightClothingIdeal {
+            get {
+                return ResourceManager.GetString("NiceWeatherLightClothingIdeal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normale Bedingungen.
+        /// </summary>
+        public static string Normal {
+            get {
+                return ResourceManager.GetString("Normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normale Kleidung.
+        /// </summary>
+        public static string NormalClothing {
+            get {
+                return ResourceManager.GetString("NormalClothing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Angenehme Temperatur. Eine leichte Jacke ist perfekt..
+        /// </summary>
+        public static string PleasantTemperatureLightJacketPerfect {
+            get {
+                return ResourceManager.GetString("PleasantTemperatureLightJacketPerfect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte wähle einen Ort aus, um die Kleidungsempfehlung zu sehen..
+        /// </summary>
+        public static string PleaseSelectLocation {
+            get {
+                return ResourceManager.GetString("PleaseSelectLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regen, aber mild. Eine leichte Regenjacke reicht..
+        /// </summary>
+        public static string RainButMildLightJacketEnough {
+            get {
+                return ResourceManager.GetString("RainButMildLightJacketEnough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regenjacke.
+        /// </summary>
+        public static string RainJacket {
+            get {
+                return ResourceManager.GetString("RainJacket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regen! Nimm einen Regenschirm mit..
+        /// </summary>
+        public static string RainTakeUmbrella {
+            get {
+                return ResourceManager.GetString("RainTakeUmbrella", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empfohlene Kleidung:.
+        /// </summary>
+        public static string RecommendedClothing {
+            get {
+                return ResourceManager.GetString("RecommendedClothing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sandalen.
+        /// </summary>
+        public static string Sandals {
+            get {
+                return ResourceManager.GetString("Sandals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schal.
+        /// </summary>
+        public static string Scarf {
+            get {
+                return ResourceManager.GetString("Scarf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kurze Hose.
+        /// </summary>
+        public static string Shorts {
+            get {
+                return ResourceManager.GetString("Shorts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnschuhe.
+        /// </summary>
+        public static string Sneakers {
+            get {
+                return ResourceManager.GetString("Sneakers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es schneit! Vergiss die Handschuhe nicht..
+        /// </summary>
+        public static string SnowDontForgetGloves {
+            get {
+                return ResourceManager.GetString("SnowDontForgetGloves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schnee! Wasserfeste Kleidung ist wichtig..
+        /// </summary>
+        public static string SnowWaterproofImportant {
+            get {
+                return ResourceManager.GetString("SnowWaterproofImportant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sonnenbrille.
+        /// </summary>
+        public static string Sunglasses {
+            get {
+                return ResourceManager.GetString("Sunglasses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sonnenhut.
+        /// </summary>
+        public static string SunHat {
+            get {
+                return ResourceManager.GetString("SunHat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pullover.
+        /// </summary>
+        public static string Sweater {
+            get {
+                return ResourceManager.GetString("Sweater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thermounterwäsche.
+        /// </summary>
+        public static string ThermalUnderwear {
+            get {
+                return ResourceManager.GetString("ThermalUnderwear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gewitter! Bleib wenn möglich drinnen..
+        /// </summary>
+        public static string ThunderstormStayInside {
+            get {
+                return ResourceManager.GetString("ThunderstormStayInside", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to T-Shirt.
+        /// </summary>
+        public static string TShirt {
+            get {
+                return ResourceManager.GetString("TShirt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regenschirm.
+        /// </summary>
+        public static string Umbrella {
+            get {
+                return ResourceManager.GetString("Umbrella", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sehr heiß.
+        /// </summary>
+        public static string VeryHot {
+            get {
+                return ResourceManager.GetString("VeryHot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sehr heiß! Bleib im Schatten und trink viel Wasser. Sonnenschutz nicht vergessen!.
+        /// </summary>
+        public static string VeryHotStayInShadeAndDrink {
+            get {
+                return ResourceManager.GetString("VeryHotStayInShadeAndDrink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warm.
+        /// </summary>
+        public static string Warm {
+            get {
+                return ResourceManager.GetString("Warm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warm und sonnig! Denk an Sonnenschutz..
+        /// </summary>
+        public static string WarmAndSunnySunProtection {
+            get {
+                return ResourceManager.GetString("WarmAndSunnySunProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warm, aber nass. Ein Regenschirm genügt..
+        /// </summary>
+        public static string WarmButWetUmbrellaEnough {
+            get {
+                return ResourceManager.GetString("WarmButWetUmbrellaEnough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warmer Regen. Leichte, schnelltrocknende Kleidung..
+        /// </summary>
+        public static string WarmRainLightQuickDry {
+            get {
+                return ResourceManager.GetString("WarmRainLightQuickDry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warme Schuhe.
+        /// </summary>
+        public static string WarmShoes {
+            get {
+                return ResourceManager.GetString("WarmShoes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warm mit Regen.
+        /// </summary>
+        public static string WarmWithRain {
+            get {
+                return ResourceManager.GetString("WarmWithRain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasserfeste Schuhe.
+        /// </summary>
+        public static string WaterproofShoes {
+            get {
+                return ResourceManager.GetString("WaterproofShoes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wetter ist angenehm..
+        /// </summary>
+        public static string WeatherIsPleasant {
+            get {
+                return ResourceManager.GetString("WeatherIsPleasant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windjacke.
+        /// </summary>
+        public static string Windbreaker {
+            get {
+                return ResourceManager.GetString("Windbreaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windig! Eine Windjacke schützt dich..
+        /// </summary>
+        public static string WindyWindbreakerProtects {
+            get {
+                return ResourceManager.GetString("WindyWindbreakerProtects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Winterstiefel.
+        /// </summary>
+        public static string WinterBoots {
+            get {
+                return ResourceManager.GetString("WinterBoots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Winterjacke.
         /// </summary>
-        public static string Winterjacke {
+        public static string WinterJacket {
             get {
-                return ResourceManager.GetString("Winterjacke", resourceCulture);
+                return ResourceManager.GetString("WinterJacket", resourceCulture);
             }
         }
     }
