@@ -82,6 +82,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Modules\MiniMate.Modules.Location\MiniMate.Modules.Location.csproj" />
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Weather\MiniMate.Modules.Weather.csproj" />
   </ItemGroup>
 
 </Project>

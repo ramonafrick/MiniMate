@@ -4,7 +4,7 @@ using MiniMate.Clothing.Contracts;
 using MiniMate.Clothing.Models;
 using MiniMate.Clothing.Resources;
 using MiniMate.Clothing.Helper;
-using MiniMate.Weather.Models;
+using MiniMate.Modules.Weather.Domain;
 
 namespace MiniMate.Component
 {

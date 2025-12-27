@@ -1,6 +1,7 @@
-﻿using MiniMate.Weather.Resources;
+using MiniMate.Modules.Weather.Application.Models;
+using MiniMate.Modules.Weather.Resources;
 
-namespace MiniMate.Weather.Models
+namespace MiniMate.Modules.Weather.Domain
 {
     public record WeatherData(double Latitude, double Longitude, string? Timezone, string? TimezoneAbbreviation, int UtcOffsetSeconds, CurrentWeather Current, CurrentUnits? Units)
     {
@@ -92,7 +93,7 @@ namespace MiniMate.Weather.Models
                 >= 282 and < 304 => WeatherResources.Wind_WNW,
                 >= 304 and < 326 => WeatherResources.Wind_NW,
                 >= 326 and < 348 => WeatherResources.Wind_NNW,
-                >= 348 => WeatherResources.Wind_N // Explizit für 348-359
+                >= 348 => WeatherResources.Wind_N // Explicitly for 348-359
             };
         }
 

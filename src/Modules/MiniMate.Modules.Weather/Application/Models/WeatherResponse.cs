@@ -1,6 +1,6 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
-namespace MiniMate.Weather.Models
+namespace MiniMate.Modules.Weather.Application.Models
 {
     public record WeatherResponse(
     [property: JsonPropertyName("latitude")] double Latitude,

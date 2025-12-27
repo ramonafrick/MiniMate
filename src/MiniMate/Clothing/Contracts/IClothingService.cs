@@ -1,5 +1,5 @@
 using MiniMate.Clothing.Models;
-using MiniMate.Weather.Models;
+using MiniMate.Modules.Weather.Domain;
 
 namespace MiniMate.Clothing.Contracts
 {

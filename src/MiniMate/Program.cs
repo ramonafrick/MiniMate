@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
 using MiniMate;
 using MiniMate.Modules.Location;
-using MiniMate.Weather.Contracts;
-using MiniMate.Weather.Services;
+using MiniMate.Modules.Weather;
 using MiniMate.Clothing.Contracts;
 using MiniMate.Clothing.Services;
 using MiniMate.Profile.Contracts;
@@ -23,8 +22,8 @@ builder.Services.AddLocalization();
 // Register Location Module (must be registered before modules that depend on it)
 builder.Services.AddLocationModule();
 
-// Register Weather Service
-builder.Services.AddScoped<IWeatherService, WeatherService>();
+// Register Weather Module
+builder.Services.AddWeatherModule();
 
 // Register Clothing Service
 builder.Services.AddScoped<IClothingService, ClothingService>();

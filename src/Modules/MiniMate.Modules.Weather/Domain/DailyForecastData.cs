@@ -1,7 +1,7 @@
-using MiniMate.Weather.Resources;
+using MiniMate.Modules.Weather.Resources;
 using System.Globalization;
 
-namespace MiniMate.Weather.Models
+namespace MiniMate.Modules.Weather.Domain
 {
     /// <summary>
     /// Represents weather forecast data for a single day

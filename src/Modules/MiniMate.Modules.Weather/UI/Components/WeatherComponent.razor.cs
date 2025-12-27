@@ -1,67 +1,55 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using MiniMate.Weather.Contracts;
-using MiniMate.Weather.Models;
-using MiniMate.Weather.Resources;
-using MiniMate.Profile.Contracts;
+using MiniMate.Modules.Weather.Application.Contracts;
+using MiniMate.Modules.Weather.Domain;
+using MiniMate.Modules.Weather.Resources;
 using MiniMate.Modules.Location.Domain;
 
-namespace MiniMate.Component
+namespace MiniMate.Modules.Weather.UI.Components
 {
     public partial class WeatherComponent : ComponentBase
     {
         #region Properties
         [Inject] protected IWeatherService WeatherService { get; set; } = null!;
         [Inject] protected IStringLocalizer<WeatherResources> Localizer { get; set; } = null!;
-        [Inject] protected IProfileService ProfileService { get; set; } = null!;
+
+        /// <summary>
+        /// Initial location from profile (set by parent page)
+        /// </summary>
+        [Parameter]
+        public LocationData? InitialLocation { get; set; }
 
         protected LocationData? SelectedLocation { get; set; }
-        protected WeatherData? WeatherData { get; set; }
+
+        /// <summary>
+        /// Current weather data - made public so parent page can access it
+        /// </summary>
+        public WeatherData? WeatherData { get; set; }
+
+        /// <summary>
+        /// Callback invoked when weather data is loaded
+        /// </summary>
+        [Parameter]
+        public EventCallback<WeatherData?> OnWeatherDataLoaded { get; set; }
+
+        /// <summary>
+        /// Whether to show the title in the component
+        /// </summary>
+        [Parameter]
+        public bool ShowTitle { get; set; } = true;
+
         protected bool IsLoading { get; set; } = false;
         protected string? ErrorMessage { get; set; }
         #endregion
 
         #region Methods
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnParametersSetAsync()
         {
-            await base.OnInitializedAsync();
-            await LoadDefaultLocation();
-        }
-
-        private async Task LoadDefaultLocation()
-        {
-            try
+            // Load weather for initial location if provided and no location selected yet
+            if (InitialLocation != null && SelectedLocation == null)
             {
-                var profile = await ProfileService.GetProfileAsync();
-
-                if (profile.Latitude.HasValue && profile.Longitude.HasValue)
-                {
-                    // Create a LocationData from profile
-                    SelectedLocation = new LocationData(
-                        Id: 0,
-                        Name: profile.LocationName ?? "Default Location",
-                        Latitude: profile.Latitude.Value,
-                        Longitude: profile.Longitude.Value,
-                        Elevation: null,
-                        FeatureCode: null,
-                        CountryCode: null,
-                        Admin1: null,
-                        Admin2: null,
-                        Admin3: null,
-                        Admin4: null,
-                        Timezone: null,
-                        Population: null,
-                        CountryId: null,
-                        Country: null,
-                        Postcodes: null
-                    );
-
-                    await LoadWeatherData(profile.Latitude.Value, profile.Longitude.Value);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error loading default location: {ex.Message}");
+                SelectedLocation = InitialLocation;
+                await LoadWeatherData(InitialLocation.Latitude, InitialLocation.Longitude);
             }
         }
 
@@ -83,6 +71,10 @@ namespace MiniMate.Component
                 if (WeatherData == null)
                 {
                     ErrorMessage = Localizer["ErrorLoadingWeatherData"];
+                }
+                else
+                {
+                    await OnWeatherDataLoaded.InvokeAsync(WeatherData);
                 }
             }
             catch (Exception ex)

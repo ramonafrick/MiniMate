@@ -1,11 +1,10 @@
-﻿@using MiniMate.Weather.Contracts
-@using Microsoft.Extensions.Localization
-@using MiniMate.Weather.Resources
-@using MiniMate.Modules.Location.UI.Components
-@inject IWeatherService weatherService
+﻿@inject IWeatherService weatherService
 
 <div class="weather-container">
-    <h1 class="page-title">@Localizer["CurrentWeather"]</h1>
+    @if (ShowTitle)
+    {
+        <h1 class="page-title">@Localizer["CurrentWeather"]</h1>
+    }
 
     <LocationSearchComponent OnLocationSelected="HandleLocationSelected" />
 
@@ -138,8 +137,6 @@
                 @Localizer["LastUpdated", WeatherData.LastUpdateTime.ToString("dd.MM.yyyy HH:mm")]
             </div>
         </div>
-
-        <WeatherAvatarComponent WeatherData="@WeatherData" />
     }
 
     @if (SelectedLocation != null)

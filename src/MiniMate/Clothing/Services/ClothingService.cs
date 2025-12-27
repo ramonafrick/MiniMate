@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using MiniMate.Clothing.Contracts;
 using MiniMate.Clothing.Models;
-using MiniMate.Weather.Models;
+using MiniMate.Modules.Weather.Domain;
 using MiniMate.Clothing.Resources;
 using MiniMate.Clothing.Helper;
 

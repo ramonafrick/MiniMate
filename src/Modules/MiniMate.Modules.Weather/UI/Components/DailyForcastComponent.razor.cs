@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using MiniMate.Weather.Contracts;
-using MiniMate.Weather.Models;
-using MiniMate.Weather.Resources;
+using MiniMate.Modules.Weather.Application.Contracts;
+using MiniMate.Modules.Weather.Domain;
+using MiniMate.Modules.Weather.Resources;
 
-namespace MiniMate.Component
+namespace MiniMate.Modules.Weather.UI.Components
 {
     public partial class DailyForcastComponent : ComponentBase
     {

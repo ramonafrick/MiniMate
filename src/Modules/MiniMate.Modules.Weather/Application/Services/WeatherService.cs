@@ -1,12 +1,12 @@
-﻿using MiniMate.Weather.Contracts;
-using MiniMate.Weather.Models;
-using MiniMate.Weather.Resources;
+using MiniMate.Modules.Weather.Application.Contracts;
+using MiniMate.Modules.Weather.Application.Models;
+using MiniMate.Modules.Weather.Domain;
+using MiniMate.Modules.Weather.Resources;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
-using System.Net.Http;
 using System.Text.Json;
 
-namespace MiniMate.Weather.Services
+namespace MiniMate.Modules.Weather.Application.Services
 {
     public class WeatherService : IWeatherService
     {

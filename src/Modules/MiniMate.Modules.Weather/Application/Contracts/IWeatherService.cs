@@ -1,6 +1,6 @@
-﻿using MiniMate.Weather.Models;
+using MiniMate.Modules.Weather.Domain;
 
-namespace MiniMate.Weather.Contracts
+namespace MiniMate.Modules.Weather.Application.Contracts
 {
     public interface IWeatherService
     {

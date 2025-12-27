@@ -1,8 +1,23 @@
 ﻿@page "/wheater-today"
 @inject HttpClient Http
 @using Microsoft.Extensions.Localization
-@using MiniMate.Weather.Resources
+@using MiniMate.Modules.Weather.Resources
+@using MiniMate.Modules.Weather.UI.Components
+@using MiniMate.Component
 
 <PageTitle>@Localizer["PageTitle"]</PageTitle>
 
-<MiniMate.Component.WeatherComponent />
+<div class="weather-page-container">
+    <h1 class="page-title">@Localizer["PageTitle"]</h1>
+
+    @* Weather avatar with clothing recommendations - displayed first when data is loaded *@
+    @if (currentWeatherData != null)
+    {
+        <WeatherAvatarComponent WeatherData="@currentWeatherData" />
+    }
+
+    <WeatherComponent InitialLocation="@ProfileLocation"
+                      OnWeatherDataLoaded="@HandleWeatherDataLoaded"
+                      @ref="weatherComponent"
+                      ShowTitle="false" />
+</div>

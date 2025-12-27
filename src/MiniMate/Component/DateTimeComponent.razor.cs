@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using MiniMate.Weather.Models;
-using MiniMate.Weather.Resources;
+using MiniMate.Modules.Weather.Domain;
+using MiniMate.Modules.Weather.Resources;
 using System.Globalization;
 
 namespace MiniMate.Component
