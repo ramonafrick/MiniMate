@@ -1,7 +1,8 @@
 @page "/calendar"
 @using MiniMate.Modules.Weather.Application.Contracts
 @using MiniMate.Modules.Weather.Domain
-@using MiniMate.Calendar.Resources
+@using MiniMate.Modules.Calendar.Resources
+@using MiniMate.Modules.Calendar.UI.Components
 @using MiniMate.Profile.Contracts
 @using Microsoft.Extensions.Localization
 @inject IWeatherService weatherService
@@ -15,7 +16,7 @@
 
     @if (WeatherData != null)
     {
-        <MiniMate.Component.DateTimeComponent WeatherData="@WeatherData" />
+        <DateTimeComponent WeatherData="@WeatherData" />
     }
     else if (IsLoading)
     {

@@ -4,7 +4,7 @@ using MiniMate.Modules.Weather.Domain;
 using MiniMate.Modules.Weather.Resources;
 using System.Globalization;
 
-namespace MiniMate.Component
+namespace MiniMate.Modules.Calendar.UI.Components
 {
     public partial class DateTimeComponent : ComponentBase, IDisposable
     {

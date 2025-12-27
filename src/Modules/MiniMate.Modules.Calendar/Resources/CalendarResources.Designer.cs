@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MiniMate.Calendar.Resources {
+namespace MiniMate.Modules.Calendar.Resources {
     using System;
     
     

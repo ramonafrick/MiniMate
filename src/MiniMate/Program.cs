@@ -5,6 +5,7 @@ using MiniMate;
 using MiniMate.Modules.Location;
 using MiniMate.Modules.Weather;
 using MiniMate.Modules.Clothing;
+using MiniMate.Modules.Calendar;
 using MiniMate.Profile.Contracts;
 using MiniMate.Profile.Services;
 using System.Globalization;
@@ -26,6 +27,9 @@ builder.Services.AddWeatherModule();
 
 // Register Clothing Module
 builder.Services.AddClothingModule();
+
+// Register Calendar Module
+builder.Services.AddCalendarModule();
 
 // Register Profile Service
 builder.Services.AddScoped<IProfileService, ProfileService>();
