@@ -4,7 +4,7 @@ using MiniMate.Modules.Weather.Resources;
 using MiniMate.Modules.Weather.UI.Components;
 using MiniMate.Modules.Weather.Domain;
 using MiniMate.Modules.Location.Domain;
-using MiniMate.Profile.Contracts;
+using MiniMate.Modules.Profile.Application.Contracts;
 
 namespace MiniMate.Pages
 {

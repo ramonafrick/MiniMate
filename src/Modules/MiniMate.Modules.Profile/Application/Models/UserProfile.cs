@@ -1,4 +1,4 @@
-namespace MiniMate.Profile.Models
+namespace MiniMate.Modules.Profile.Application.Models
 {
     /// <summary>
     /// Represents user profile settings

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MiniMate.Profile.Resources {
+namespace MiniMate.Modules.Profile.Resources {
     using System;
     
     

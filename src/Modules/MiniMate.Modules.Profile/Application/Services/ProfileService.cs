@@ -1,9 +1,9 @@
 using Microsoft.JSInterop;
-using MiniMate.Profile.Contracts;
-using MiniMate.Profile.Models;
+using MiniMate.Modules.Profile.Application.Contracts;
+using MiniMate.Modules.Profile.Application.Models;
 using System.Text.Json;
 
-namespace MiniMate.Profile.Services
+namespace MiniMate.Modules.Profile.Application.Services
 {
     /// <summary>
     /// Service for managing user profile data using localStorage
@@ -25,12 +25,16 @@ namespace MiniMate.Profile.Services
         {
             try
             {
+                Console.WriteLine($"ProfileService: Getting profile from localStorage with key '{PROFILE_KEY}'");
                 var json = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", PROFILE_KEY);
+                Console.WriteLine($"ProfileService: Retrieved JSON: {json ?? "null"}");
+
                 if (!string.IsNullOrEmpty(json))
                 {
                     var profile = JsonSerializer.Deserialize<UserProfile>(json);
                     if (profile != null)
                     {
+                        Console.WriteLine($"ProfileService: Deserialized profile - Name: '{profile.Name}', Language: '{profile.Language}'");
                         return profile;
                     }
                 }
@@ -38,9 +42,11 @@ namespace MiniMate.Profile.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"Error loading profile: {ex.Message}");
+                Console.WriteLine($"Stack trace: {ex.StackTrace}");
             }
 
             // Return default profile if none exists
+            Console.WriteLine("ProfileService: Returning default profile");
             return new UserProfile
             {
                 Name = "Max",
@@ -55,12 +61,16 @@ namespace MiniMate.Profile.Services
         {
             try
             {
+                Console.WriteLine($"ProfileService: Saving profile - Name: '{profile.Name}', Language: '{profile.Language}'");
                 var json = JsonSerializer.Serialize(profile);
+                Console.WriteLine($"ProfileService: Serialized JSON: {json}");
                 await _jsRuntime.InvokeVoidAsync("localStorage.setItem", PROFILE_KEY, json);
+                Console.WriteLine($"ProfileService: Profile saved successfully to localStorage");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error saving profile: {ex.Message}");
+                Console.WriteLine($"Stack trace: {ex.StackTrace}");
             }
         }
     }

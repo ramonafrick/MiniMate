@@ -6,8 +6,7 @@ using MiniMate.Modules.Location;
 using MiniMate.Modules.Weather;
 using MiniMate.Modules.Clothing;
 using MiniMate.Modules.Calendar;
-using MiniMate.Profile.Contracts;
-using MiniMate.Profile.Services;
+using MiniMate.Modules.Profile;
 using System.Globalization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -31,8 +30,8 @@ builder.Services.AddClothingModule();
 // Register Calendar Module
 builder.Services.AddCalendarModule();
 
-// Register Profile Service
-builder.Services.AddScoped<IProfileService, ProfileService>();
+// Register Profile Module
+builder.Services.AddProfileModule();
 
 // Build the host first to get services
 var host = builder.Build();

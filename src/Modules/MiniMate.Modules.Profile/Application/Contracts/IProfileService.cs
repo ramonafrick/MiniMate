@@ -1,6 +1,6 @@
-using MiniMate.Profile.Models;
+using MiniMate.Modules.Profile.Application.Models;
 
-namespace MiniMate.Profile.Contracts
+namespace MiniMate.Modules.Profile.Application.Contracts
 {
     /// <summary>
     /// Service for managing user profile data

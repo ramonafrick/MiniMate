@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.20" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.20" />
+    <PackageReference Include="Microsoft.JSInterop" Version="8.0.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MiniMate.Modules.Location\MiniMate.Modules.Location.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ProfileResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfileResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ProfileResources.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\ProfileResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProfileResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="UI\Components\ProfileComponent.razor.cs">
+      <DependentUpon>ProfileComponent.razor</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,5 @@
-@using MiniMate.Profile.Resources
+@namespace MiniMate.Modules.Profile.UI.Components
+@using MiniMate.Modules.Profile.Resources
 @using Microsoft.Extensions.Localization
 @using MiniMate.Modules.Location.UI.Components
 @inject IStringLocalizer<ProfileResources> Localizer
@@ -12,13 +13,14 @@
             <input id="userName"
                    type="text"
                    class="form-input"
-                   @bind="UserName"
+                   @bind-value="UserName"
+                   @bind-value:event="oninput"
                    placeholder="@Localizer["EnterName"]" />
         </div>
 
         <div class="form-group">
             <label for="language">@Localizer["Language"]</label>
-            <select id="language" class="form-select" @bind="SelectedLanguage">
+            <select id="language" class="form-select" value=@SelectedLanguage onchange=@HandleLanguageChange>
                 <option value="de">Deutsch</option>
                 <option value="en">English</option>
             </select>
@@ -30,7 +32,9 @@
         </div>
 
         <div class="form-actions">
-            <button class="btn btn-primary" @onclick="SaveProfile">
+            <button type="button"
+                    class="btn btn-primary"
+                    onclick=@SaveProfile>
                 @Localizer["SaveProfile"]
             </button>
         </div>

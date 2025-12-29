@@ -1,7 +1,17 @@
 ﻿@using MiniMate.Modules.Location.UI.Components
+@using MiniMate.Modules.Profile.UI.Components
+@using MiniMate.Modules.Weather.UI.Components
+@using MiniMate.Modules.Calendar.UI.Components
+@using MiniMate.Modules.Clothing.UI.Components
 
 <Router AppAssembly="@typeof(App).Assembly"
-        AdditionalAssemblies="new[] { typeof(LocationSearchComponent).Assembly }">
+        AdditionalAssemblies="new[] {
+            typeof(LocationSearchComponent).Assembly,
+            typeof(ProfileComponent).Assembly,
+            typeof(MiniMate.Modules.Weather.UI.Components.WeatherComponent).Assembly,
+            typeof(MiniMate.Modules.Calendar.UI.Components.DateTimeComponent).Assembly,
+            typeof(MiniMate.Modules.Clothing.UI.Components.WeatherAvatarComponent).Assembly
+        }">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
