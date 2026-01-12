@@ -1,7 +1,7 @@
 /* Component-specific styles - Global styles in minimate-globals.css */
 /* Home Module - Pink Theme */
 
-.home-greeting {
+.home-container {
     text-align: center;
     padding: 3rem 1rem;
     margin-top: 2rem;
@@ -10,15 +10,16 @@
     box-shadow: 0 4px 15px rgba(255, 107, 157, 0.1);
 }
 
-.home-greeting p {
+.home-explore-text {
     font-size: var(--font-size-xl);
     color: var(--color-home);
     font-weight: var(--font-weight-semibold);
     text-shadow: 0 2px 4px rgba(255, 107, 157, 0.1);
+    margin-top: 1.5rem;
 }
 
 /* Dark Mode specific */
-[data-theme="dark"] .home-greeting p {
+[data-theme="dark"] .home-explore-text {
     color: #FFB6D0;
 }
 

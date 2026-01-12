@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace MiniMate.Component
+namespace MiniMate.Web.Component
 {
     public partial class ThemeToggle : ComponentBase, IAsyncDisposable
     {

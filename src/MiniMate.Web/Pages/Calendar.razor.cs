@@ -1,6 +1,6 @@
 ﻿using MiniMate.Modules.Weather.Domain;
 
-namespace MiniMate.Pages
+namespace MiniMate.Web.Pages
 {
     public partial class Calendar
     {

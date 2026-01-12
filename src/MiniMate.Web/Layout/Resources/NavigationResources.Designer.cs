@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MiniMate.Layout.Resources {
+namespace MiniMate.Web.Layout.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MiniMate.Layout.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MiniMate.Layout.Resources.NavigationResources", typeof(NavigationResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MiniMate.Web.Layout.Resources.NavigationResources", typeof(NavigationResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

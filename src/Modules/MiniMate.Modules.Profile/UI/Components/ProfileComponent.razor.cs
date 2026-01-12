@@ -120,6 +120,9 @@ namespace MiniMate.Modules.Profile.UI.Components
                 Console.WriteLine("ProfileComponent: SaveProfile button clicked");
                 Console.WriteLine($"ProfileComponent: Current values - UserName='{UserName}', SelectedLanguage='{SelectedLanguage}'");
 
+                var currentCulture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+                var languageChanged = currentCulture != SelectedLanguage;
+
                 var profile = new UserProfile
                 {
                     Name = UserName,
@@ -131,30 +134,44 @@ namespace MiniMate.Modules.Profile.UI.Components
 
                 await ProfileService.SaveProfileAsync(profile);
 
-                // Save language to localStorage for culture setting
+                // Save language to localStorage/preferences for culture setting
                 await JSRuntime.InvokeVoidAsync("blazorCulture.set", SelectedLanguage);
 
-                // Show success message
-                ShowSuccessMessage = true;
-                _messageTimer?.Dispose();
-                _messageTimer = new System.Timers.Timer(3000);
-                _messageTimer.Elapsed += (_, _) => InvokeAsync(() =>
+                // If language changed, set culture immediately and reload
+                if (languageChanged)
                 {
-                    ShowSuccessMessage = false;
-                    StateHasChanged();
-                });
-                _messageTimer.AutoReset = false;
-                _messageTimer.Start();
+                    Console.WriteLine($"ProfileComponent: Language changed from '{currentCulture}' to '{SelectedLanguage}'");
 
-                Console.WriteLine("ProfileComponent: Profile saved successfully");
+                    // Set the culture immediately
+                    var newCulture = new CultureInfo(SelectedLanguage);
+                    CultureInfo.DefaultThreadCurrentCulture = newCulture;
+                    CultureInfo.DefaultThreadCurrentUICulture = newCulture;
+                    CultureInfo.CurrentCulture = newCulture;
+                    CultureInfo.CurrentUICulture = newCulture;
 
-                // Reload page if language changed to apply new culture
-                var currentCulture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-                if (currentCulture != SelectedLanguage)
+                    Console.WriteLine($"ProfileComponent: Culture set to '{SelectedLanguage}', reloading page");
+
+                    // Wait a moment to ensure preferences are saved
+                    await Task.Delay(100);
+
+                    // Force reload the entire app
+                    Navigation.NavigateTo("/", forceLoad: true);
+                }
+                else
                 {
-                    Console.WriteLine($"ProfileComponent: Language changed from '{currentCulture}' to '{SelectedLanguage}', reloading page");
-                    await Task.Delay(1000); // Brief delay to show success message
-                    Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+                    // Show success message (only if no language change)
+                    ShowSuccessMessage = true;
+                    _messageTimer?.Dispose();
+                    _messageTimer = new System.Timers.Timer(3000);
+                    _messageTimer.Elapsed += (_, _) => InvokeAsync(() =>
+                    {
+                        ShowSuccessMessage = false;
+                        StateHasChanged();
+                    });
+                    _messageTimer.AutoReset = false;
+                    _messageTimer.Start();
+
+                    Console.WriteLine("ProfileComponent: Profile saved successfully");
                 }
             }
             catch (Exception ex)

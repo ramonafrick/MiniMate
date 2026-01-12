@@ -1,0 +1,12 @@
+@namespace MiniMate.Modules.Home.UI.Components
+@using MiniMate.Modules.Home.Resources
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<HomeResources> Localizer
+
+<div class="home-container">
+    <h1 class="page-title">@Localizer["Greeting", UserName]</h1>
+    <div class="home-logo-container">
+        <img src="favicon.svg" alt="MiniMate" class="home-logo" />
+    </div>
+    <p class="home-explore-text">@Localizer["ExploreToday"]</p>
+</div>

@@ -45,11 +45,19 @@ namespace MiniMate.Modules.Weather.UI.Components
         #region Methods
         protected override async Task OnParametersSetAsync()
         {
-            // Load weather for initial location if provided and no location selected yet
-            if (InitialLocation != null && SelectedLocation == null)
+            // Load weather for initial location if provided
+            if (InitialLocation != null)
             {
-                SelectedLocation = InitialLocation;
-                await LoadWeatherData(InitialLocation.Latitude, InitialLocation.Longitude);
+                // Check if location has changed
+                bool locationChanged = SelectedLocation == null ||
+                    SelectedLocation.Latitude != InitialLocation.Latitude ||
+                    SelectedLocation.Longitude != InitialLocation.Longitude;
+
+                if (locationChanged)
+                {
+                    SelectedLocation = InitialLocation;
+                    await LoadWeatherData(InitialLocation.Latitude, InitialLocation.Longitude);
+                }
             }
         }
 

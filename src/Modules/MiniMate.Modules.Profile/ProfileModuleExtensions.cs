@@ -8,6 +8,9 @@ namespace MiniMate.Modules.Profile
     {
         public static IServiceCollection AddProfileModule(this IServiceCollection services)
         {
+            // Register ProfileStateService as Singleton so it persists across navigation
+            services.AddSingleton<ProfileStateService>();
+
             services.AddScoped<IProfileService, ProfileService>();
             services.AddLocalization();
 

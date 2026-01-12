@@ -6,7 +6,7 @@ using MiniMate.Modules.Weather.Domain;
 using MiniMate.Modules.Location.Domain;
 using MiniMate.Modules.Profile.Application.Contracts;
 
-namespace MiniMate.Pages
+namespace MiniMate.Web.Pages
 {
     public partial class Weather : ComponentBase
     {

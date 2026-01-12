@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>MiniMate.Web</RootNamespace>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
   </PropertyGroup>
@@ -81,11 +82,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Home\MiniMate.Modules.Home.csproj" />
     <ProjectReference Include="..\Modules\MiniMate.Modules.Location\MiniMate.Modules.Location.csproj" />
     <ProjectReference Include="..\Modules\MiniMate.Modules.Weather\MiniMate.Modules.Weather.csproj" />
     <ProjectReference Include="..\Modules\MiniMate.Modules.Clothing\MiniMate.Modules.Clothing.csproj" />
     <ProjectReference Include="..\Modules\MiniMate.Modules.Calendar\MiniMate.Modules.Calendar.csproj" />
     <ProjectReference Include="..\Modules\MiniMate.Modules.Profile\MiniMate.Modules.Profile.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
