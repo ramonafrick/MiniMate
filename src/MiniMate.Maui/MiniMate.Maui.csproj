@@ -44,7 +44,7 @@
         <MauiIcon Include="Resources\AppIcon\appicon.png" />
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+        <MauiSplashScreen Include="Resources\Images\splash_logo.png" Color="#4A90E2" BaseSize="256,256" />
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
@@ -55,6 +55,11 @@
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+
+        <!-- Include wwwroot assets from Clothing module -->
+        <MauiAsset Include="..\Modules\MiniMate.Modules.Clothing\wwwroot\**\*.*">
+            <LogicalName>_content\MiniMate.Modules.Clothing\%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+        </MauiAsset>
     </ItemGroup>
 
     <ItemGroup>

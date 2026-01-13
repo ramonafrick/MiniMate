@@ -17,7 +17,7 @@ namespace MiniMate.Maui
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell()) { Title = "MiniMate" };
+            return new Window(new SplashPage()) { Title = "MiniMate" };
         }
     }
 }

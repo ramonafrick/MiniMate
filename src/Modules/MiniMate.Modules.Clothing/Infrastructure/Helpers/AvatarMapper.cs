@@ -7,8 +7,22 @@ namespace MiniMate.Modules.Clothing.Infrastructure.Helpers
     /// </summary>
     public static class AvatarMapper
     {
-        // Base path for static assets in Blazor Razor Class Library
-        private const string BasePath = "_content/MiniMate.Modules.Clothing";
+        // Base path for static assets - dynamically determined based on platform
+        private static string BasePath
+        {
+            get
+            {
+                // Check if running in MAUI (Android, iOS, Windows, MacCatalyst)
+                if (OperatingSystem.IsAndroid() || OperatingSystem.IsIOS() ||
+                    OperatingSystem.IsWindows() || OperatingSystem.IsMacCatalyst())
+                {
+                    // In MAUI, assets are accessed via the wwwroot path
+                    return "_content/MiniMate.Modules.Clothing";
+                }
+                // Default for Blazor WebAssembly
+                return "_content/MiniMate.Modules.Clothing";
+            }
+        }
 
         /// <summary>
         /// Gets the avatar image path for a given weather description
@@ -48,7 +62,7 @@ namespace MiniMate.Modules.Clothing.Infrastructure.Helpers
 
                 // Group 7: Mild rainy weather (10-15°C with rain)
                 // LightJacket, Umbrella, WaterproofShoes
-                WeatherDescription.MildWithRain => "images/avatars/mild-rainy-weather.jpg",
+                WeatherDescription.MildWithRain => "images/avatars/warm-rainy-weather.jpg", // Use warm-rainy as fallback
 
                 // Group 8: Mild pleasant weather (10-15°C no rain)
                 // LightJacket, LongSleeveShirt, Sneakers
