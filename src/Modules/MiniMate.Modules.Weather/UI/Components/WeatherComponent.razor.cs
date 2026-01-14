@@ -40,21 +40,53 @@ namespace MiniMate.Modules.Weather.UI.Components
 
         protected bool IsLoading { get; set; } = false;
         protected string? ErrorMessage { get; set; }
+
+        /// <summary>
+        /// Flag to track if user manually selected a location (overrides InitialLocation)
+        /// </summary>
+        private bool _userSelectedLocation = false;
+
+        /// <summary>
+        /// Last InitialLocation that was loaded (to detect profile changes)
+        /// </summary>
+        private LocationData? _lastInitialLocation = null;
         #endregion
 
         #region Methods
         protected override async Task OnParametersSetAsync()
         {
-            // Load weather for initial location if provided and no location selected yet
-            if (InitialLocation != null && SelectedLocation == null)
+            // Check if InitialLocation has changed from profile (e.g., user changed profile location)
+            bool profileLocationChanged = InitialLocation != null && _lastInitialLocation != null &&
+                (InitialLocation.Latitude != _lastInitialLocation.Latitude ||
+                 InitialLocation.Longitude != _lastInitialLocation.Longitude);
+
+            // Reset user override if profile location changed
+            if (profileLocationChanged)
             {
-                SelectedLocation = InitialLocation;
-                await LoadWeatherData(InitialLocation.Latitude, InitialLocation.Longitude);
+                _userSelectedLocation = false;
+            }
+
+            // Only load InitialLocation if user hasn't manually selected a location
+            if (InitialLocation != null && !_userSelectedLocation)
+            {
+                // Check if location has changed
+                bool locationChanged = SelectedLocation == null ||
+                    SelectedLocation.Latitude != InitialLocation.Latitude ||
+                    SelectedLocation.Longitude != InitialLocation.Longitude;
+
+                if (locationChanged)
+                {
+                    SelectedLocation = InitialLocation;
+                    _lastInitialLocation = InitialLocation;
+                    await LoadWeatherData(InitialLocation.Latitude, InitialLocation.Longitude);
+                }
             }
         }
 
         protected async Task HandleLocationSelected(LocationData location)
         {
+            // Mark that user has manually selected a location
+            _userSelectedLocation = true;
             SelectedLocation = location;
             await LoadWeatherData(location.Latitude, location.Longitude);
         }

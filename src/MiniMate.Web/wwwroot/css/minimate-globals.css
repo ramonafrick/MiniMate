@@ -1,0 +1,584 @@
+/* ============================================
+   MiniMate Global Styles
+   Kindgerechtes Design System
+   ============================================ */
+
+/* ============================================
+   CSS Variables - Design Tokens
+   ============================================ */
+:root {
+    /* Primary Module Colors - Same in both modes */
+    --color-weather: #4A90E2;
+    --color-calendar: #9013FE;
+    --color-profile: #7ED321;
+    --color-clothing: #F5A623;
+    --color-home: #FF6B9D;
+
+    /* UI Colors */
+    --color-primary: #4A90E2;
+    --color-secondary: #7ED321;
+    --color-accent: #F5A623;
+    --color-success: #7ED321;
+    --color-warning: #F5A623;
+    --color-error: #FF5252;
+    --color-info: #4A90E2;
+
+    /* Text Colors */
+    --color-text-primary: #2c3e50;
+    --color-text-secondary: #6c757d;
+    --color-text-light: #95a5a6;
+    --color-text-white: #ffffff;
+
+    /* Background Colors */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f8f9fa;
+    --color-bg-tertiary: #e9ecef;
+    --color-bg-dark: #2c3e50;
+
+    /* Border Colors */
+    --color-border-light: #e1e8ed;
+    --color-border-medium: #d1d8dd;
+    --color-border-dark: #bdc3c7;
+
+    /* Gradients */
+    --gradient-weather: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-calendar: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    --gradient-profile: linear-gradient(135deg, #96fbc4 0%, #f9f586 100%);
+    --gradient-clothing: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    --gradient-home: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    /* Shadows */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 12px 28px rgba(0, 0, 0, 0.25);
+    --shadow-colored: 0 4px 15px rgba(102, 126, 234, 0.3);
+
+    /* Border Radius */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 20px;
+    --radius-full: 9999px;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+    --spacing-2xl: 24px;
+    --spacing-3xl: 32px;
+    --spacing-4xl: 40px;
+
+    /* Typography */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 3rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ============================================
+   Dark Mode Variables
+   ============================================ */
+[data-theme="dark"] {
+    /* UI Colors - Dark Mode */
+    --color-primary: #5BA3F5;
+    --color-secondary: #8FE836;
+    --color-accent: #FFB347;
+    --color-success: #8FE836;
+    --color-warning: #FFB347;
+    --color-error: #FF6B6B;
+    --color-info: #5BA3F5;
+
+    /* Text Colors - Dark Mode */
+    --color-text-primary: #E8EAED;
+    --color-text-secondary: #9AA0A6;
+    --color-text-light: #6C757D;
+    --color-text-white: #FFFFFF;
+
+    /* Background Colors - Dark Mode */
+    --color-bg-primary: #1E1E1E;
+    --color-bg-secondary: #2D2D2D;
+    --color-bg-tertiary: #3A3A3A;
+    --color-bg-dark: #121212;
+
+    /* Border Colors - Dark Mode */
+    --color-border-light: #404040;
+    --color-border-medium: #505050;
+    --color-border-dark: #606060;
+
+    /* Shadows - Dark Mode (lighter, more subtle) */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 12px 28px rgba(0, 0, 0, 0.7);
+    --shadow-colored: 0 4px 15px rgba(91, 163, 245, 0.3);
+}
+
+/* ============================================
+   Global Reset & Base Styles
+   ============================================ */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-secondary);
+    line-height: 1.6;
+    transition: background-color var(--transition-base),
+                color var(--transition-base);
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
+.btn {
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    transition: background-color var(--transition-base),
+                transform var(--transition-fast),
+                box-shadow var(--transition-fast);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-text-white);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #3d7cc1;
+}
+
+.btn-secondary {
+    background: var(--color-secondary);
+    color: var(--color-text-white);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #6bc41a;
+}
+
+.btn-warning {
+    background: var(--color-warning);
+    color: var(--color-text-white);
+}
+
+.btn-warning:hover:not(:disabled) {
+    background: #dc941c;
+}
+
+.btn-error {
+    background: var(--color-error);
+    color: var(--color-text-white);
+}
+
+.btn-error:hover:not(:disabled) {
+    background: #e63e3e;
+}
+
+/* ============================================
+   Form Elements
+   ============================================ */
+.form-group {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 2px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    outline: none;
+    transition: border-color var(--transition-base),
+                box-shadow var(--transition-base);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+.form-input:focus,
+.form-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+.form-input::placeholder {
+    color: var(--color-text-light);
+}
+
+/* ============================================
+   Loading & Spinner
+   ============================================ */
+.loading {
+    text-align: center;
+    padding: var(--spacing-4xl);
+}
+
+.spinner {
+    border: 4px solid var(--color-bg-tertiary);
+    border-top: 4px solid var(--color-primary);
+    border-radius: var(--radius-full);
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--spacing-xl);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   Card Styles
+   ============================================ */
+.card {
+    background: var(--color-bg-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-base),
+                box-shadow var(--transition-base);
+}
+
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-gray {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Weather cards */
+.weather-card {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    transition: transform var(--transition-fast),
+                box-shadow var(--transition-fast);
+}
+
+.weather-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-icon {
+    font-size: var(--font-size-2xl);
+}
+
+.card-content {
+    flex: 1;
+}
+
+.card-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: 2px;
+}
+
+.card-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+/* ============================================
+   Alert & Message Styles
+   ============================================ */
+.alert {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+    border: 1px solid;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert-error,
+.error-message {
+    background: #fff5f5;
+    color: #c53030;
+    border-color: #fed7d7;
+    text-align: center;
+    padding: var(--spacing-4xl);
+    border-radius: var(--radius-lg);
+}
+
+.alert-warning {
+    background: #fff3cd;
+    color: #856404;
+    border-color: #ffeaa7;
+}
+
+.alert-info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border-color: #bee5eb;
+}
+
+.error-icon {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.error-text {
+    color: var(--color-error);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+}
+
+/* ============================================
+   Typography Utilities
+   ============================================ */
+.page-title,
+h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+h1 {
+    text-align: left;
+    margin-top: 0;
+}
+
+/* Dark Mode - Force light text for titles */
+[data-theme="dark"] .page-title,
+[data-theme="dark"] h1 {
+    color: #F5F5F5 !important;
+}
+
+.text-primary {
+    color: var(--color-text-primary);
+}
+
+.text-secondary {
+    color: var(--color-text-secondary);
+}
+
+.text-light {
+    color: var(--color-text-light);
+}
+
+.text-white {
+    color: var(--color-text-white);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ============================================
+   Custom Scrollbar
+   ============================================ */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-border-light);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-border-light);
+    border-radius: var(--radius-sm);
+    margin: 0 var(--spacing-md);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: var(--radius-sm);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #3d7cc1;
+}
+
+/* ============================================
+   Common Animations
+   ============================================ */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* ============================================
+   Container & Layout
+   ============================================ */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+}
+
+.container-sm {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+}
+
+.container-lg {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+.mb-2xl { margin-bottom: var(--spacing-2xl); }
+
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.gap-xl { gap: var(--spacing-xl); }
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+    .container,
+    .container-sm,
+    .container-lg {
+        padding: var(--spacing-lg);
+    }
+
+    .page-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --font-size-base: 0.9375rem;
+    }
+
+    .container,
+    .container-sm,
+    .container-lg {
+        padding: var(--spacing-md);
+    }
+}

@@ -1,0 +1,97 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>MiniMate.Web</RootNamespace>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Forecast\**" />
+    <Content Remove="Forecast\**" />
+    <EmbeddedResource Remove="Forecast\**" />
+    <None Remove="Forecast\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\geolocation.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Calendar\Resources\CalendarResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CalendarResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Clothing\Resources\ClothingResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ClothingResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Home\Resources\HomeResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HomeResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Layout\Resources\NavigationResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NavigationResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Profile\Resources\ProfileResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProfileResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Calendar\Resources\CalendarResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CalendarResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Clothing\Resources\ClothingResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ClothingResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Home\Resources\HomeResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Layout\Resources\NavigationResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NavigationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Profile\Resources\ProfileResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfileResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Home\MiniMate.Modules.Home.csproj" />
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Location\MiniMate.Modules.Location.csproj" />
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Weather\MiniMate.Modules.Weather.csproj" />
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Clothing\MiniMate.Modules.Clothing.csproj" />
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Calendar\MiniMate.Modules.Calendar.csproj" />
+    <ProjectReference Include="..\Modules\MiniMate.Modules.Profile\MiniMate.Modules.Profile.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+</Project>

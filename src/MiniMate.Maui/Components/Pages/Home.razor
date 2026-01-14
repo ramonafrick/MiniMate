@@ -1,0 +1,9 @@
+@page "/"
+@using MiniMate.Modules.Home.UI.Components
+@using MiniMate.Modules.Home.Resources
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<HomeResources> Localizer
+
+<PageTitle>@Localizer["PageTitle"]</PageTitle>
+
+<HomeComponent />

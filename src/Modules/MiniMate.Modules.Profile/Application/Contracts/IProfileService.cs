@@ -8,6 +8,11 @@ namespace MiniMate.Modules.Profile.Application.Contracts
     public interface IProfileService
     {
         /// <summary>
+        /// Event raised when the profile is updated
+        /// </summary>
+        event EventHandler<UserProfile>? ProfileChanged;
+
+        /// <summary>
         /// Gets the current user profile
         /// </summary>
         Task<UserProfile> GetProfileAsync();

@@ -11,11 +11,18 @@ namespace MiniMate.Modules.Profile.Application.Services
     public class ProfileService : IProfileService
     {
         private readonly IJSRuntime _jsRuntime;
+        private readonly ProfileStateService _profileStateService;
         private const string PROFILE_KEY = "minimate_user_profile";
 
-        public ProfileService(IJSRuntime jsRuntime)
+        /// <summary>
+        /// Event raised when the profile is updated
+        /// </summary>
+        public event EventHandler<UserProfile>? ProfileChanged;
+
+        public ProfileService(IJSRuntime jsRuntime, ProfileStateService profileStateService)
         {
             _jsRuntime = jsRuntime;
+            _profileStateService = profileStateService;
         }
 
         /// <summary>
@@ -66,6 +73,13 @@ namespace MiniMate.Modules.Profile.Application.Services
                 Console.WriteLine($"ProfileService: Serialized JSON: {json}");
                 await _jsRuntime.InvokeVoidAsync("localStorage.setItem", PROFILE_KEY, json);
                 Console.WriteLine($"ProfileService: Profile saved successfully to localStorage");
+
+                // Update ProfileStateService (this will notify all subscribers)
+                _profileStateService.UpdateProfile(profile);
+
+                // Raise ProfileChanged event
+                ProfileChanged?.Invoke(this, profile);
+                Console.WriteLine($"ProfileService: ProfileChanged event raised");
             }
             catch (Exception ex)
             {

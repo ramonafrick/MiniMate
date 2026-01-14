@@ -154,17 +154,13 @@
 
 /* Responsive Design */
 @media (min-width: 768px) {
-    .weather-avatar-container {
-        flex-direction: row;
-        align-items: flex-start;
+    .avatar-image-wrapper {
+        max-width: 250px;
+        min-height: 300px;
     }
 
-    .avatar-section {
-        flex: 0 0 200px;
-    }
-
-    .clothing-details {
-        flex: 1;
+    .clothing-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 }
 

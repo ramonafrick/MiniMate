@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.1.11312.151
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMate", "MiniMate\MiniMate.csproj", "{19AAB592-5EF9-4BF0-BDD8-17AF4CE903A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMate.Web", "MiniMate.Web\MiniMate.Web.csproj", "{19AAB592-5EF9-4BF0-BDD8-17AF4CE903A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{CA253913-39DE-BFD0-C9A3-4B7EC6FBDF17}"
 EndProject
@@ -16,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMate.Modules.Calendar", "Modules\MiniMate.Modules.Calendar\MiniMate.Modules.Calendar.csproj", "{C035DA4C-B83D-43EB-9247-595136FDB647}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMate.Modules.Profile", "Modules\MiniMate.Modules.Profile\MiniMate.Modules.Profile.csproj", "{3D9BE260-1A6E-4F5E-84A2-5CEC65EC2ADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMate.Maui", "MiniMate.Maui\MiniMate.Maui.csproj", "{AA9A8347-956C-4277-A052-7E2DE5C10CE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMate.Modules.Home", "Modules\MiniMate.Modules.Home\MiniMate.Modules.Home.csproj", "{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +103,31 @@ Global
 		{3D9BE260-1A6E-4F5E-84A2-5CEC65EC2ADB}.Release|x64.Build.0 = Release|Any CPU
 		{3D9BE260-1A6E-4F5E-84A2-5CEC65EC2ADB}.Release|x86.ActiveCfg = Release|Any CPU
 		{3D9BE260-1A6E-4F5E-84A2-5CEC65EC2ADB}.Release|x86.Build.0 = Release|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Debug|x64.Build.0 = Debug|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Debug|x86.Build.0 = Debug|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Release|x64.ActiveCfg = Release|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Release|x64.Build.0 = Release|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Release|x86.ActiveCfg = Release|Any CPU
+		{AA9A8347-956C-4277-A052-7E2DE5C10CE8}.Release|x86.Build.0 = Release|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Debug|x64.Build.0 = Debug|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Debug|x86.Build.0 = Debug|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Release|x64.ActiveCfg = Release|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Release|x64.Build.0 = Release|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Release|x86.ActiveCfg = Release|Any CPU
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +138,7 @@ Global
 		{0D141CB7-FF2B-4E34-81E3-CAC726B61803} = {CA253913-39DE-BFD0-C9A3-4B7EC6FBDF17}
 		{C035DA4C-B83D-43EB-9247-595136FDB647} = {CA253913-39DE-BFD0-C9A3-4B7EC6FBDF17}
 		{3D9BE260-1A6E-4F5E-84A2-5CEC65EC2ADB} = {CA253913-39DE-BFD0-C9A3-4B7EC6FBDF17}
+		{82EEEA11-6C68-42E2-B9C8-9664CB9F581F} = {CA253913-39DE-BFD0-C9A3-4B7EC6FBDF17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0199D32D-EE40-4984-A172-A56251E83B2A}

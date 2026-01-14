@@ -1,0 +1,14 @@
+@page "/weather"
+@using MiniMate.Modules.Weather.UI.Components
+@using MiniMate.Modules.Weather.Domain
+@using MiniMate.Modules.Clothing.UI.Components
+
+<div class="weather-page">
+    @* Weather avatar with clothing recommendations - displayed first when data is loaded *@
+    @if (currentWeatherData != null)
+    {
+        <WeatherAvatarComponent WeatherData="@currentWeatherData" />
+    }
+
+    <WeatherComponent InitialLocation="@ProfileLocation" OnWeatherDataLoaded="@HandleWeatherDataLoaded" ShowTitle="false" @ref="weatherComponent" />
+</div>

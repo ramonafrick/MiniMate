@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MiniMate.Maui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MiniMate.Maui.Pages"
+    FlyoutBehavior="Disabled">
+
+    <!-- Define the TabBar for bottom navigation -->
+    <TabBar>
+        <ShellContent
+            Icon="home.svg"
+            ContentTemplate="{DataTemplate local:HomePage}"
+            Route="home" />
+
+        <ShellContent
+            Icon="calendar.svg"
+            ContentTemplate="{DataTemplate local:CalendarPage}"
+            Route="calendar" />
+
+        <ShellContent
+            Icon="weather.svg"
+            ContentTemplate="{DataTemplate local:WeatherPage}"
+            Route="weather" />
+
+        <ShellContent
+            Icon="profile.svg"
+            ContentTemplate="{DataTemplate local:ProfilePage}"
+            Route="profile" />
+    </TabBar>
+
+</Shell>

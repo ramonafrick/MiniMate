@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using MiniMate.Modules.Location.Domain;
 using MiniMate.Modules.Profile.Application.Contracts;
 using MiniMate.Modules.Profile.Application.Models;
+using MiniMate.Modules.Profile.Application.Services;
 using MiniMate.Modules.Profile.Resources;
 using System.Globalization;
 
@@ -15,6 +16,7 @@ namespace MiniMate.Modules.Profile.UI.Components
         [Inject] protected IProfileService ProfileService { get; set; } = null!;
         [Inject] protected NavigationManager Navigation { get; set; } = null!;
         [Inject] protected IJSRuntime JSRuntime { get; set; } = null!;
+        [Inject] protected CultureStateService CultureStateService { get; set; } = null!;
 
         protected string UserName { get; set; } = "";
         protected string SelectedLanguage { get; set; } = "de";
@@ -120,6 +122,9 @@ namespace MiniMate.Modules.Profile.UI.Components
                 Console.WriteLine("ProfileComponent: SaveProfile button clicked");
                 Console.WriteLine($"ProfileComponent: Current values - UserName='{UserName}', SelectedLanguage='{SelectedLanguage}'");
 
+                var currentCulture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+                var languageChanged = currentCulture != SelectedLanguage;
+
                 var profile = new UserProfile
                 {
                     Name = UserName,
@@ -131,10 +136,25 @@ namespace MiniMate.Modules.Profile.UI.Components
 
                 await ProfileService.SaveProfileAsync(profile);
 
-                // Save language to localStorage for culture setting
+                // Save language to localStorage/preferences for culture setting
                 await JSRuntime.InvokeVoidAsync("blazorCulture.set", SelectedLanguage);
 
-                // Show success message
+                // If language changed, use CultureStateService to notify all components
+                if (languageChanged)
+                {
+                    Console.WriteLine($"ProfileComponent: Language changed from '{currentCulture}' to '{SelectedLanguage}'");
+
+                    // Wait a moment to ensure preferences are saved
+                    await Task.Delay(100);
+
+                    // Use CultureStateService to change culture and notify all subscribers
+                    var newCulture = new CultureInfo(SelectedLanguage);
+                    CultureStateService.ChangeCulture(newCulture);
+
+                    Console.WriteLine($"ProfileComponent: Culture changed to '{SelectedLanguage}' via CultureStateService");
+                }
+
+                // Show success message for all saves (including language changes)
                 ShowSuccessMessage = true;
                 _messageTimer?.Dispose();
                 _messageTimer = new System.Timers.Timer(3000);
@@ -147,15 +167,7 @@ namespace MiniMate.Modules.Profile.UI.Components
                 _messageTimer.Start();
 
                 Console.WriteLine("ProfileComponent: Profile saved successfully");
-
-                // Reload page if language changed to apply new culture
-                var currentCulture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-                if (currentCulture != SelectedLanguage)
-                {
-                    Console.WriteLine($"ProfileComponent: Language changed from '{currentCulture}' to '{SelectedLanguage}', reloading page");
-                    await Task.Delay(1000); // Brief delay to show success message
-                    Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
-                }
+                StateHasChanged();
             }
             catch (Exception ex)
             {

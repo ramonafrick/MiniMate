@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MiniMate.Maui.SplashPage"
+             BackgroundColor="#4A90E2">
+
+    <Grid>
+        <!-- Logo Image with bouncing animation -->
+        <Image x:Name="LogoImage"
+               Source="splash_logo.png"
+               WidthRequest="200"
+               HeightRequest="200"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Aspect="AspectFit" />
+
+        <!-- App Name -->
+        <Label Text="MiniMate"
+               FontSize="32"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Margin="0,250,0,0" />
+
+        <!-- Loading indicator -->
+        <ActivityIndicator x:Name="LoadingIndicator"
+                          IsRunning="True"
+                          Color="White"
+                          HorizontalOptions="Center"
+                          VerticalOptions="End"
+                          Margin="0,0,0,50" />
+    </Grid>
+
+</ContentPage>

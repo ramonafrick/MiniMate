@@ -7,6 +7,23 @@ namespace MiniMate.Modules.Clothing.Infrastructure.Helpers
     /// </summary>
     public static class AvatarMapper
     {
+        // Base path for static assets - dynamically determined based on platform
+        private static string BasePath
+        {
+            get
+            {
+                // Check if running in MAUI (Android, iOS, Windows, MacCatalyst)
+                if (OperatingSystem.IsAndroid() || OperatingSystem.IsIOS() ||
+                    OperatingSystem.IsWindows() || OperatingSystem.IsMacCatalyst())
+                {
+                    // In MAUI, assets are accessed via the wwwroot path
+                    return "_content/MiniMate.Modules.Clothing";
+                }
+                // Default for Blazor WebAssembly
+                return "_content/MiniMate.Modules.Clothing";
+            }
+        }
+
         /// <summary>
         /// Gets the avatar image path for a given weather description
         /// </summary>
@@ -14,7 +31,7 @@ namespace MiniMate.Modules.Clothing.Infrastructure.Helpers
         /// <returns>Path to the corresponding avatar image</returns>
         public static string GetAvatarPath(WeatherDescription description)
         {
-            return description switch
+            var relativePath = description switch
             {
                 // Group 1: Extreme cold winter (< -10°C)
                 // WinterJacket, Hat, Scarf, Gloves, WinterBoots/WarmShoes, ThermalUnderwear
@@ -45,7 +62,7 @@ namespace MiniMate.Modules.Clothing.Infrastructure.Helpers
 
                 // Group 7: Mild rainy weather (10-15°C with rain)
                 // LightJacket, Umbrella, WaterproofShoes
-                WeatherDescription.MildWithRain => "images/avatars/mild-rainy-weather.jpg",
+                WeatherDescription.MildWithRain => "images/avatars/warm-rainy-weather.jpg", // Use warm-rainy as fallback
 
                 // Group 8: Mild pleasant weather (10-15°C no rain)
                 // LightJacket, LongSleeveShirt, Sneakers
@@ -57,7 +74,7 @@ namespace MiniMate.Modules.Clothing.Infrastructure.Helpers
 
                 // Group 10: Warm pleasant weather (15-20°C no rain)
                 // LongSleeveShirt, TShirt, Sneakers
-                WeatherDescription.Warm => "images/avatars/warm-weather.jpg",
+                WeatherDescription.Warm => "images/avatars/mild-weather.jpg", // Use mild-weather as fallback
 
                 // Group 11: Hot with thunderstorm (>= 25°C thunderstorm)
                 // TShirt, Shorts, WaterproofShoes
@@ -77,11 +94,13 @@ namespace MiniMate.Modules.Clothing.Infrastructure.Helpers
 
                 // Group 15: Normal/Default weather
                 // NormalClothing
-                WeatherDescription.Normal => "images/avatars/normal-weather.jpg",
+                WeatherDescription.Normal => "images/avatars/default.jpg",
 
                 // Default fallback
                 _ => "images/avatars/default.jpg"
             };
+
+            return $"{BasePath}/{relativePath}";
         }
     }
 }

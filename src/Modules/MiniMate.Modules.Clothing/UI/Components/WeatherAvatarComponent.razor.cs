@@ -50,14 +50,6 @@ namespace MiniMate.Modules.Clothing.UI.Components
             }
         }
 
-        /// <summary>
-        /// Handles image loading errors by showing a fallback image
-        /// </summary>
-        protected void HandleImageError()
-        {
-            // This will be called if the image fails to load
-            Console.WriteLine($"Failed to load image: {AvatarImagePath}");
-        }
 
         /// <summary>
         /// Gets the appropriate icon for a clothing item (emoji or SVG)
