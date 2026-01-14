@@ -4,6 +4,7 @@ using MiniMate.Modules.Profile.Application.Contracts;
 using MiniMate.Modules.Profile.Application.Services;
 using MiniMate.Modules.Weather.Domain;
 using MiniMate.Modules.Profile.Application.Models;
+using System.Globalization;
 
 namespace MiniMate.Maui.Components.Pages
 {
@@ -12,6 +13,7 @@ namespace MiniMate.Maui.Components.Pages
         [Inject] protected IWeatherService weatherService { get; set; } = null!;
         [Inject] protected IProfileService profileService { get; set; } = null!;
         [Inject] protected ProfileStateService profileStateService { get; set; } = null!;
+        [Inject] protected CultureStateService CultureStateService { get; set; } = null!;
 
         private WeatherData? weatherData;
 
@@ -24,8 +26,18 @@ namespace MiniMate.Maui.Components.Pages
             // Subscribe to ProfileStateService (Singleton - persists across navigation)
             profileStateService.ProfileStateChanged += OnProfileStateChanged;
 
+            // Subscribe to CultureStateService for language changes
+            CultureStateService.CultureChanged += OnCultureChanged;
+
             // Load initial weather data
             await LoadWeatherDataFromProfile();
+        }
+
+        private void OnCultureChanged(object? sender, CultureInfo newCulture)
+        {
+            // Trigger re-render when culture changes
+            Console.WriteLine($"Calendar: Culture changed to {newCulture.Name}, triggering StateHasChanged");
+            InvokeAsync(() => StateHasChanged());
         }
 
         private async Task LoadWeatherDataFromProfile()
@@ -65,8 +77,9 @@ namespace MiniMate.Maui.Components.Pages
 
         public void Dispose()
         {
-            Console.WriteLine("Calendar: Disposing - unsubscribing from ProfileStateChanged");
+            Console.WriteLine("Calendar: Disposing - unsubscribing from ProfileStateChanged and CultureChanged");
             profileStateService.ProfileStateChanged -= OnProfileStateChanged;
+            CultureStateService.CultureChanged -= OnCultureChanged;
         }
     }
 }

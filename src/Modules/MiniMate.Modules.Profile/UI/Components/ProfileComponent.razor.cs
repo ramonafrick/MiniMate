@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using MiniMate.Modules.Location.Domain;
 using MiniMate.Modules.Profile.Application.Contracts;
 using MiniMate.Modules.Profile.Application.Models;
+using MiniMate.Modules.Profile.Application.Services;
 using MiniMate.Modules.Profile.Resources;
 using System.Globalization;
 
@@ -15,6 +16,7 @@ namespace MiniMate.Modules.Profile.UI.Components
         [Inject] protected IProfileService ProfileService { get; set; } = null!;
         [Inject] protected NavigationManager Navigation { get; set; } = null!;
         [Inject] protected IJSRuntime JSRuntime { get; set; } = null!;
+        [Inject] protected CultureStateService CultureStateService { get; set; } = null!;
 
         protected string UserName { get; set; } = "";
         protected string SelectedLanguage { get; set; } = "de";
@@ -137,42 +139,35 @@ namespace MiniMate.Modules.Profile.UI.Components
                 // Save language to localStorage/preferences for culture setting
                 await JSRuntime.InvokeVoidAsync("blazorCulture.set", SelectedLanguage);
 
-                // If language changed, set culture immediately and reload
+                // If language changed, use CultureStateService to notify all components
                 if (languageChanged)
                 {
                     Console.WriteLine($"ProfileComponent: Language changed from '{currentCulture}' to '{SelectedLanguage}'");
 
-                    // Set the culture immediately
-                    var newCulture = new CultureInfo(SelectedLanguage);
-                    CultureInfo.DefaultThreadCurrentCulture = newCulture;
-                    CultureInfo.DefaultThreadCurrentUICulture = newCulture;
-                    CultureInfo.CurrentCulture = newCulture;
-                    CultureInfo.CurrentUICulture = newCulture;
-
-                    Console.WriteLine($"ProfileComponent: Culture set to '{SelectedLanguage}', reloading page");
-
                     // Wait a moment to ensure preferences are saved
                     await Task.Delay(100);
 
-                    // Force reload the entire app
-                    Navigation.NavigateTo("/", forceLoad: true);
-                }
-                else
-                {
-                    // Show success message (only if no language change)
-                    ShowSuccessMessage = true;
-                    _messageTimer?.Dispose();
-                    _messageTimer = new System.Timers.Timer(3000);
-                    _messageTimer.Elapsed += (_, _) => InvokeAsync(() =>
-                    {
-                        ShowSuccessMessage = false;
-                        StateHasChanged();
-                    });
-                    _messageTimer.AutoReset = false;
-                    _messageTimer.Start();
+                    // Use CultureStateService to change culture and notify all subscribers
+                    var newCulture = new CultureInfo(SelectedLanguage);
+                    CultureStateService.ChangeCulture(newCulture);
 
-                    Console.WriteLine("ProfileComponent: Profile saved successfully");
+                    Console.WriteLine($"ProfileComponent: Culture changed to '{SelectedLanguage}' via CultureStateService");
                 }
+
+                // Show success message for all saves (including language changes)
+                ShowSuccessMessage = true;
+                _messageTimer?.Dispose();
+                _messageTimer = new System.Timers.Timer(3000);
+                _messageTimer.Elapsed += (_, _) => InvokeAsync(() =>
+                {
+                    ShowSuccessMessage = false;
+                    StateHasChanged();
+                });
+                _messageTimer.AutoReset = false;
+                _messageTimer.Start();
+
+                Console.WriteLine("ProfileComponent: Profile saved successfully");
+                StateHasChanged();
             }
             catch (Exception ex)
             {

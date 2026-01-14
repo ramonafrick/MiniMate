@@ -37,6 +37,53 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+
+        <!-- Android Package Format: apk (for direct install) or aab (for Play Store) -->
+        <AndroidPackageFormat>apk</AndroidPackageFormat>
+    </PropertyGroup>
+
+    <!-- Android-specific configuration for Debug builds (optimized for emulator) -->
+    <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Debug'">
+        <!-- Disable linking for faster builds and easier debugging -->
+        <AndroidLinkMode>None</AndroidLinkMode>
+
+        <!-- Disable AOT compilation for faster deployment -->
+        <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+        <RunAOTCompilation>false</RunAOTCompilation>
+
+        <!-- Enable Fast Deployment for emulator -->
+        <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+
+        <!-- Use shared runtime for faster deployment -->
+        <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
+
+        <!-- Enable incremental builds -->
+        <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+
+        <!-- Use interpreter for faster startup in emulator -->
+        <UseInterpreter>true</UseInterpreter>
+    </PropertyGroup>
+
+    <!-- Android-specific configuration for Release builds (for physical devices and Play Store) -->
+    <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+        <!-- Enable linking to reduce app size -->
+        <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+
+        <!-- Disable AOT for compatibility (can be enabled if needed) -->
+        <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+        <RunAOTCompilation>false</RunAOTCompilation>
+
+        <!-- Embed assemblies for physical device deployment -->
+        <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+
+        <!-- Don't use shared runtime for release builds -->
+        <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+
+        <!-- Use AAPT2 for better resource optimization -->
+        <AndroidUseAapt2>true</AndroidUseAapt2>
+
+        <!-- Don't create per-ABI packages by default -->
+        <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     </PropertyGroup>
 
     <ItemGroup>

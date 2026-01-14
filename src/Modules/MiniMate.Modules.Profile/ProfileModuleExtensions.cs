@@ -11,6 +11,9 @@ namespace MiniMate.Modules.Profile
             // Register ProfileStateService as Singleton so it persists across navigation
             services.AddSingleton<ProfileStateService>();
 
+            // Register CultureStateService as Singleton for app-wide culture management
+            services.AddSingleton<CultureStateService>();
+
             services.AddScoped<IProfileService, ProfileService>();
             services.AddLocalization();
 

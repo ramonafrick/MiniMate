@@ -5,6 +5,7 @@ using MiniMate.Modules.Profile.Application.Contracts;
 using MiniMate.Modules.Profile.Application.Models;
 using MiniMate.Modules.Profile.Application.Services;
 using MiniMate.Modules.Location.Domain;
+using System.Globalization;
 
 namespace MiniMate.Maui.Components.Pages
 {
@@ -12,6 +13,7 @@ namespace MiniMate.Maui.Components.Pages
     {
         [Inject] protected IProfileService ProfileService { get; set; } = null!;
         [Inject] protected ProfileStateService ProfileStateService { get; set; } = null!;
+        [Inject] protected CultureStateService CultureStateService { get; set; } = null!;
 
         protected LocationData? ProfileLocation { get; set; }
         private WeatherData? currentWeatherData;
@@ -26,7 +28,17 @@ namespace MiniMate.Maui.Components.Pages
             // Subscribe to ProfileStateService (Singleton - persists across navigation)
             ProfileStateService.ProfileStateChanged += OnProfileStateChanged;
 
+            // Subscribe to CultureStateService for language changes
+            CultureStateService.CultureChanged += OnCultureChanged;
+
             await LoadProfileLocation();
+        }
+
+        private void OnCultureChanged(object? sender, CultureInfo newCulture)
+        {
+            // Trigger re-render when culture changes
+            Console.WriteLine($"Weather: Culture changed to {newCulture.Name}, triggering StateHasChanged");
+            InvokeAsync(() => StateHasChanged());
         }
 
         private async Task LoadProfileLocation()
@@ -87,8 +99,9 @@ namespace MiniMate.Maui.Components.Pages
 
         public void Dispose()
         {
-            Console.WriteLine("Weather: Disposing - unsubscribing from ProfileStateChanged");
+            Console.WriteLine("Weather: Disposing - unsubscribing from ProfileStateChanged and CultureChanged");
             ProfileStateService.ProfileStateChanged -= OnProfileStateChanged;
+            CultureStateService.CultureChanged -= OnCultureChanged;
         }
     }
 }

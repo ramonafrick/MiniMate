@@ -9,22 +9,22 @@
     <!-- Define the TabBar for bottom navigation -->
     <TabBar>
         <ShellContent
-            Icon="home.png"
+            Icon="home.svg"
             ContentTemplate="{DataTemplate local:HomePage}"
             Route="home" />
 
         <ShellContent
-            Icon="calendar.png"
+            Icon="calendar.svg"
             ContentTemplate="{DataTemplate local:CalendarPage}"
             Route="calendar" />
 
         <ShellContent
-            Icon="weather.png"
+            Icon="weather.svg"
             ContentTemplate="{DataTemplate local:WeatherPage}"
             Route="weather" />
 
         <ShellContent
-            Icon="profile.png"
+            Icon="profile.svg"
             ContentTemplate="{DataTemplate local:ProfilePage}"
             Route="profile" />
     </TabBar>

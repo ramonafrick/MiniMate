@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MiniMate.Maui.Components.Pages"
-             x:Class="MiniMate.Maui.Pages.CalendarPage"
-             Title="Calendar">
+             x:Class="MiniMate.Maui.Pages.CalendarPage">
 
     <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>

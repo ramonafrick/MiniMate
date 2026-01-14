@@ -16,7 +16,12 @@ namespace MiniMate.Maui
 
             // Navigate to main page after animation
             await Task.Delay(1500); // Show splash for 1.5 seconds total
-            Application.Current!.MainPage = new AppShell();
+
+            // Use the modern way to set the main page
+            if (Application.Current?.Windows.Count > 0)
+            {
+                Application.Current.Windows[0].Page = new AppShell();
+            }
         }
 
         private async Task AnimateLogo()
@@ -25,9 +30,9 @@ namespace MiniMate.Maui
             for (int i = 0; i < 3; i++)
             {
                 // Bounce up
-                await LogoImage.TranslateTo(0, -50, 400, Easing.CubicOut);
+                await LogoImage.TranslateToAsync(0, -50, 400, Easing.CubicOut);
                 // Bounce down
-                await LogoImage.TranslateTo(0, 0, 400, Easing.BounceOut);
+                await LogoImage.TranslateToAsync(0, 0, 400, Easing.BounceOut);
             }
         }
     }
