@@ -441,3 +441,6 @@ FodyWeavers.xsd
 /src/tmpclaude-af58-cwd
 /src/tmpclaude-bd1c-cwd
 /src/tmpclaude-bff6-cwd
+
+# Claude Code local settings (personal, machine-specific — not shared)
+**/.claude/settings.local.json
